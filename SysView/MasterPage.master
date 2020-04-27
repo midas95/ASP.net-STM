@@ -35,8 +35,8 @@
                         <div class="aside-content slim-scroll">
                             <ul class="metisMenu" id="metisMenu">
                                 <li class="nav-title">Main<span class="nav-thumbnail">MN</span></li>
-                                <%--<li> <i class="icon-Gaugage nav-thumbnail"></i>--%>
-                                <li> <i class="lni lni-first-aid nav-thumbnail"></i>
+                                <li> <i class="icon-Gaugage nav-thumbnail"></i>
+                                <%--<li> <i class="lni lni-first-aid nav-thumbnail"></i>--%>
                                     <a href="home.aspx">
                                         <span class="nav-text">
                                             Dashboard 
@@ -376,7 +376,7 @@
                             </div>
                         </div>
                         <div class="d-flex flex p-3 mr-auto justify-content-end">
-                            <div class="text-muted">© Copyright 2014-2018. Assan</div>
+                            <div class="text-muted">© Copyright 2020 Trinovi</div>
                         </div>
                     </div>
                 </footer>

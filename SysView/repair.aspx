@@ -14,6 +14,7 @@
             #divSubmit{
                 text-align:center;
             }
+
         </style>
         <div class="page-subheader mb-30">
                     <div class="container-fluid">
@@ -66,6 +67,31 @@
                             </div>
                         </div>
                         <div class="row deviceDisplay">
+                               <div class="col-sm-6">
+                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
+                                            <span class="portlet-subtitle"></span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                                    <div><b>Model:</b>
+                                                    <span id="txtModel"></span></div>
+                                                    <div><b>Student:</b>
+                                                    <span id="txtStudent"></span></div>
+                                                    <div><b>Serial Number:</b>
+                                                    <span id="txtSerialNum"></span></div>
+                                                    <div><b>Student ID:</b>
+                                                    <span id="txtStudentID"></span></div>
+                                    </div>
+                                    <div class="flex d-flex flex-column mb-20">
+                                        <div id="divAssetImg">
+
+                                        </div>
+                                    </div>
+                                </div><!--portlet-->
+                            </div>
                             <div class="col-sm-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
@@ -121,31 +147,7 @@
 
                                 </div><!--portlet-->
                                 </div>
-                                <div class="col-sm-6">
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Your Device</h3> 
-                                            <span class="portlet-subtitle"></span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                                    <div><b>Model:</b>
-                                                    <span id="txtModel"></span></div>
-                                                    <div><b>Student:</b>
-                                                    <span id="txtStudent"></span></div>
-                                                    <div><b>Serial Number:</b>
-                                                    <span id="txtSerialNum"></span></div>
-                                                    <div><b>Student ID:</b>
-                                                    <span id="txtStudentID"></span></div>
-                                    </div>
-                                    <div class="flex d-flex flex-column">
-                                        <div id="divAssetImg">
-
-                                        </div>
-                                    </div>
-                                </div><!--portlet-->
-                            </div>
+ 
                         </div>
 
                     </div>
@@ -180,8 +182,10 @@
                              $("#txtModel").text(strParse.model);
                              $("#txtStudent").text(strParse.username);
                              $("#txtSerialNum").text(strParse.serialNum);
+                             $("#spnAssetTag").html('&nbsp <span>Asset# ' +$('#txtAssetTag').val()+'</span>');
                              //$("#divAssetImg").text('sometext');
                              $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
+                             $("#txtAssetTag").val("");
                          } else {
                              $("#divNoResults").show();
 

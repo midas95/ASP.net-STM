@@ -5,7 +5,7 @@
                         <div class="row align-items-center mb-30 pt-30">
                             <div class="col-md-12 mr-auto ml-auto">
                                 <div class="mb-0">
-                                    <a href='#' class='float-right btn btn-sm btn-info btn-icon'><i class="fa fa-cog mr-2"></i>View Settings</a>
+                                    <a href='/repair.aspx' class='float-right btn btn-sm btn-info btn-icon'><i class="fas fa-download"></i>Scan Device</a>
                                     <h4>Welcome back, <%= FirstName %></h4>
                                 </div>
                             </div>
