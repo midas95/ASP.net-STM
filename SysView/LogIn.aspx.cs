@@ -40,7 +40,7 @@ public partial class User_LogIn : System.Web.UI.Page
         }
         else
         {
-            SqlCommand command = new SqlCommand("usp_GetAlldusers", objsqlconn);
+            SqlCommand command = new SqlCommand("sv_usp_GetSysViewUsers", objsqlconn);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             objsqlconn.Open();
 
@@ -57,8 +57,20 @@ public partial class User_LogIn : System.Web.UI.Page
                         Session["USER_EMAIL"] = item["Email"].ToString().Trim();
                         Session["UserName"] = item["FirstName"].ToString() + " " + item["LastName"].ToString();
                         Session["UserKey"] = item["UserKey"].ToString();
-                        Session["Admin"] = "1";
-                        Response.Redirect("inventorylist.aspx");
+                        Session["FirstName"] = item["FirstName"].ToString();
+                        Session["LastName"] = item["LastName"].ToString();
+                        Session["UserStatus"] = item["UserStatus"].ToString();
+                        //Session["Admin"] = "1";
+
+                        if(!String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Admin")
+                        {
+                            Response.Redirect("admin-home.aspx");
+
+                        }
+                        else
+                        {
+                            Response.Redirect("home.aspx");
+                        }
                     }
                     else
                     {

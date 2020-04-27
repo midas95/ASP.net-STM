@@ -8,12 +8,21 @@ using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Role { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
         string pageName = Path.GetFileName(Request.Path);
         SetSideMenu(pageName);
         if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()))
         {
+            FirstName = Session["FirstName"].ToString();
+            LastName = Session["LastName"].ToString();
+            Role = "User";
+            if (!String.IsNullOrEmpty(Session["UserStatus"].ToString()))
+                Role = Session["UserStatus"].ToString();
+
             //lnkbtnLogin.Visible = false;
             //Button1.Visible = false;
             //// lblusername.Visible = true;

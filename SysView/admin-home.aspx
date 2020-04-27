@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="home.aspx.cs" Inherits="Home" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="admin-home.aspx.cs" Inherits="AdminHome" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
  <div class="container-fluid">
@@ -19,7 +19,7 @@
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">4598</span>
-                                            <span class="list-content fs14">New Orders</span>
+                                            <span class="list-content fs14">Total Devices</span>
 
                                         </div>
                                     </div>
@@ -33,13 +33,13 @@
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">753</span>
-                                            <span class="list-content  fs14">Pending Orders</span>
+                                            <span class="list-content  fs14">Repair Status</span>
 
                                         </div>
                                     </div>
                                 </div>
                             </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
+<%--                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
@@ -47,12 +47,12 @@
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">78</span>
-                                            <span class="list-content  fs14">Order Canceled</span>
+                                            <span class="list-content  fs14">Home Use</span>
 
                                         </div>
                                     </div>
                                 </div>
-                            </div><!--col-->
+                            </div>--%>
                             <div class="col-lg-3 mb-6 col-md-6  mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
@@ -60,15 +60,15 @@
                                             <i class="icon-Money-Bag"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">6830</span>
-                                            <span class="list-content fs14">Earnings</span>
+                                            <span class="list-title fs-2x">78</span>
+                                            <span class="list-content fs14">Home Use</span>
 
                                         </div>
                                     </div>
                                 </div>
                             </div><!--col-->
                         </div>
-                        <div class="row">
+<%--                        <div class="row">
                             <div class="col-lg-8">
                                 <div class="portlet-box bg-trans  mb-30">
                                     <div class="portlet-header bg-light flex-row b-b flex d-flex align-items-center">
@@ -124,7 +124,7 @@
                                             <img src="images/avatar2.jpg" alt="" class="img-fluid rounded-circle">
                                         </div>
                                         <div class="tl-content">
-  <span class="text-muted float-right fs12 d-inline-block">12 Min ago</span>
+                                            <span class="text-muted float-right fs12 d-inline-block">12 Min ago</span>
                                             <a href="#">
                                                 <span>Replace these images with current home slider </span>
                                             </a> 
@@ -151,20 +151,20 @@
                                 </ul>
                                     </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="portlet-box portlet-fullHeight mb-30">
                                     <div class="portlet-header bg-light flex-row flex d-flex align-items-center">
                                         <div class="flex d-flex flex-column">
-                                            <h3>Recent item sales</h3> 
+                                            <h3>Inventory List</h3> 
                                         </div>
                                         <div class="portlet-tools">
                                             <ul class="nav">
 
                                                 <li class="nav-item">
                                                     <select class="custom-select bg-light hidden-search" data-placeholder="Filter Orders">
-                                                        <option value="1" selected>Recent Orders</option>
+                                                        <option value="1" selected>Sort By...</option>
                                                         <option value="2">Pending Orders</option>
                                                         <option value="3">Canceled Orders</option>
                                                         <option value="4">Return Orders</option>
@@ -172,7 +172,7 @@
                                                 </li>
                                                 <li class="nav-item pl-3">
                                                     <a href="#" class="btn btn-link">
-                                                        View all orders
+                                                        View all devices
                                                     </a>
                                                 </li>
                                             </ul>
@@ -182,7 +182,7 @@
 
                                         <div class="table-responsive">
                                             <table class="table mb-0">
-                                                <thead>
+<%--                                                <thead>
                                                     <tr>
                                                         <th>Order Id</th>
                                                         <th>Product</th>
@@ -190,106 +190,12 @@
                                                         <th>Rate</th>
                                                         <th>States</th>
                                                     </tr>
-                                                </thead>
+                                                </thead>--%>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>3949IN40</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img1.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>App Mackbook Air</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$1299.00</td>
-                                                        <td>
-                                                            <span class="badge badge-warning badge-text"><i class="fa fa-truck mr-1"></i> Pending</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3949IN39</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img2.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>Mens Sunglasses</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$19.00</td>
-                                                        <td>
-                                                            <span class="badge badge-success badge-text"><i class="fa fa-check mr-1"></i> Delivered</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4939IN29</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img3.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>App Mackbook Air</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$1299.00</td>
-                                                        <td>
-                                                            <span class="badge badge-warning badge-text"><i class="fa fa-truck mr-1"></i> pending</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>0038IN39</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img4.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>Apple Ipad Air</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$699.00</td>
-                                                        <td>
-                                                            <span class="badge badge-danger badge-text"><i class="fa fa-times mr-1"></i> Canceled</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>9038IN49</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img5.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>Just another product</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$179.00</td>
-                                                        <td>
-                                                            <span class="badge badge-warning badge-text"><i class="fa fa-truck mr-1"></i> Pending</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5330IN39</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img6.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>Lorem ipsum dolor</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$156.00</td>
-                                                        <td>
-                                                            <span class="badge badge-dark badge-text"><i class="fa fa-sync mr-1"></i> Return</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3032IN39</td>
-                                                        <td>
-                                                            <a href="#"> 
-                                                                <img src="images/img3.jpg" alt="" class="img-fluid avatar32 rounded-circle mr-2">
-                                                                <span>Toy Train</span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>$99.00</td>
-                                                        <td>
-                                                            <span class="badge badge-success badge-text"><i class="fa fa-times mr-1"></i> Delivered</span>
-                                                        </td>
-                                                    </tr>
+
+                                                <asp:Literal ID ="InventoryList" runat="server"></asp:Literal>
+
+                                                    
 
                                                 </tbody>
                                             </table>
