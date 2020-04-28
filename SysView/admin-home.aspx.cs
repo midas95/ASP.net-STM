@@ -46,13 +46,11 @@ using HtmlAgilityPack;
 
                     while (reader.Read())
                     {
-                        InventoryList.Text += "<tr><td>" + reader["Model"].ToString()
+                        InventoryList.Text += "<tr class='invRow' id='"+reader["InventoryKey"]+"'><td>" + reader["Model"].ToString()
                                              + "</td><td>" + reader["SerialNum"].ToString()
                                              + "</td><td>" + reader["MAC"].ToString()
                                              + "</td><td>" + reader["UserEmail"].ToString()
-                                             //+ "<a href='#'>< img src='images/img1.jpg' alt='' class='img-fluid avatar32 rounded-circle mr-2'>"
-                                             //+ "<span>App Mackbook Air</span></a>"
-                                             //+ "</td><td>$1299.00</td><td>"
+
                                              + "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
                                              + "</td></tr>";
                     } i++;

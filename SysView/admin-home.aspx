@@ -39,20 +39,7 @@
                                     </div>
                                 </div>
                             </div><!--col-->
-<%--                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list border1 rounded overflow-hidden">
-                                    <div class="list-item">
-                                        <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Remove-Basket"></i>
-                                        </div>
-                                        <div class="list-body text-right">
-                                            <span class="list-title fs-2x">78</span>
-                                            <span class="list-content  fs14">Home Use</span>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>--%>
                             <div class="col-lg-3 mb-6 col-md-6  mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
@@ -68,90 +55,7 @@
                                 </div>
                             </div><!--col-->
                         </div>
-<%--                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="portlet-box bg-trans  mb-30">
-                                    <div class="portlet-header bg-light flex-row b-b flex d-flex align-items-center">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Recent Earnings</h3> 
-                                        </div>
-                                        <div class="portlet-tools">
-                                            <ul class="nav">
 
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link"><i class="fa fa-sync"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div><!--header-->
-                                    <div class="portlet-body">
-                                         <div class="nav pb-3">
-                                             <span class="pr-2 pt-2"><i class="fa fa-filter mr-2 text-muted"></i>Filter Earnings</span>
-                                                <div class="nav-item p-1">
-                                                    <input placeholder="From" type="text" class="form-control" id="date_timepicker_start">
-                                                </div>
-                                                <div class="nav-item p-1">
-                                                    <input placeholder="To" type="text" class="form-control" id="date_timepicker_end">
-                                                </div>
-                                            </div>
-                                        <div class='chartist'>
-                                    <div style="height: 300px;" class="ct-chart"></div>
-                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 mb-30">
-                                <div class=" p-3  flex full-height rounded border1">
-                                    <span class="b-b fs-1x font500 mb-3 d-block pb-3">Recent Activities</span>
-                                <ul class="timeline-alt list-unstyled">
-                                    <li class="clearfix d-flex flex">
-                                        <div class="tl-thumb bg-primary text-primary-light fs10 font600 rounded-circle">
-                                            <i class="fa fa-comments"></i>
-                                        </div>
-                                        <div class="tl-content">
-                                            <span class="text-muted float-right fs12 d-inline-block">12 Min ago</span>
-                                            <a href="#">
-                                                <span>New Message</span>
-                                            </a> 
-                                            <p>
-                                                Sent you friend request
-                                            </p>
-                                        </div>
-
-                                    </li><!-- timeline item-->
-                                    <li class="clearfix d-flex flex">
-                                        <div class="tl-thumb rounded-circle">
-                                            <img src="images/avatar2.jpg" alt="" class="img-fluid rounded-circle">
-                                        </div>
-                                        <div class="tl-content">
-                                            <span class="text-muted float-right fs12 d-inline-block">12 Min ago</span>
-                                            <a href="#">
-                                                <span>Replace these images with current home slider </span>
-                                            </a> 
-                                        </div>
-                                    </li><!-- timeline item-->
-                                    <li class="clearfix d-flex flex">
-                                        <div class="tl-thumb si-colored-facebook rounded-circle">
-                                            <i class="fab fa-facebook-f fs10"></i>
-                                        </div>
-                                        <div class="tl-content">
-                                            <span class="text-muted float-right fs12 d-inline-block">12 Min ago</span>
-                                            <a href="#">
-                                                <span>New Friend Request</span>
-                                            </a> 
-                                            <p class="mb-0">
-                                                Sent you friend request
-                                            </p>
-                                        </div>
-
-                                    </li><!-- timeline item-->
-                                    <li class='clearfix d-flex flex text-right'>
-                                        <a href='#' class='btn btn-sm btn-primary'>View All</a>
-                                    </li>
-                                </ul>
-                                    </div>
-                            </div>
-                        </div>--%>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="portlet-box portlet-fullHeight mb-30">
@@ -182,20 +86,9 @@
 
                                         <div class="table-responsive">
                                             <table class="table mb-0">
-<%--                                                <thead>
-                                                    <tr>
-                                                        <th>Order Id</th>
-                                                        <th>Product</th>
-                                                        <th></th>
-                                                        <th>Rate</th>
-                                                        <th>States</th>
-                                                    </tr>
-                                                </thead>--%>
                                                 <tbody>
 
                                                 <asp:Literal ID ="InventoryList" runat="server"></asp:Literal>
-
-                                                    
 
                                                 </tbody>
                                             </table>
@@ -205,5 +98,13 @@
                             </div><!--col-->
                         </div>
                     </div>
+    
+        <script>
+            $(".invRow").click(function () {
+                var invKey = $(this).attr("id");
+                window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
+            })
+        </script>
+
     </asp:Content>
 

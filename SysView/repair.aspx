@@ -78,12 +78,12 @@
                                     <div class="portlet-body">
                                                     <div><b>Model:</b>
                                                     <span id="txtModel"></span></div>
-                                                    <div><b>Student:</b>
-                                                    <span id="txtStudent"></span></div>
                                                     <div><b>Serial Number:</b>
                                                     <span id="txtSerialNum"></span></div>
                                                     <div><b>Student ID:</b>
                                                     <span id="txtStudentID"></span></div>
+                                                    <div><b>Student:</b>
+                                                    <span id="txtStudent"></span></div>
                                     </div>
                                     <div class="flex d-flex flex-column mb-20">
                                         <div id="divAssetImg">
@@ -180,10 +180,9 @@
                              $("#divNoResults").hide();
                              $(".deviceDisplay").show();
                              $("#txtModel").text(strParse.model);
-                             $("#txtStudent").text(strParse.username);
+                             $("#txtStudent").text(strParse.userEmail);
                              $("#txtSerialNum").text(strParse.serialNum);
                              $("#spnAssetTag").html('&nbsp <span>Asset# ' +$('#txtAssetTag').val()+'</span>');
-                             //$("#divAssetImg").text('sometext');
                              $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
                              $("#txtAssetTag").val("");
                          } else {

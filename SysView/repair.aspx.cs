@@ -16,11 +16,6 @@ public partial class repair : System.Web.UI.Page
     
     static string ReturnVal { get; set; }
     static object ObjJSON { get; set; }
-    //static string invKey { get; set; }
-    //static string model { get; set; }
-    //static string serialNum { get; set; }
-    //static string mac { get; set; }
-    //static string useremail { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,7 +31,7 @@ public partial class repair : System.Web.UI.Page
 
             SqlCommand sqlcom = new SqlCommand("sv_usp_GetInventoryByAssetTag", conn);
             sqlcom.CommandType = CommandType.StoredProcedure;
-            sqlcom.Parameters.AddWithValue("@assetTag", assetNum);
+            sqlcom.Parameters.AddWithValue("@AssetTag", assetNum);
             conn.Open();
 
             DataTable asset = new DataTable();
@@ -65,19 +60,6 @@ public partial class repair : System.Web.UI.Page
                 JavaScriptSerializer j = new JavaScriptSerializer();
                 ObjJSON = j.Deserialize(ReturnVal, typeof(object));
 
-                //ReturnVal = "{inventoryKey:" + invKey
-                //            + ",model:" + model
-                //            + ",serialNum:" + serialNum
-                //            + ",MAC:" + mac
-                //            + ",userEmail:" + useremail
-                //            + "}";
-
-                //ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
-                //    + ", 'model':" + "'" + model + "'"
-                //    + ", 'serialNum':" + "'" + serialNum + "'"
-                //    + ", 'MAC':" + "'" + mac + "'"
-                //    + ", 'userEmail':" + "'" + useremail + "'"
-                //    + "}";
             }
 
             return ObjJSON;
