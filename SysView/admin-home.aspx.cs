@@ -51,8 +51,10 @@ using HtmlAgilityPack;
                                              + "</td><td>" + reader["MAC"].ToString()
                                              + "</td><td>" + reader["UserEmail"].ToString()
 
-                                             + "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
-                                             + "</td></tr>";
+                                             //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
+                                             + "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
+
+                                                     + "</td></tr>";
                     } i++;
 
                     InventoryList.Text += "</table>";

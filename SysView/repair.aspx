@@ -6,8 +6,8 @@
                 text-align:center;
             }
             #divAssetImg img{
-                margin:0 15px 10px 0;
-                height: 155px;
+                margin:10px 15px 10px 0;
+                height: 123px;
                 width: auto;
             }
 
@@ -33,7 +33,7 @@
                             <div class="col-md-5 d-flex justify-content-end">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb no-padding bg-trans mb-0">
-                                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-Home mr-2 fs14"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="home.aspx"><i class="icon-Home mr-2 fs14"></i></a></li>
                                         <%--<li class="breadcrumb-item">Ui Elements</li>--%>
                                         <li class="breadcrumb-item active">Repair Request </li>
                                     </ol>
@@ -67,15 +67,21 @@
                             </div>
                         </div>
                         <div class="row deviceDisplay">
-                               <div class="col-sm-6">
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                            <div class="col-sm-12">
+                            <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                <div class="portlet-header flex-row flex d-flex align-items-center b-b ml-10">
+                                    <div class="row">
                                         <div class="flex d-flex flex-column">
-                                            <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
+                                                <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
                                             <span class="portlet-subtitle"></span>
                                         </div>
                                     </div>
-                                    <div class="portlet-body">
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
                                                     <div><b>Model:</b>
                                                     <span id="txtModel"></span></div>
                                                     <div><b>Serial Number:</b>
@@ -84,75 +90,22 @@
                                                     <span id="txtStudentID"></span></div>
                                                     <div><b>Student:</b>
                                                     <span id="txtStudent"></span></div>
-                                    </div>
-                                    <div class="flex d-flex flex-column mb-20">
-                                        <div id="divAssetImg">
-
+                                                </div>
+                                                <div class="col-sm-6">
+                                                        <div class="flex d-flex flex-column mb-20">
+                                                        <div id="divAssetImg"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div><!--portlet-->
+                                </div> <!-- row end -->
                             </div>
-                            <div class="col-sm-6">
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Problems</h3> 
-                                            <span class="portlet-subtitle">Check all that apply</span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkWontTurnOn">
-                                            <label class="custom-control-label" for="chkWontTurnOn">Won't turn on</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkScreenDamanged">
-                                            <label class="custom-control-label" for="chkScreenDamanged">Screen damanged</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkMissingKeys">
-                                            <label class="custom-control-label" for="chkMissingKeys">Keyboard missing keys</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkKeyNotWorking">
-                                            <label class="custom-control-label" for="chkKeyNotWorking">Keyboard not working</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkTrackNotWorking">
-                                            <label class="custom-control-label" for="chkTrackNotWorking">Trackpad not working</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkHingesDamaged">
-                                            <label class="custom-control-label" for="chkHingesDamaged">Hinges damaged</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkAppsMissing">
-                                            <label class="custom-control-label" for="chkAppsMissing">Apps missing</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkWifiNotWorking">
-                                            <label class="custom-control-label" for="chkWifiNotWorking">WiFi not working</label>
-                                        </div>
-                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" id="chkAdapterDamaged">
-                                            <label class="custom-control-label" for="chkAdapterDamaged">Power adapter damaged</label>
-                                        </div>
-                                    <div id="divSubmit" class="row">
-                                        <div class="col-sm-12">
-                                        <a href="javascript:void(0)" class="btn btn-rounded btn-primary mr-1 mb-2 mt-10">Submit Repair Request</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </div><!--portlet-->
-                                </div>
- 
+                        </div><!--portlet-->
+                    </div>
                         </div>
 
                     </div>
-                            </div>
-                            </div>
                             <div id="divNoResults" style='margin-left:20px; font-size:20px; display:none;'>
                         <i class='far fa-frown'></i>
                         <span style='margin-left:3px;'>Your search did not return results. Please try again.</span>

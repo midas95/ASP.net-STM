@@ -6,8 +6,8 @@
                 text-align:center;
             }
             #divAssetImg img{
-                margin:0 15px 10px 0;
-                height: 155px;
+                margin:5px 15px 10px 0;
+                height: 123px;
                 width: auto;
             }
 
@@ -33,7 +33,7 @@
                             <div class="col-md-5 d-flex justify-content-end">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb no-padding bg-trans mb-0">
-                                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-Home mr-2 fs14"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="home.aspx"><i class="icon-Home mr-2 fs14"></i></a></li>
                                         <li class="breadcrumb-item active">Admin Repair Form </li>
                                     </ol>
                                 </nav>
