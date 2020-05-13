@@ -61,8 +61,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+<%--                                        </div>
+                                    </div>--%>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,8 @@
                                 <div class="portlet-header flex-row flex d-flex align-items-center b-b ml-10">
                                     <div class="row">
                                         <div class="flex d-flex flex-column">
-                                                <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
+                                                <%--<h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>--%>
+                                                <h3><span id="spnAssetTag" style="font-weight:100;">Your Device  </span> </h3>
                                             <span class="portlet-subtitle"></span>
                                         </div>
                                     </div>
