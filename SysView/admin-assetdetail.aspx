@@ -34,7 +34,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb no-padding bg-trans mb-0">
                                         <li class="breadcrumb-item"><a href="home.aspx"><i class="icon-Home mr-2 fs14"></i></a></li>
-                                        <li class="breadcrumb-item active">Admin Repair Form </li>
+                                        <li class="breadcrumb-item active">Admin Device Details </li>
                                     </ol>
                                 </nav>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
-                                            <h3>Device Identification</h3> 
+                                            <h3>Device</h3> 
                                             <span class="portlet-subtitle">Basic device ID data</span>
                                         </div>
                                     </div>

@@ -24,9 +24,6 @@ public partial class repair : System.Web.UI.Page
     }
 
     [WebMethod]
-
-
-
     public static object SearchAssets(string assetNum)
     {
         try

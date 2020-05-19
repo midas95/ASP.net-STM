@@ -326,10 +326,10 @@
                         success: function (response) {
                             console.log(response.d);
                             if (response.d) {
-                                toastr.success("Request is sent successfully");
+                                toastr.success("Request was sent successfully");
                                 init();
                             } else {
-                                toastr.warning("Something went wrong");
+                                toastr.warning("Something went wrong during repair request");
                             }
 
                             $("#loader-wrapper").hide();
