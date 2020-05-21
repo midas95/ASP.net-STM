@@ -14,12 +14,12 @@
             #divSubmit{
                 text-align:center;
             }
-            .repair-req-btn{
+            .btnRepairReq{
                 font-size:17px !important;
                 float:right;
-                margin-top: -20px;
+                margin-top: -25px;
             }
-            .repair-req-btn:hover{
+            .btnRepairReq:hover{
                 cursor:pointer;
             }
             #basic-addon2{
@@ -108,6 +108,10 @@
                 width: 100%;
                 display:none;
             }
+
+            .btnGroup{
+                padding: 5px 0 0 90px;
+            }
         </style>
         <div class="page-subheader mb-30">
             <div class="container-fluid">
@@ -148,7 +152,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="input-group pt-10">
-                                            <input type="text" id="txtAssetTag" class="form-control" aria-label="Large" placeholder="ENTER YOUR ASSET TAG" aria-label="Asset Tag" aria-describedby="basic-addon2"/>
+                                            <input type="text" id="txtAssetTag" class="form-control" aria-label="Large" placeholder="ENTER YOUR ASSET TAG" aria-describedby="basic-addon2"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text btnSearchAssets" id="basic-addon2"><i class="icon-Magnifi-Glass2"></i></span>
                                             </div>
@@ -167,7 +171,11 @@
                                 <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
                                 <span class="portlet-subtitle"></span>
                             </div>
-                            <span class="badge text-danger-light badge-danger badge-text anibadge repair-req-btn">Repair Request</span>
+                            <%--<span class="badge text-danger-light badge-danger badge-text anibadge repair-req-btn">Submit Repair Request</span>--%>
+                            <%--<span class="badge text-danger-light badge-danger badge-text btnRepairReq">Submit Repair Request</span>--%>
+                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
+
+
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
@@ -175,12 +183,9 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <input type="hidden" id="invkey" />
-                                            <div><b>Model:</b><span id="txtModel"></span></div>
-                                            <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
-                                            <div><b>Student ID:</b><span id="txtStudentID"></span></div>
-                                            <div><b>Student:</b><span id="txtStudent"></span></div>
-                                            <div>
-                                                <b>Problems:</b>
+                                            <div class="divProbs">
+                                                <b>Check all that apply:</b>
+                                                <p></p>
                                                 <label class="custom-checkbox normal-issue">
                                                     <span>Screen Damaged</span>
                                                     <input type="checkbox"/>
@@ -227,10 +232,30 @@
                                                 </label>
                                                 <textarea class="other-issue-content"></textarea>
                                             </div>
+                                            <div class="btnGroup">
+                                                <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
+                                                <button class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                            </div>
+                                            <div class="assetInfo">
+                                                <div><b>Model:</b><span id="txtModel"></span></div>
+                                                <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
+                                                <div><b>Student ID:</b><span id="txtStudentID"></span></div>
+                                                <div><b>Student:</b><span id="txtStudent"></span></div>
+                                            </div>
                                         </div>
+
                                         <div class="col-sm-6">
-                                                <div class="flex d-flex flex-column mb-20">
-                                                <div id="divAssetImg"></div>
+                                            <div class="flex d-flex flex-column mb-20">
+                                                <div class="divAssetInfo2">
+                                                    <%--<div><b>Student ID:</b><span class="txtStudentID"></span></div>--%>
+                                                    <div><b>Model:</b><span class="txtModel"></span></div>
+                                                    <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
+                                                    <div><b>Student:</b><span class="txtStudent"></span></div>
+
+                                                </div>
+                                                <div class="divImg">
+                                                    <div id="divAssetImg"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -250,6 +275,9 @@
         <script>
             $(document).ready(function () {
                 $(".deviceDisplay").hide();
+                $(".divProbs").hide();
+                $(".divAssetInfo2").hide();
+                $(".btnGroup").hide();
             });
             function init() {
                 $("#txtModel, #txtSerialNum, #txtStudentID, #txtStudent").text("");
@@ -259,54 +287,87 @@
                 });
             }
             $(".btnSearchAssets").click(function () {
+                searchAssets();
+            });
+
+            function searchAssets() {
                 $("#loader-wrapper").show();
 
                 $.ajax({
-                     type: "POST",
-                     url: "repair.aspx/SearchAssets",
-                     data: JSON.stringify({ assetNum: $('#txtAssetTag').val() }),
-                     contentType: "application/json; charset=utf-8",
-                     dataType: "json",
-                     success: function (response) {
-                         if (response.d) {
-                             console.log(response.d);
-                             var strResponse = JSON.stringify(response.d);
-                             var strParse = JSON.parse(strResponse);
-                             $("#divNoResults").hide();
-                             $(".deviceDisplay").show();
-                             $("#invkey").val(strParse.inventoryKey);
-                             $("#txtModel").text(strParse.model);
-                             $("#txtStudent").text(strParse.userEmail);
-                             $("#txtSerialNum").text(strParse.serialNum);
-                             $("#spnAssetTag").html('&nbsp <span>Asset# ' +$('#txtAssetTag').val()+'</span>');
-                             $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
-                             //$("#txtAssetTag").val("");
-                         } else {
-                             $("#divNoResults").show();
-                             console.log(response.d);
-                         }
-                         $("#loader-wrapper").hide();
+                    type: "POST",
+                    url: "repair.aspx/SearchAssets",
+                    data: JSON.stringify({ assetNum: $('#txtAssetTag').val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d) {
+                            console.log(response.d);
+                            var strResponse = JSON.stringify(response.d);
+                            var strParse = JSON.parse(strResponse);
+                            $("#divNoResults").hide();
+                            if ($(".deviceDisplay").is(":hidden")) {
+                                $(".deviceDisplay").slideToggle();
+                            }
+                            $("#invkey").val(strParse.inventoryKey);
+                            $("#txtModel").text(strParse.model);
+                            $("#txtStudent").text(strParse.userEmail);
+                            $("#txtSerialNum").text(strParse.serialNum);
+                            $(".txtModel").text(strParse.model);
+                            $(".txtStudent").text(strParse.userEmail);
+                            $(".txtSerialNum").text(strParse.serialNum);
+                            $("#spnAssetTag").html('&nbsp <span>Asset# ' + $('#txtAssetTag').val() + '</span>');
+                            $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
+                            $("#txtAssetTag").val("");
+                            $(".custom-checkbox input").each(function () {
+                                if ($(this).attr("class") == "checked") $(this).trigger("click");
+                            });
 
-                     },
-                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                         alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-                         $("#loader-wrapper").hide();
+                            $(".assetInfo").show();
+                            $(".divAssetInfo2").hide();
 
-                     }
-                 });
-            })
+                            $(".divImg").show();
+                            $(".divProbs").hide();
+                            $(".btnGroup").hide();
+                            $(".btnRepairReq").show();
+
+                        } else {
+                            $("#divNoResults").show();
+                            console.log(response.d);
+                        }
+                        $("#loader-wrapper").hide();
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
+
+                    }
+                });
+            }
+
+            $(".btnRepairReq").click(function () {
+                $(".assetInfo").fadeOut( "slow", function() {});
+                $(".divAssetInfo2").toggle("slide");
+
+                $(".divImg").toggle("slide");
+                $(".divProbs").slideToggle();
+                $(".btnGroup").slideToggle();
+                $(".btnRepairReq").slideToggle();
+            });
 
             $(".other-issue input").click(function () {
                 $(".other-issue-content").slideToggle();
             });
+
             $(".normal-issue input, .other-issue input").click(function () {
                 $(this).toggleClass("checked");
             });
-            $(".repair-req-btn").click(function () {
-               
+
+            $(".repair-req-btn").click(function () {              
                 var invkey = $("#invkey").val();
                 var problem_arr = [];
                 var problemNotes = "";
+                var searchAssetTag = $('#txtAssetTag').val();
                 $(".normal-issue").each(function () {
                     if ($(this).children("input").attr("class") == "checked") problem_arr.push($(this).children("span:first-child").text());
                 });
@@ -328,6 +389,14 @@
                             if (response.d) {
                                 toastr.success("Request was sent successfully");
                                 init();
+                                
+                                $(".divAssetInfo2").toggle("slide");
+                                $(".divImg").toggle("slide");
+                                $(".divProbs").slideToggle();
+                                $(".btnGroup").slideToggle();
+                                // MAKE THIS ITS OWN ELEMENT TO HIDE/SHOW
+                                $(".assetInfo").html("<h1>Your repair request has been submitted</h1>");
+                                $(".assetInfo").show();
                             } else {
                                 toastr.warning("Something went wrong during repair request");
                             }
