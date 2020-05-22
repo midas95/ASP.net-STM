@@ -62,6 +62,7 @@ public partial class repair : System.Web.UI.Page
                     string mac = item["MAC"].ToString();
                     string useremail = item["UserEmail"].ToString();
                     string imgLink = item["ImgLink"].ToString();
+                    string invStatus = item["InvStatus"].ToString();
 
                 ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
                     + ", 'model':" + "'" + model + "'"
@@ -69,6 +70,7 @@ public partial class repair : System.Web.UI.Page
                     + ", 'MAC':" + "'" + mac + "'"
                     + ", 'userEmail':" + "'" + useremail + "'"
                     + ", 'imgLink':" + "'" + imgLink + "'"
+                    + ", 'invStatus':" + "'" + invStatus + "'"
                     + "}";
 
                 JavaScriptSerializer j = new JavaScriptSerializer();
@@ -125,6 +127,12 @@ public partial class repair : System.Web.UI.Page
                 cmdInsert.Parameters.AddWithValue("@ProblemNotes", problemNotes);
 
                 cmdInsert.ExecuteNonQuery();
+
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET StatusID = 2 WHERE SerialNum ='" + 
+                                                            SerialNum + "' " +
+                                                         "AND AssetTag='" + 
+                                                            fk_AssetTag + "'", conn);
+                cmdInvUpdate.ExecuteNonQuery();
             }
 
 

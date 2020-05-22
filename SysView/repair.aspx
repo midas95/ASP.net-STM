@@ -241,7 +241,9 @@
                                                 <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
                                                 <div><b>Student ID:</b><span id="txtStudentID"></span></div>
                                                 <div><b>Student:</b><span id="txtStudent"></span></div>
+                                                <div><b>Status:</b><span id="txtStatus"></span></div>
                                             </div>
+                                            <div class="msgSubmitted"><h1>Your repair request has been submitted</h1></div>
                                         </div>
 
                                         <div class="col-sm-6">
@@ -278,6 +280,7 @@
                 $(".divProbs").hide();
                 $(".divAssetInfo2").hide();
                 $(".btnGroup").hide();
+                $(".msgSubmitted").hide();
             });
             function init() {
                 $("#txtModel, #txtSerialNum, #txtStudentID, #txtStudent").text("");
@@ -309,6 +312,8 @@
                                 $(".deviceDisplay").slideToggle();
                             }
                             $("#invkey").val(strParse.inventoryKey);
+                            $("#txtStatus").text(strParse.invStatus);
+                            var deviceStatus = strParse.invStatus;
                             $("#txtModel").text(strParse.model);
                             $("#txtStudent").text(strParse.userEmail);
                             $("#txtSerialNum").text(strParse.serialNum);
@@ -328,7 +333,14 @@
                             $(".divImg").show();
                             $(".divProbs").hide();
                             $(".btnGroup").hide();
-                            $(".btnRepairReq").show();
+                            if (deviceStatus == 'Submitted For Repair') {
+                                $(".btnRepairReq").hide();
+                            } else {
+                                $(".btnRepairReq").show();
+
+                            }
+                            $(".msgSubmitted").hide();
+
 
                         } else {
                             $("#divNoResults").show();
@@ -394,9 +406,7 @@
                                 $(".divImg").toggle("slide");
                                 $(".divProbs").slideToggle();
                                 $(".btnGroup").slideToggle();
-                                // MAKE THIS ITS OWN ELEMENT TO HIDE/SHOW
-                                $(".assetInfo").html("<h1>Your repair request has been submitted</h1>");
-                                $(".assetInfo").show();
+                                $(".msgSubmitted").show();
                             } else {
                                 toastr.warning("Something went wrong during repair request");
                             }
