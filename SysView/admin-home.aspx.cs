@@ -33,8 +33,9 @@ using HtmlAgilityPack;
                 SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
 
 
-                SqlCommand command = new SqlCommand("usp_GetInventoryList", con);
-                con.Open();
+                //SqlCommand command = new SqlCommand("usp_GetInventoryList", con);
+                SqlCommand command = new SqlCommand("sv_usp_GetTechList", con);
+            con.Open();
                 command.Connection = con;
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -46,13 +47,41 @@ using HtmlAgilityPack;
 
                     while (reader.Read())
                     {
-                        InventoryList.Text += "<tr class='invRow' id='"+reader["InventoryKey"]+"'><td>" + reader["Model"].ToString()
+                    string invStatus = reader["InvStatus"].ToString();
+                    string statusBtn;
+                    switch (invStatus)
+                    {
+                        case "In Use":
+                            statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                            break;
+                        case "Decomissioned":
+                            statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                            break;
+                        case "Lost":
+                            statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                            break;
+                        case "Stolen":
+                            statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                            break;
+                        case "Unassigned":
+                            statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
+                            break;
+                        case "Repair Complete":
+                            statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                            break;
+                        default:
+                            statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>" + invStatus + "</span>";
+                            break;
+                    }
+
+                    InventoryList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                                              + "</td><td>" + reader["SerialNum"].ToString()
                                              + "</td><td>" + reader["MAC"].ToString()
                                              + "</td><td>" + reader["UserEmail"].ToString()
 
                                              //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
-                                             + "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
+                                             //+ "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
+                                             + "</td><td>" + statusBtn
                                              + "</td></tr>";
                     } i++;
 

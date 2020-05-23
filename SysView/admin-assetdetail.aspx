@@ -97,17 +97,7 @@
                                         </div>
                                     </div>
                                 </div><!--portlet-->
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Repair History</h3> 
-                                            <span class="portlet-subtitle">List of repair requests, latest first</span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
 
-                                    </div>
-                                </div><!--portlet-->
                             </div>
                             <div class="col-lg-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
@@ -155,7 +145,21 @@
                                     </div>
                                 </div><!--portlet-->
                             </div>
-                            
+                            </div>
+                        <div class="row">
+                           <div class="col-md-12">
+                            <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                    <div class="flex d-flex flex-column">
+                                        <h3>Repair History</h3> 
+                                        <span class="portlet-subtitle">List of repair requests, latest first</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+
+                                </div>
+                            </div><!--portlet-->
+                        </div>
                     </div>
                 </div>
             </div>

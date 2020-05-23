@@ -6,7 +6,7 @@
                             <div class="col-md-12 mr-auto ml-auto">
                                 <div class="mb-0">
                                     <a href='/repair.aspx' class='float-right btn btn-sm btn-info btn-icon'><i class="fas fa-download"></i>Scan Device</a>
-                                    <h4>Welcome back, <%= FirstName %></h4>
+                                    <h4>Welcome, <%= FirstName %></h4>
                                 </div>
                             </div>
                         </div>
@@ -15,7 +15,8 @@
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-primary text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Add-Basket"></i>
+                                            <%--<i class="icon-Add-Basket"></i>--%>
+                                            <i class="fas fa-laptop"></i>
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">4598</span>
@@ -29,7 +30,8 @@
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-warning-active text-warning-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Truck"></i>
+                                            <%--<i class="icon-Truck"></i>--%>
+                                            <i class="fas fa-medkit"></i>
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">753</span>
@@ -44,7 +46,8 @@
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-success-active text-success-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Money-Bag"></i>
+                                            <%--<i class="icon-Money-Bag"></i>--%>
+                                            <i class="fas fa-home"></i>
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x">78</span>
