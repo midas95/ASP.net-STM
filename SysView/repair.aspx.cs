@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Web.Services;
 using System.Web.Script.Serialization;
+using System.Activities.Statements;
 
 public partial class repair : System.Web.UI.Page
 {
@@ -19,7 +20,19 @@ public partial class repair : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["USER_EMAIL"] != null
+            && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
+            && !String.IsNullOrEmpty(Session["UserStatus"].ToString())
+            && Session["UserStatus"].ToString() == "Admin"
+        )
+        {
 
+        }
+        else
+        {
+            Session["redirect"] = "repair.aspx";
+            Response.Redirect("login.aspx");
+        }
     }
 
     [WebMethod]
@@ -30,6 +43,7 @@ public partial class repair : System.Web.UI.Page
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
 
             SqlCommand sqlcom = new SqlCommand("sv_usp_GetInventoryByAssetTag", conn);
+
             sqlcom.CommandType = CommandType.StoredProcedure;
             sqlcom.Parameters.AddWithValue("@AssetTag", assetNum);
             conn.Open();
@@ -48,6 +62,7 @@ public partial class repair : System.Web.UI.Page
                     string mac = item["MAC"].ToString();
                     string useremail = item["UserEmail"].ToString();
                     string imgLink = item["ImgLink"].ToString();
+                    string invStatus = item["InvStatus"].ToString();
 
                 ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
                     + ", 'model':" + "'" + model + "'"
@@ -55,6 +70,7 @@ public partial class repair : System.Web.UI.Page
                     + ", 'MAC':" + "'" + mac + "'"
                     + ", 'userEmail':" + "'" + useremail + "'"
                     + ", 'imgLink':" + "'" + imgLink + "'"
+                    + ", 'invStatus':" + "'" + invStatus + "'"
                     + "}";
 
                 JavaScriptSerializer j = new JavaScriptSerializer();
@@ -68,6 +84,66 @@ public partial class repair : System.Web.UI.Page
         catch (Exception ex)
         {
             return "Error retrieving data from database";
+        }
+    }
+
+    [WebMethod]
+
+    public static string InsertRepairs(string invkey, string problems, string problemNotes)
+    {
+        try
+        {
+
+            SqlDataReader dataReader;
+            string querySelect = "select Model, SerialNum, MAC, UserEmail, AssetTag, StatusID, Location, fkStudentID from sv_Inventory where InventoryKey='" + invkey + "'";
+
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(querySelect, conn);
+
+            dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                string Model = dataReader["Model"].ToString();
+                string SerialNum = dataReader["SerialNum"].ToString();
+                string MAC = dataReader["MAC"].ToString();
+                string UserEmail = dataReader["UserEmail"].ToString();
+                string fk_AssetTag = dataReader["AssetTag"].ToString();
+                string StatusID = dataReader["StatusID"].ToString();
+                string Location = dataReader["Location"].ToString();
+                string fkStudentID = dataReader["fkStudentID"].ToString();
+
+                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                cmdInsert.Parameters.AddWithValue("@Model", Model);
+                cmdInsert.Parameters.AddWithValue("@SerialNum", SerialNum);
+                cmdInsert.Parameters.AddWithValue("@MAC", MAC);
+                cmdInsert.Parameters.AddWithValue("@UserEmail", UserEmail);
+                cmdInsert.Parameters.AddWithValue("@fk_AssetTag", fk_AssetTag);
+                cmdInsert.Parameters.AddWithValue("@StatusID", StatusID);
+                cmdInsert.Parameters.AddWithValue("@Location", Location);
+                cmdInsert.Parameters.AddWithValue("@fkStudentID", fkStudentID);
+                cmdInsert.Parameters.AddWithValue("@Problems", problems);
+                cmdInsert.Parameters.AddWithValue("@ProblemNotes", problemNotes);
+
+                cmdInsert.ExecuteNonQuery();
+
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET StatusID = 2 WHERE SerialNum ='" + 
+                                                            SerialNum + "' " +
+                                                         "AND AssetTag='" + 
+                                                            fk_AssetTag + "'", conn);
+                cmdInvUpdate.ExecuteNonQuery();
+            }
+
+
+            dataReader.Close();
+            conn.Close();
+            return "success";
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex);
+            return "Failure";
         }
     }
 }
