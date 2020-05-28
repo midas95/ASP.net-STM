@@ -88,13 +88,7 @@
                                     <div class="portlet-body no-padding">
 
                                         <div class="table-responsive">
-                                            <table class="table mb-0">
-                                                <tbody>
-
-                                                <asp:Literal ID ="InventoryList" runat="server"></asp:Literal>
-
-                                                </tbody>
-                                            </table>
+                                            <asp:Literal ID ="InventoryList" runat="server"></asp:Literal>
                                         </div>
                                     </div>
                                 </div><!--portlet-->

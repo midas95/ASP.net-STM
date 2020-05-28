@@ -171,22 +171,14 @@
                                 <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
                                 <span class="portlet-subtitle"></span>
                             </div>
-                            <%--<span class="badge text-danger-light badge-danger badge-text anibadge repair-req-btn">Submit Repair Request</span>--%>
-                            <%--<span class="badge text-danger-light badge-danger badge-text btnRepairReq">Submit Repair Request</span>--%>
-                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
 
+                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
 
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="portlet-body">
                                     <div class="row">
-<<<<<<< HEAD
-                                        <div class="flex d-flex flex-column">
-                                                <%--<h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>--%>
-                                                <h3><span id="spnAssetTag" style="font-weight:100;">Your Device  </span> </h3>
-                                            <span class="portlet-subtitle"></span>
-=======
                                         <div class="col-sm-6">
                                             <input type="hidden" id="invkey" />
                                             <div class="divProbs">
@@ -250,7 +242,6 @@
                                                 <div><b>Status:</b><span id="txtStatus"></span></div>
                                             </div>
                                             <div class="msgSubmitted"><h1>Your repair request has been submitted</h1></div>
->>>>>>> charmer
                                         </div>
 
                                         <div class="col-sm-6">
@@ -394,7 +385,7 @@
                 if ($(".other-issue input").attr("class") == "checked") problemNotes = $(".other-issue-content").val();
 
                 if (problems == "" && problemNotes == "") {
-                    toastr.warning("Please select reason to be repaired");
+                    toastr.warning("Please select a reason to be repaired");
                 } else {
                     $("#loader-wrapper").show();
                     $.ajax({

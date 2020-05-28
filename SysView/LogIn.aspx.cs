@@ -36,7 +36,7 @@ public partial class User_LogIn : System.Web.UI.Page
         Session["Admin"] = null;
         if (String.IsNullOrEmpty(txtusername.Text) || String.IsNullOrEmpty(txtpassword.Text))
         {
-            lblmsg.Text = "Please enter a valid email and password";
+            lblmsg.Text = "Please enter a valid email and password 1";
         }
         else
         {
@@ -50,9 +50,10 @@ public partial class User_LogIn : System.Web.UI.Page
             objsqlconn.Close();
             if (dt != null && dt.Rows.Count > 0)
             {
+                // THIS IS WHERE THE PROBLEM IS //////////////////
                 foreach (DataRow item in dt.Rows)
                 {
-                    if (txtusername.Text.ToString().Trim().ToUpper() == item["Email"].ToString().Trim().ToUpper() && txtpassword.Text.ToString().Trim() == item["Password"].ToString().Trim() && item["UserStatus"].ToString().Trim()=="Admin")
+                    if (txtusername.Text.ToString().Trim().ToUpper() == item["Email"].ToString().Trim().ToUpper() && txtpassword.Text.ToString().Trim() == item["Password"].ToString().Trim())
                     {
                         Session["USER_EMAIL"] = item["Email"].ToString().Trim();
                         Session["UserName"] = item["FirstName"].ToString() + " " + item["LastName"].ToString();
@@ -60,23 +61,23 @@ public partial class User_LogIn : System.Web.UI.Page
                         Session["FirstName"] = item["FirstName"].ToString();
                         Session["LastName"] = item["LastName"].ToString();
                         Session["UserStatus"] = item["UserStatus"].ToString();
-                        //Session["Admin"] = "1";
 
                         if(!String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Admin")
                         {
                             Response.Redirect("admin-home.aspx");
 
                         }
-                        else
+                        else if (!String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() != "Admin")
                         {
                             Response.Redirect("home.aspx");
                         }
-                    }
-                    else
-                    {
-                        lblmsg.Text = "Please enter a valid email and password";
+
                     }
                 }
+            }
+            else
+            {
+                lblmsg.Text = "Please enter a valid email and password 2";
             }
         }
     }

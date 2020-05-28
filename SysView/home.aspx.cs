@@ -18,22 +18,27 @@ using HtmlAgilityPack;
     {
 
         public string FirstName { get; set; }
+        public string UserEmail { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()))
             {
 
-                FirstName = Session["FirstName"].ToString();
-
+                    FirstName = Session["FirstName"].ToString();
+                    UserEmail = Session["USER_EMAIL"].ToString();
 
             if (!String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Admin")
-            {
-                Response.Redirect("admin-home.aspx");
+                {
+                    Response.Redirect("admin-home.aspx");
+                }
+                else
+                {
 
+                FilterMyAssetList(UserEmail);
             }
 
-        }
+            }
             else
             {
                 Session["redirect"] = "home.aspx";
@@ -42,7 +47,70 @@ using HtmlAgilityPack;
         }
 
 
+    public void FilterMyAssetList(string filterParam)
+    {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        SqlCommand command = new SqlCommand("sv_usp_GetMyInventory", con);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@userEmail", UserEmail);
+        con.Open();
+        command.Connection = con;
 
+        SqlDataReader reader = command.ExecuteReader();
+        int i = 0;
+        do
+        {
+            UserList.Text = "<table class='table mb-0'>"
+                                 + "<thead><tr><th>Model</th><th>Serial</th><th>MAC Address</th><th>Last User</th></tr></thead>";
 
+            while (reader.Read())
+            {
+                string invStatus = reader["InvStatus"].ToString();
+                string statusBtn;
+                switch (invStatus)
+                {
+                    case "In Use":
+                        statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                        break;
+                    case "Decomissioned":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Lost":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Stolen":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Unassigned":
+                        statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Repair Complete":
+                        statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    default:
+                        statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                }
 
+                UserList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
+                                                 + "</td><td>" + reader["SerialNum"].ToString()
+                                                 + "</td><td>" + reader["MAC"].ToString()
+                                                 + "</td><td>" + reader["UserEmail"].ToString()
+
+                                                 //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
+                                                 //+ "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
+                                                 + "</td><td>" + statusBtn
+                                                 + "</td></tr>";
+            }
+            i++;
+
+            UserList.Text += "</table>";
+
+        } while (reader.NextResult());
+
+        reader.Close();
+        con.Close();
     }
+
+
+}
