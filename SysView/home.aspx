@@ -18,7 +18,7 @@
                                             <i class="icon-Add-Basket"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">3</span>
+                                            <span class="list-title fs-2x"><%= TotalAssets %></span>
                                             <span class="list-content fs14">My Assets</span>
 
                                         </div>
@@ -32,28 +32,28 @@
                                             <i class="icon-Truck"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">1</span>
-                                            <span class="list-content  fs14">Pending Repairs</span>
+                                            <span class="list-title fs-2x"><%= TotalRepairs %></span>
+                                            <span class="list-content  fs14">Repair Status</span>
 
                                         </div>
                                     </div>
                                 </div>
                             </div><!--col-->
-<%--                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
+                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
                                             <i class="icon-Remove-Basket"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">78</span>
-                                            <span class="list-content  fs14">Order Canceled</span>
+                                            <span class="list-title fs-2x"><%= TotalLost %></span>
+                                            <span class="list-content  fs14">Lost/Stolen</span>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 mb-6 col-md-6  mb-30">
+<%--                            <div class="col-lg-3 mb-6 col-md-6  mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-success-active text-success-light avatar rounded-circle avatar60 shadow-sm">

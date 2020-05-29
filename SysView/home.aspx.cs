@@ -19,6 +19,9 @@ using HtmlAgilityPack;
 
         public string FirstName { get; set; }
         public string UserEmail { get; set; }
+        public string TotalAssets { get; set; }
+        public string TotalRepairs { get; set; }
+        public string TotalLost { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +37,7 @@ using HtmlAgilityPack;
                 }
                 else
                 {
-
+                ShowDashboardTotals(UserEmail);
                 FilterMyAssetList(UserEmail);
             }
 
@@ -46,6 +49,27 @@ using HtmlAgilityPack;
             }
         }
 
+    public void ShowDashboardTotals(string userEmail)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        SqlCommand sqlcom = new SqlCommand("sv_usp_GetDashboardTotals", conn);
+
+        sqlcom.CommandType = CommandType.StoredProcedure;
+        sqlcom.Parameters.AddWithValue("@userEmail", UserEmail);
+        conn.Open();
+
+        DataTable asset = new DataTable();
+
+        asset.Load(sqlcom.ExecuteReader());
+        conn.Close();
+
+        foreach (DataRow item in asset.Rows)
+        {
+            TotalAssets = item["TotalAssets"].ToString();
+            TotalRepairs = item["TotalRepairs"].ToString();
+            TotalLost = item["TotalLost"].ToString();
+        }
+    }
 
     public void FilterMyAssetList(string filterParam)
     {

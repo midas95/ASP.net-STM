@@ -19,7 +19,7 @@
                                             <i class="fas fa-laptop"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">4598</span>
+                                            <span class="list-title fs-2x"><%= TotalAssets %></span>
                                             <span class="list-content fs14">Total Devices</span>
 
                                         </div>
@@ -29,29 +29,43 @@
                             <div class="col-lg-3 mb-6 col-md-6 mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
-                                        <div class="list-thumb bg-warning-active text-warning-light avatar rounded-circle avatar60 shadow-sm">
+                                        <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
                                             <%--<i class="icon-Truck"></i>--%>
                                             <i class="fas fa-medkit"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">753</span>
+                                            <span class="list-title fs-2x"><%= TotalRepairs %></span>
                                             <span class="list-content  fs14">Repair Status</span>
 
                                         </div>
                                     </div>
                                 </div>
                             </div><!--col-->
+                            <div class="col-lg-3 mb-6 col-md-6  mb-30">
+                                <div class="list border1 rounded overflow-hidden">
+                                    <div class="list-item">
+                                        <div class="list-thumb bg-warning-active text-warning-light avatar rounded-circle avatar60 shadow-sm">
+                                            <i class="fas fa-question-circle"></i>
+                                        </div>
+                                        <div class="list-body text-right">
+                                            <span class="list-title fs-2x"><%= TotalLost %></span>
+                                            <span class="list-content fs14">Lost/Stolen</span>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--col-->
                             <div class="col-lg-3 mb-6 col-md-6  mb-30">
                                 <div class="list border1 rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-success-active text-success-light avatar rounded-circle avatar60 shadow-sm">
                                             <%--<i class="icon-Money-Bag"></i>--%>
-                                            <i class="fas fa-home"></i>
+                                            <%--<i class="fas fa-home"></i>--%>
+                                            <i class="fa fa-cubes" aria-hidden="true"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x">78</span>
-                                            <span class="list-content fs14">Home Use</span>
+                                            <span class="list-title fs-2x"><%= TotalDecom %></span>
+                                            <span class="list-content fs14">Unassigned/Decom</span>
 
                                         </div>
                                     </div>

@@ -18,8 +18,13 @@ using HtmlAgilityPack;
     {
 
         public string FirstName { get; set; }
+        public string UserEmail { get; set; }
+        public string TotalAssets { get; set; }
+        public string TotalRepairs { get; set; }
+        public string TotalDecom { get; set; }
+    public string TotalLost { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["USER_EMAIL"] != null 
                 && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
@@ -30,7 +35,7 @@ using HtmlAgilityPack;
 
                 FirstName = Session["FirstName"].ToString();
 
-
+            ShowDashboardTotals();
             FilterAssetList("9");
 
             }
@@ -40,6 +45,28 @@ using HtmlAgilityPack;
                 Response.Redirect("login.aspx");
             }
         }
+
+    public void ShowDashboardTotals()
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        SqlCommand sqlcom = new SqlCommand("sv_usp_GetAdminDashboardTotals", conn);
+        sqlcom.CommandType = CommandType.StoredProcedure;
+        conn.Open();
+
+        DataTable asset = new DataTable();
+
+        asset.Load(sqlcom.ExecuteReader());
+        conn.Close();
+
+        foreach (DataRow item in asset.Rows)
+        {
+
+            TotalAssets = item["TotalAssets"].ToString();
+            TotalRepairs = item["TotalRepairs"].ToString();
+            TotalDecom = item["TotalDecom"].ToString();
+            TotalLost = item["TotalLost"].ToString();
+        }
+    }
 
     public void FilterAssetList(string filterParam)
     {

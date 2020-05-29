@@ -65,6 +65,19 @@
                                             <label>Model</label>
                                             <input value="" runat="server" id="txtModel" type="text" class="form-control" placeholder="Model"/>
                                         </div>
+                                    </div>
+                                </div><!--portlet-->
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Details</h3> 
+                                            <span class="portlet-subtitle">Device status</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
                                         <div class="form-group">
                                             <label>Device Status</label>
                                             <select value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
@@ -95,19 +108,6 @@
                                             </label>
                                           </div>
                                         </div>
-                                    </div>
-                                </div><!--portlet-->
-
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Location Info</h3> 
-                                            <span class="portlet-subtitle">Physical location of device</span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
                                         <div class="form-group">
                                             <label>Classroom</label>
                                             <input runat="server" id="txtLocClassroom" type="text" class="form-control" placeholder="Classroom"/>
@@ -145,6 +145,14 @@
                                     </div>
                                 </div><!--portlet-->
                             </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12">
+                            <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+
+                            </div>
+                          </div>
                         </div>
                         <div class="row">
                            <div class="col-md-12">

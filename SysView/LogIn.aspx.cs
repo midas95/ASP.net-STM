@@ -50,7 +50,6 @@ public partial class User_LogIn : System.Web.UI.Page
             objsqlconn.Close();
             if (dt != null && dt.Rows.Count > 0)
             {
-                // THIS IS WHERE THE PROBLEM IS //////////////////
                 foreach (DataRow item in dt.Rows)
                 {
                     if (txtusername.Text.ToString().Trim().ToUpper() == item["Email"].ToString().Trim().ToUpper() && txtpassword.Text.ToString().Trim() == item["Password"].ToString().Trim())
