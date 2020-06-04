@@ -33,6 +33,13 @@ Support - mylifedesign143@gmail.com
 /**
 01 - Basic css
 **/
+
+/************ CUSTOM *************/
+
+.invRow{
+    cursor:pointer;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900");
 /*
 Basic of template

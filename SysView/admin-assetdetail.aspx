@@ -15,8 +15,9 @@
                 text-align:center;
             }
 
+
         </style>
-        <div class="page-subheader mb-30">
+        <div class="page-subheader mb-10">
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <div class="col-md-7">
@@ -43,6 +44,7 @@
                 </div><!-- page-sub-Header end-->
                 <div class="page-content">
                     <div class="container-fluid">
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
@@ -67,7 +69,6 @@
                                         </div>
                                     </div>
                                 </div><!--portlet-->
-
                             </div>
                             <div class="col-lg-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
@@ -108,6 +109,22 @@
                                             </label>
                                           </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                        <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                            <div class="flex d-flex flex-column">
+                                                <h3>Details</h3> 
+                                                <span class="portlet-subtitle">Device status</span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+
+
                                         <div class="form-group">
                                             <label>Classroom</label>
                                             <input runat="server" id="txtLocClassroom" type="text" class="form-control" placeholder="Classroom"/>
@@ -122,6 +139,9 @@
                                         </div>
                                     </div>
                                 </div><!--portlet-->
+                                    </div>
+                                <div class="col-lg-6">
+
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
@@ -147,15 +167,30 @@
                             </div>
                         </div>
                         </div>
-                        <div class="row">
-                           <div class="col-md-12">
-                            <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                    </div>
+                    <div class="row">
+                    <div class="row ml-5 mb-2">
+                        <div class="col-md-12 text-right">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
+                                            <i class="icon-Calendar-4"></i>
+                                            Save
+                                        </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
+                                            <i class="icon-Calendar-4"></i>
+                                            Revert
+                                        </a>
 
-                            </div>
-                          </div>
                         </div>
-                        <div class="row">
-                           <div class="col-md-12">
+                    </div>
+                        <div class="col-md-12">
+                        <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                 <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                     <div class="flex d-flex flex-column">
@@ -172,8 +207,6 @@
                             </div><!--portlet-->
                         </div>
                     </div>
-                </div>
-            </div>
 
 
         <script>

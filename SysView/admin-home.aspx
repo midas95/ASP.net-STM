@@ -5,7 +5,11 @@
                         <div class="row align-items-center mb-30 pt-30">
                             <div class="col-md-12 mr-auto ml-auto">
                                 <div class="mb-0">
-                                    <a href='/repair.aspx' class='float-right btn btn-sm btn-info btn-icon'><i class="fas fa-download"></i>Scan Device</a>
+                                    <a href='/repair.aspx' class='float-right btn btn-sm btn-info btn-icon'>
+                                        <i class="fas fa-download"></i>
+                                        Scan Device
+
+                                    </a>
                                     <h4>Welcome, <%= FirstName %></h4>
                                 </div>
                             </div>
@@ -31,7 +35,8 @@
                                     <div class="list-item">
                                         <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
                                             <%--<i class="icon-Truck"></i>--%>
-                                            <i class="fas fa-medkit"></i>
+                                            <%--<i class="fas fa-medkit"></i>--%>
+                                            <img src="images/sysview/repairs_mono.png" />
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x"><%= TotalRepairs %></span>
