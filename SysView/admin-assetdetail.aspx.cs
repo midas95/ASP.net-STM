@@ -67,8 +67,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 txtModel.Value = model;
                 txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
-
-                if(!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
+                if (!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
                     command.CommandType = CommandType.StoredProcedure;
@@ -110,6 +109,8 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                                     statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
                                     break;
                             }
+
+                            ddlDeviceStatus.SelectedIndex = 1;// ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
 
                             RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                                                      + "</td><td>" + reader["SerialNum"].ToString()

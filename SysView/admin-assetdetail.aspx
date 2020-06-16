@@ -81,7 +81,7 @@
                                     <div class="portlet-body">
                                         <div class="form-group">
                                             <label>Device Status</label>
-                                            <select value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
+                                            <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
                                                 <option value="InUse">In Use</option>
                                                 <option value="SubmittedRepair">Submitted For Repair</option>
                                                 <option value="RepairInProgress">Repair In Progress</option>
@@ -172,12 +172,14 @@
                     <div class="row ml-5 mb-2">
                         <div class="col-md-12 text-right">
                             <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
-                                            <i class="icon-Calendar-4"></i>
+                                            <%--<i class="icon-Calendar-4"></i>--%>
+                                            <i class="fas fa-check"></i>
                                             Save
                                         </a>
                             <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
-                                            <i class="icon-Calendar-4"></i>
-                                            Revert
+                                <i class="fas fa-undo-alt"></i>            
+                                <%--<i class="icon-Calendar-4"></i>--%>
+                                            Cancel
                                         </a>
 
                         </div>
