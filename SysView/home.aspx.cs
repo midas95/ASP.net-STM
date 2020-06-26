@@ -45,8 +45,9 @@ using HtmlAgilityPack;
             else
             {
                 Session["redirect"] = "home.aspx";
-                Response.Redirect("login.aspx");
-            }
+                //Response.Redirect("login.aspx");
+                Response.Redirect("hi.aspx");
+        }
         }
 
     public void ShowDashboardTotals(string userEmail)

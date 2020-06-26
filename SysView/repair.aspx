@@ -232,7 +232,8 @@
                                             </div>
                                             <div class="btnGroup">
                                                 <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
-                                                <button class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                                <%--<button onClick="window.location.href=window.location.href" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>--%>
+                                                <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
                                             </div>
                                             <div class="assetInfo">
                                                 <div><b>Model:</b><span id="txtModel"></span></div>
