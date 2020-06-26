@@ -70,6 +70,7 @@
               }
             }
 
+
         </style>
     </head>
     
@@ -78,7 +79,7 @@
             <div class="lds-ripple"><div></div><div></div></div>
         </div>
         <div class="page-wrapper" id="page-wrapper">
-            <aside id="page-aside" class=" page-aside aside-fixed">
+            <aside id="page-aside" class="page-aside aside-fixed">
                 <div class="sidenav darkNav">
                     <a href="home.aspx" class="app-logo d-flex flex flex-row align-items-center overflow-hidden justify-content-center">
                         <img style="width: auto; height: 35px;" src="images/SysViewCloud_final.png" />
@@ -182,8 +183,6 @@
             </main><!-- page content end-->
         </div><!-- app's main wrapper end -->
         <!-- Common plugins -->
-<%--        <script type="text/javascript" src="js/plugins/plugins.js"></script> 
-        <script type="text/javascript" src="js/appUi-custom.js"></script> --%>
     </body>
 
 
