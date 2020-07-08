@@ -40,7 +40,7 @@ using HtmlAgilityPack;
             }
             else
             {
-                Session["redirect"] = "hi.aspx";
+                Session["redirect"] = "welcome.aspx";
             }
         }
 

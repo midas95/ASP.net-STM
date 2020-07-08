@@ -248,7 +248,6 @@
                                         <div class="col-sm-6">
                                             <div class="flex d-flex flex-column mb-20">
                                                 <div class="divAssetInfo2">
-                                                    <%--<div><b>Student ID:</b><span class="txtStudentID"></span></div>--%>
                                                     <div><b>Model:</b><span class="txtModel"></span></div>
                                                     <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
                                                     <div><b>Student:</b><span class="txtStudent"></span></div>
@@ -315,6 +314,7 @@
                             var deviceStatus = strParse.invStatus;
                             $("#txtModel").text(strParse.model);
                             $("#txtStudent").text(strParse.userEmail);
+                            $("#txtStudentID").text(strParse.studentID);
                             $("#txtSerialNum").text(strParse.serialNum);
                             $(".txtModel").text(strParse.model);
                             $(".txtStudent").text(strParse.userEmail);

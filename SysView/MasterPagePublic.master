@@ -17,6 +17,8 @@
         <link href="lib/toastr/toastr.min.css" rel="stylesheet"/>
         <link href="lib/font-awesome/css/fontawesome-all.min.css" rel="stylesheet"/>
         <link href="css/style.css" rel="stylesheet"/>
+
+        <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins/plugins.js"></script> 
         <script type="text/javascript" src="js/appUi-custom.js"></script> 
@@ -74,7 +76,7 @@
         </style>
     </head>
     
-    <body>
+    <body class="sysHome">
         <div id="loader-wrapper">
             <div class="lds-ripple"><div></div><div></div></div>
         </div>

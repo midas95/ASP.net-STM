@@ -56,6 +56,7 @@ public partial class repair : System.Web.UI.Page
                     string useremail = item["UserEmail"].ToString();
                     string imgLink = item["ImgLink"].ToString();
                     string invStatus = item["InvStatus"].ToString();
+                    string studentID = item["StudentID"].ToString();
 
                 ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
                     + ", 'model':" + "'" + model + "'"
@@ -64,6 +65,7 @@ public partial class repair : System.Web.UI.Page
                     + ", 'userEmail':" + "'" + useremail + "'"
                     + ", 'imgLink':" + "'" + imgLink + "'"
                     + ", 'invStatus':" + "'" + invStatus + "'"
+                    + ", 'studentID':" + "'" + studentID + "'"
                     + "}";
 
                 JavaScriptSerializer j = new JavaScriptSerializer();
