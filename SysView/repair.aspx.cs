@@ -20,12 +20,7 @@ public partial class repair : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string userEmail = Session["USER_EMAIL"].ToString();
 
-        if (String.IsNullOrEmpty(userEmail))
-        {
-            Response.Redirect("login.aspx");
-        }
     }
 
     [WebMethod]

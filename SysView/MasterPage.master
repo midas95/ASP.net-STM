@@ -148,7 +148,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="icon-Gear"></i> Settings<span class="badge badge-text text-danger-active bg-danger-light ml-2">Update</span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="page-login.html"><i class="icon-Power"></i> logout</a>
+                                <a class="dropdown-item logout" href="/welcome.aspx?state=false"><i class="icon-Power"></i> logout</a>
 
                             </div>
                         </li>
@@ -181,9 +181,6 @@
                 </footer>
             </main><!-- page content end-->
         </div><!-- app's main wrapper end -->
-        <!-- Common plugins -->
-<%--        <script type="text/javascript" src="js/plugins/plugins.js"></script> 
-        <script type="text/javascript" src="js/appUi-custom.js"></script> --%>
     </body>
 
 

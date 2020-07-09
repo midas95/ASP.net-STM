@@ -26,7 +26,16 @@ using HtmlAgilityPack;
 
     protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["USER_EMAIL"] != null 
+
+
+        if (!string.IsNullOrEmpty(Request.QueryString["state"]))
+            {
+                Session.Clear();
+                Session.Abandon();
+                Response.Redirect("welcome.aspx");
+            }
+
+        if (Session["USER_EMAIL"] != null 
                 && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
                 && !String.IsNullOrEmpty(Session["UserStatus"].ToString()) 
                 && Session["UserStatus"].ToString() == "Admin"

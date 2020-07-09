@@ -23,11 +23,6 @@ public partial class User_LogIn : System.Web.UI.Page
     {
         SqlCon = ConfigurationManager.ConnectionStrings["DB_A17D64_trinovitechEntities"].ToString();
         objsqlconn = new SqlConnection(SqlCon);
-        if (!string.IsNullOrEmpty(Request.QueryString["state"]))
-        {
-            Session["USER_EMAIL"] = null;
-            Session["redirect"] = null;
-        }
     }
 
     protected void btnsignin_Click(object sender, EventArgs e)
