@@ -111,7 +111,7 @@
                     </div><!-- aside hidden scroll end-->
                     <div class="aside-footer p-3 pl-25">
                         <div class="">
-                            App Version - 1.0
+                            Cloud Connection Active
                         </div>
                     </div><!-- aside footer end-->
                 </div><!-- sidenav end-->
@@ -149,11 +149,6 @@
 
                 <div class="page-content">
                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-<%--                    <div class="container-fluid">
-                        <p class="mb-0">
-                             Put your content into <code> page-content </code> div for maintain layout standard and flexibility
-                        </p>
-                    </div>--%>
                 </div>
                 <footer class="content-footer bg-light b-t">
                     <div class="d-flex flex align-items-center pl-15 pr-15">

@@ -101,11 +101,13 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-3">
+                <hr />
+
+<%--        <div class="row mx-3">
             <div class="col-sm-12">
                 <hr />
             </div>
-        </div>
+        </div>--%>
   <div class="row altBgColor">
       <div class="jumbotron-fluid text-center hoverable p-lg-5">
           
