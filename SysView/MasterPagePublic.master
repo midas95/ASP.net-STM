@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPagePublic.master.cs" Inherits="MasterPagePublic" %>
 
 <!DOCTYPE html>
 
@@ -17,6 +17,8 @@
         <link href="lib/toastr/toastr.min.css" rel="stylesheet"/>
         <link href="lib/font-awesome/css/fontawesome-all.min.css" rel="stylesheet"/>
         <link href="css/style.css" rel="stylesheet"/>
+
+        <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins/plugins.js"></script> 
         <script type="text/javascript" src="js/appUi-custom.js"></script> 
@@ -70,15 +72,16 @@
               }
             }
 
+
         </style>
     </head>
     
-    <body>
+    <body class="sysHome">
         <div id="loader-wrapper">
             <div class="lds-ripple"><div></div><div></div></div>
         </div>
         <div class="page-wrapper" id="page-wrapper">
-            <aside id="page-aside" class=" page-aside aside-fixed">
+            <aside id="page-aside" class="page-aside aside-fixed">
                 <div class="sidenav darkNav">
                     <a href="home.aspx" class="app-logo d-flex flex flex-row align-items-center overflow-hidden justify-content-center">
                         <img style="width: auto; height: 35px;" src="images/SysViewCloud_final.png" />
@@ -128,29 +131,16 @@
                     </ul>
                     <ul class="nav flex-row order-lg-2 ml-auto nav-icons">
 
-                        <li class="nav-item dropdown user-dropdown align-items-center">
-                            <a class="nav-link" href="#" id="dropdown-user" role="button" data-toggle="dropdown">
-                                <span class="user-states states-online">
-                                    <img src="images/avatar6.jpg" width="35" alt="" class=" img-fluid rounded-circle">
+                        <li class="nav-item align-items-center">
+                            <a class="nav-link" href="/login.aspx" id="dropdown-user">
+                                <span class="">
+                                    <img src="images/genericAvatar.png" width="35" alt="">
                                 </span>
-                                <span class="ml-2 h-lg-down dropdown-toggle">
-                                    Hi, <%= FirstName %>
+                                <span class="ml-2 h-lg-down">
+                                    Login
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                                <div class="text-center p-3 pt-0 b-b mb-5">
-                                    <span class="mb-0 d-block font300 text-title fs-1x"><span class="font700"><%=FirstName %> <%=LastName %></span></span>
-                                    <span class="fs12 mb-0 text-muted"><%=Role %></span>
-                                </div>
-                                <a class="dropdown-item" href="#"><i class="icon-User"></i>My Profile</a>
-                                <a class="dropdown-item" href="#"><i class="icon-Newspaper"></i> Tasks</a>
-                                <a class="dropdown-item" href="#"><i class="icon-Speach-Bubble4 "></i> Messages <span class="badge badge-text text-primary-active bg-primary-light ml-2">5 New</span></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="icon-Gear"></i> Settings<span class="badge badge-text text-danger-active bg-danger-light ml-2">Update</span></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item logout" href="/welcome.aspx?state=false"><i class="icon-Power"></i> logout</a>
-
-                            </div>
+                            
                         </li>
 
                     </ul>
@@ -159,11 +149,6 @@
 
                 <div class="page-content">
                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-<%--                    <div class="container-fluid">
-                        <p class="mb-0">
-                             Put your content into <code> page-content </code> div for maintain layout standard and flexibility
-                        </p>
-                    </div>--%>
                 </div>
                 <footer class="content-footer bg-light b-t">
                     <div class="d-flex flex align-items-center pl-15 pr-15">
@@ -181,6 +166,7 @@
                 </footer>
             </main><!-- page content end-->
         </div><!-- app's main wrapper end -->
+        <!-- Common plugins -->
     </body>
 
 

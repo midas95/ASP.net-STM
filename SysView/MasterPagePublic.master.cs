@@ -5,16 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+public partial class MasterPagePublic : System.Web.UI.MasterPage
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Role { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-
         string pageName = Path.GetFileName(Request.Path);
         SetSideMenu(pageName);
         if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()))
@@ -25,11 +23,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
             if (!String.IsNullOrEmpty(Session["UserStatus"].ToString()))
                 Role = Session["UserStatus"].ToString();
 
-        } else
-        {
-            Response.Redirect("/login.aspx");
         }
+        else
+        {
 
+        }
     }
 
     public void SetSideMenu(string PageName)

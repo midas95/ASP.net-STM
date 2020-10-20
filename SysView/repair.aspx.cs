@@ -20,19 +20,7 @@ public partial class repair : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["USER_EMAIL"] != null
-            && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
-            && !String.IsNullOrEmpty(Session["UserStatus"].ToString())
-            && Session["UserStatus"].ToString() == "Admin"
-        )
-        {
 
-        }
-        else
-        {
-            Session["redirect"] = "repair.aspx";
-            Response.Redirect("login.aspx");
-        }
     }
 
     [WebMethod]
@@ -63,6 +51,7 @@ public partial class repair : System.Web.UI.Page
                     string useremail = item["UserEmail"].ToString();
                     string imgLink = item["ImgLink"].ToString();
                     string invStatus = item["InvStatus"].ToString();
+                    string studentID = item["StudentID"].ToString();
 
                 ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
                     + ", 'model':" + "'" + model + "'"
@@ -71,6 +60,7 @@ public partial class repair : System.Web.UI.Page
                     + ", 'userEmail':" + "'" + useremail + "'"
                     + ", 'imgLink':" + "'" + imgLink + "'"
                     + ", 'invStatus':" + "'" + invStatus + "'"
+                    + ", 'studentID':" + "'" + studentID + "'"
                     + "}";
 
                 JavaScriptSerializer j = new JavaScriptSerializer();

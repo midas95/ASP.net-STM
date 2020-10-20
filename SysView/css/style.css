@@ -33,6 +33,18 @@ Support - mylifedesign143@gmail.com
 /**
 01 - Basic css
 **/
+
+/************ CUSTOM *************/
+
+/* SYSVIEW*/
+.sysHome {
+    background-color: #262734;
+}
+
+.invRow{
+    cursor:pointer;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900");
 /*
 Basic of template
@@ -5786,10 +5798,10 @@ Responsive layouts style
   .page-aside {
     width: 100%;
     height: 100%;
+    background-position: 0 0;
     top: 0;
     position: fixed;
     z-index: 1050;
-    background: 0 0 !important;
     position: fixed;
     height: 100%;
     background-color: inherit;
@@ -5799,7 +5811,11 @@ Responsive layouts style
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
-    width: 240px; }
+    width: 240px;
+    background-image: none !important;
+    background-repeat: repeat !important;
+    background-attachment: scroll !important;
+}
   .page-aside.show {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }

@@ -1,8 +1,2 @@
+# Visual Studio 2015/2017 cache/options directory
 .vs/
-.vs/GamblersDen/config/applicationhost.config
-.vs/GamblersDen/v16/Server/sqlite3/db.lock
-.vs/GamblersDen/v16/Server/sqlite3/storage.ide
-.vs/GamblersDen/v16/Server/sqlite3/storage.ide-shm
-.vs/GamblersDen/v16/Server/sqlite3/storage.ide-wal
-packages/
-[Bb]in/

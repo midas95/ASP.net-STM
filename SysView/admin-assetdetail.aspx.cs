@@ -46,7 +46,6 @@ public partial class AdminAssetDetail : System.Web.UI.Page
             DataTable asset = new DataTable();
 
             asset.Load(sqlcom.ExecuteReader());
-            conn.Close();
 
             foreach (DataRow item in asset.Rows)
             {
@@ -68,9 +67,68 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 txtModel.Value = model;
                 txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
+                if (!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
+                {
+                    SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@AssetTag", assetTag);
+                    command.Parameters.AddWithValue("@SerialNum", serialNum);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    int i = 0;
+                    do
+                    {
+                        RepairList.Text = "<table class='table mb-0'>"
+                                             + "<thead><tr><th>Model</th><th>Serial</th><th>MAC Address</th><th>Last User</th></tr></thead>";
+
+                        while (reader.Read())
+                        {
+                            string invStatus = reader["InvStatus"].ToString();
+                            string statusBtn;
+                            switch (invStatus)
+                            {
+                                case "In Use":
+                                    statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                                    break;
+                                case "Decomissioned":
+                                    statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                                case "Lost":
+                                    statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                                case "Stolen":
+                                    statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                                case "Unassigned":
+                                    statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                                case "Repair Complete":
+                                    statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                                default:
+                                    statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                                    break;
+                            }
+
+                            ddlDeviceStatus.SelectedIndex = 1;// ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
+
+                            RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
+                                                     + "</td><td>" + reader["SerialNum"].ToString()
+                                                     + "</td><td>" + reader["MAC"].ToString()
+                                                     + "</td><td>" + reader["UserEmail"].ToString()
+                                                     + "</td><td>" + statusBtn
+                                                     + "</td></tr>";
+                        }
+                        i++;
+
+                        RepairList.Text += "</table>";
+
+                    } while (reader.NextResult());
+                }
             }
+                
 
-
+            conn.Close();
         }
         else
         {

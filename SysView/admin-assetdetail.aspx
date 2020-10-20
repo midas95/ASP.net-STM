@@ -15,8 +15,9 @@
                 text-align:center;
             }
 
+
         </style>
-        <div class="page-subheader mb-30">
+        <div class="page-subheader mb-10">
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <div class="col-md-7">
@@ -43,6 +44,7 @@
                 </div><!-- page-sub-Header end-->
                 <div class="page-content">
                     <div class="container-fluid">
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
@@ -65,9 +67,21 @@
                                             <label>Model</label>
                                             <input value="" runat="server" id="txtModel" type="text" class="form-control" placeholder="Model"/>
                                         </div>
+                                    </div>
+                                </div><!--portlet-->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Details</h3> 
+                                            <span class="portlet-subtitle">Device status</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
                                         <div class="form-group">
                                             <label>Device Status</label>
-                                            <select value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
+                                            <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
                                                 <option value="InUse">In Use</option>
                                                 <option value="SubmittedRepair">Submitted For Repair</option>
                                                 <option value="RepairInProgress">Repair In Progress</option>
@@ -96,18 +110,21 @@
                                           </div>
                                         </div>
                                     </div>
-                                </div><!--portlet-->
-
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                        <div class="flex d-flex flex-column">
-                                            <h3>Location Info</h3> 
-                                            <span class="portlet-subtitle">Physical location of device</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                        <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                            <div class="flex d-flex flex-column">
+                                                <h3>Details</h3> 
+                                                <span class="portlet-subtitle">Device status</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="portlet-body">
+                                        <div class="portlet-body">
+
+
                                         <div class="form-group">
                                             <label>Classroom</label>
                                             <input runat="server" id="txtLocClassroom" type="text" class="form-control" placeholder="Classroom"/>
@@ -122,6 +139,9 @@
                                         </div>
                                     </div>
                                 </div><!--portlet-->
+                                    </div>
+                                <div class="col-lg-6">
+
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
@@ -145,9 +165,34 @@
                                     </div>
                                 </div><!--portlet-->
                             </div>
-                            </div>
-                        <div class="row">
-                           <div class="col-md-12">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="row ml-5 mb-2">
+                        <div class="col-md-12 text-right">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
+                                            <%--<i class="icon-Calendar-4"></i>--%>
+                                            <i class="fas fa-check"></i>
+                                            Save
+                                        </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
+                                <i class="fas fa-undo-alt"></i>            
+                                <%--<i class="icon-Calendar-4"></i>--%>
+                                            Cancel
+                                        </a>
+
+                        </div>
+                    </div>
+                        <div class="col-md-12">
+                        <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                 <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                     <div class="flex d-flex flex-column">
@@ -155,14 +200,15 @@
                                         <span class="portlet-subtitle">List of repair requests, latest first</span>
                                     </div>
                                 </div>
-                                <div class="portlet-body">
+                                <div class="portlet-body no-padding">
 
+                                    <div class="table-responsive">
+                                        <asp:Literal ID ="RepairList" runat="server"></asp:Literal>
+                                    </div>
                                 </div>
                             </div><!--portlet-->
                         </div>
                     </div>
-                </div>
-            </div>
 
 
         <script>

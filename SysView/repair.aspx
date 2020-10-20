@@ -156,8 +156,8 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text btnSearchAssets" id="basic-addon2"><i class="icon-Magnifi-Glass2"></i></span>
                                             </div>
-                                        </div>
-                                    </div>
+<%--                                        </div>
+                                    </div>--%>
                                 </div>
                             </div>
                         </div>
@@ -171,10 +171,8 @@
                                 <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
                                 <span class="portlet-subtitle"></span>
                             </div>
-                            <%--<span class="badge text-danger-light badge-danger badge-text anibadge repair-req-btn">Submit Repair Request</span>--%>
-                            <%--<span class="badge text-danger-light badge-danger badge-text btnRepairReq">Submit Repair Request</span>--%>
-                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
 
+                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
 
                         </div>
                         <div class="row">
@@ -234,7 +232,8 @@
                                             </div>
                                             <div class="btnGroup">
                                                 <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
-                                                <button class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                                <%--<button onClick="window.location.href=window.location.href" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>--%>
+                                                <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
                                             </div>
                                             <div class="assetInfo">
                                                 <div><b>Model:</b><span id="txtModel"></span></div>
@@ -249,7 +248,6 @@
                                         <div class="col-sm-6">
                                             <div class="flex d-flex flex-column mb-20">
                                                 <div class="divAssetInfo2">
-                                                    <%--<div><b>Student ID:</b><span class="txtStudentID"></span></div>--%>
                                                     <div><b>Model:</b><span class="txtModel"></span></div>
                                                     <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
                                                     <div><b>Student:</b><span class="txtStudent"></span></div>
@@ -316,6 +314,7 @@
                             var deviceStatus = strParse.invStatus;
                             $("#txtModel").text(strParse.model);
                             $("#txtStudent").text(strParse.userEmail);
+                            $("#txtStudentID").text(strParse.studentID);
                             $("#txtSerialNum").text(strParse.serialNum);
                             $(".txtModel").text(strParse.model);
                             $(".txtStudent").text(strParse.userEmail);
@@ -387,7 +386,7 @@
                 if ($(".other-issue input").attr("class") == "checked") problemNotes = $(".other-issue-content").val();
 
                 if (problems == "" && problemNotes == "") {
-                    toastr.warning("Please select reason to be repaired");
+                    toastr.warning("Please select a reason to be repaired");
                 } else {
                     $("#loader-wrapper").show();
                     $.ajax({
