@@ -16,7 +16,12 @@ public partial class AdminAssetDetail : System.Web.UI.Page
     static string ReturnVal { get; set; }
     static object ObjJSON { get; set; }
     public string FirstName { get; set; }
-    public string InventoryKey { get; set; }
+    public static string InventoryKey { get; set; }
+    public string problems { get; set; }
+
+    public static string repairKey { get; set; }
+
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -46,13 +51,13 @@ public partial class AdminAssetDetail : System.Web.UI.Page
             DataTable asset = new DataTable();
 
             asset.Load(sqlcom.ExecuteReader());
-
+            string serialNum = "";
+            string repairNotes = "";
             foreach (DataRow item in asset.Rows)
             {
-
                 string InventoryKey = item["InventoryKey"].ToString();
                 string model = item["Model"].ToString();
-                string serialNum = item["SerialNum"].ToString();
+                serialNum = item["SerialNum"].ToString();
                 string mac = item["MAC"].ToString();
                 string useremail = item["UserEmail"].ToString();
                 string assetTag = item["AssetTag"].ToString();
@@ -62,7 +67,10 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 string location = item["Location"].ToString();
                 string fkStudentID = item["fkStudentID"].ToString();
                 string imgLink = item["ImgLink"].ToString();
-
+                repairNotes = item["RepairNotes"].ToString();
+                problems = item["Problems"].ToString();
+                repairKey = item["RepairKey"].ToString();
+                repair_notes.InnerText = repairNotes;
                 txtAssetTag.Value = assetTag;
                 sr_txtAssetTag.Value = assetTag;
                 txtModel.Value = model;
@@ -129,7 +137,8 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                     } while (reader.NextResult());
                 }
             }
-                
+            
+            
 
             conn.Close();
         }
@@ -139,7 +148,17 @@ public partial class AdminAssetDetail : System.Web.UI.Page
             Response.Redirect("login.aspx");
         }
     }
-
+    [WebMethod]
+    public static string updateAssetDetail(string problems, string repairNotes)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        conn.Open();
+        SqlCommand cmdRepUpdate = new SqlCommand("update sv_Repairs set Problems='" + problems + "', RepairNotes='" + repairNotes+ "' where RepairKey='" + repairKey + "'", conn);
+        cmdRepUpdate.ExecuteNonQuery();
+        SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory set StatusID=3 where InventoryKey='" + InventoryKey + "'", conn);
+        cmdInvUpdate.ExecuteNonQuery();
+        return "success";
+    }
     public static void SearchAssets(string invKey)
     {
 

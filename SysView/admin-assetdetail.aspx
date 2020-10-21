@@ -301,49 +301,49 @@
                         </div>
                         <div class="form-group">
                             <label>Comments</label>
-                            <textarea class="other-issue-content form-control"></textarea>
+                            <textarea class="other-issue-content form-control" runat="server" id="repair_notes"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="divProbs">
                             <label class="custom-checkbox normal-issue">
                                 <span>Screen Damaged</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Screen Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Keyboard Not Working</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Keyboard Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Keyboard Missing Key(s)</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Keyboard Missing Key(s)")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Trackpad Not Working</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Trackpad Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Hinges Damaged</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Hinges Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Apps Missing</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Apps Missing")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>WiFi Not Working</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("WiFi Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Power Adapter Damaged</span>
-                                <input type="checkbox"/>
+                                <input type="checkbox" <% if (problems.Contains("Power Adapter Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox other-issue">Other
@@ -357,12 +357,41 @@
 
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary btn-detail-update">Update</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
 
             </div>
           </div>
         </div>
+    <script>
+        $(function () {
+            $(".btn-detail-update").click(function () {
+                var repairNotes = $(".other-issue-content").val();
+                var problem_arr = [];
+                $(".divProbs input:checked").each(function () {
+                    problem_arr.push($(this).prev().text());
+                });
+                var problems = problem_arr.join(",");
+                $.ajax({
+                    type: "POST",
+                    url: "admin-assetdetail.aspx/updateAssetDetail",
+                    data: JSON.stringify({ problems: problems, repairNotes: repairNotes }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#loader-wrapper").hide();
+                        toastr.success("Info was updated successfully");
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
+
+                    }
+                });
+            });
+        });
+    </script>
     </asp:Content>
 
