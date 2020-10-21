@@ -64,8 +64,11 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 string imgLink = item["ImgLink"].ToString();
 
                 txtAssetTag.Value = assetTag;
+                sr_txtAssetTag.Value = assetTag;
                 txtModel.Value = model;
+                sr_txtModel.Value = model;
                 txtSerialNum.Value = serialNum;
+                sr_txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
                 if (!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
                 {

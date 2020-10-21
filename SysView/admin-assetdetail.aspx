@@ -14,7 +14,71 @@
             #divSubmit{
                 text-align:center;
             }
+            .custom-checkbox {
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 11px;
+                cursor: pointer;
+                font-size: 16px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                display: block;
+            }
 
+            /* Hide the browser's default checkbox */
+            .custom-checkbox input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
+            }
+            .checkmark {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 30px;
+              width: 30px;
+              border: 1px solid grey;
+            }
+
+            /* On mouse-over, add a grey background color */
+            .custom-checkbox:hover input ~ .checkmark {
+              border: 1px solid #2196F3;
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            .custom-checkbox input:checked ~ .checkmark {
+              background-color: #2196F3;
+              border:none;
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+
+            /* Show the checkmark when checked */
+            .custom-checkbox input:checked ~ .checkmark:after {
+              display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .custom-checkbox .checkmark:after {
+              left: 11px;
+              top: 5px;
+              width: 9px;
+              height: 15px;
+              border: solid white;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
 
         </style>
         <div class="page-subheader mb-10">
@@ -25,7 +89,7 @@
                                     <div class="list-item pl-0">
                                         <div class="list-body">
                                             <div class="list-title fs-2x">
-                                                <h3>Admin Device Details</h3>
+                                                <h3>Device Details</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -77,6 +141,7 @@
                                             <h3>Details</h3> 
                                             <span class="portlet-subtitle">Device status</span>
                                         </div>
+                                        <a href="javascript:void(0);" class="btn btn-danger mb-2" data-toggle="modal" data-target="#startRepair">Start Repair</a>
                                     </div>
                                     <div class="portlet-body">
                                         <div class="form-group">
@@ -178,7 +243,6 @@
                                         </a>
                             <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
                                 <i class="fas fa-undo-alt"></i>            
-                                <%--<i class="icon-Calendar-4"></i>--%>
                                             Cancel
                                         </a>
 
@@ -209,11 +273,96 @@
                             </div><!--portlet-->
                         </div>
                     </div>
+        <div class="modal" id="startRepair">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Start Repair Window</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
 
-        <script>
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Asset Tag</label>
+                            <input value="<%= InventoryKey %>" runat="server" id="sr_txtAssetTag" type="text" class="form-control" placeholder="Asset Tag"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Serial Num/Service Tag</label>
+                            <input value="" runat="server" id="sr_txtSerialNum" type="text" class="form-control" placeholder="Serial Number"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Model</label>
+                            <input value="" runat="server" id="sr_txtModel" type="text" class="form-control" placeholder="Model"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea class="other-issue-content form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="divProbs">
+                            <label class="custom-checkbox normal-issue">
+                                <span>Screen Damaged</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Keyboard Not Working</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Keyboard Missing Key(s)</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Trackpad Not Working</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Hinges Damaged</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Apps Missing</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>WiFi Not Working</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox normal-issue">
+                                <span>Power Adapter Damaged</span>
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="custom-checkbox other-issue">Other
+                                <input type="checkbox"/>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+              </div>
 
-        </script>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
 
+            </div>
+          </div>
+        </div>
     </asp:Content>
 

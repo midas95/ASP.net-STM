@@ -35,8 +35,8 @@ using HtmlAgilityPack;
 
                 FirstName = Session["FirstName"].ToString();
 
-            ShowDashboardTotals();
-            FilterAssetList("9");
+                ShowDashboardTotals();
+                FilterAssetList("9");
 
             }
             else
