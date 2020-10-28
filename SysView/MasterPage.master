@@ -16,6 +16,8 @@
         <link href="lib/line-icons/line-icons.css" rel="stylesheet"/>
         <link href="lib/toastr/toastr.min.css" rel="stylesheet"/>
         <link href="lib/font-awesome/css/fontawesome-all.min.css" rel="stylesheet"/>
+        <link href="lib/data-tables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
         <link href="css/style.css" rel="stylesheet"/>
         <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins/plugins.js"></script> 
@@ -103,7 +105,13 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
-                                
+                                <li class="student"><i class="fa fa-users nav-thumbnail"></i>
+                                    <a href="student.aspx">
+                                        <span class="nav-text">
+                                            Students
+                                        </span>
+                                    </a>
+                                </li><!--Menu-item-->
                             </ul>
                         </div><!-- aside content end-->
                     </div><!-- aside hidden scroll end-->

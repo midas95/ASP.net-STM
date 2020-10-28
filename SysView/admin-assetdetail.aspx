@@ -308,42 +308,42 @@
                         <div class="divProbs">
                             <label class="custom-checkbox normal-issue">
                                 <span>Screen Damaged</span>
-                                <input type="checkbox" <% if (problems.Contains("Screen Damaged")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Screen Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Keyboard Not Working</span>
-                                <input type="checkbox" <% if (problems.Contains("Keyboard Not Working")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Keyboard Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Keyboard Missing Key(s)</span>
-                                <input type="checkbox" <% if (problems.Contains("Keyboard Missing Key(s)")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Keyboard Missing Key(s)")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Trackpad Not Working</span>
-                                <input type="checkbox" <% if (problems.Contains("Trackpad Not Working")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Trackpad Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Hinges Damaged</span>
-                                <input type="checkbox" <% if (problems.Contains("Hinges Damaged")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Hinges Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Apps Missing</span>
-                                <input type="checkbox" <% if (problems.Contains("Apps Missing")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Apps Missing")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>WiFi Not Working</span>
-                                <input type="checkbox" <% if (problems.Contains("WiFi Not Working")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("WiFi Not Working")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox normal-issue">
                                 <span>Power Adapter Damaged</span>
-                                <input type="checkbox" <% if (problems.Contains("Power Adapter Damaged")) { %> checked <% } %>/>
+                                <input type="checkbox" <% if (problems != null && problems.Contains("Power Adapter Damaged")) { %> checked <% } %>/>
                                 <span class="checkmark"></span>
                             </label>
                             <label class="custom-checkbox other-issue">Other

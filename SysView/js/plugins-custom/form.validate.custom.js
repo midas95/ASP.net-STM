@@ -41,5 +41,3 @@ $("#validateForm").validate({
     }
 });
 
-
-

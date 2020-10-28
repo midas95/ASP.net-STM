@@ -40,32 +40,31 @@ public partial class Admin_LogIn : System.Web.UI.Page
         }
         else
         {
-            SqlCommand command = new SqlCommand("usp_GetAlldusers", objsqlconn);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader dataReader;
+            string query = "select Email, FirstName, UserKey, LastName from sv_Users where Email='" + txtusername.Text.ToString() + "' and Password='" + txtpassword.Text.ToString() + "' and UserStatus='Admin'";
             objsqlconn.Open();
+            SqlCommand command = new SqlCommand(query, objsqlconn);
+            dataReader = command.ExecuteReader();
 
-            DataTable dt = new DataTable();
-
-            dt.Load(command.ExecuteReader());
-            objsqlconn.Close();
-            if (dt != null && dt.Rows.Count > 0)
+            while (dataReader.Read())
             {
-                foreach (DataRow item in dt.Rows)
+                if (dataReader["Email"].ToString() != null)
                 {
-                    if (txtusername.Text.ToString().Trim().ToUpper() == item["Email"].ToString().Trim().ToUpper() && txtpassword.Text.ToString().Trim() == item["Password"].ToString().Trim() && item["UserStatus"].ToString().Trim()=="Admin")
-                    {
-                        Session["USER_EMAIL"] = item["Email"].ToString().Trim();
-                        Session["UserName"] = item["FirstName"].ToString() + " " + item["LastName"].ToString();
-                        Session["UserKey"] = item["UserKey"].ToString();
-                        Session["Admin"] = "1";
-                        Response.Redirect("inventorylist.aspx");
-                    }
-                    else
-                    {
-                        lblmsg.Text = "Please enter a valid email and password";
-                    }
+                    Session["USER_EMAIL"] = dataReader["Email"].ToString().Trim();
+                    Session["UserName"] = dataReader["FirstName"].ToString() + " " + dataReader["LastName"].ToString();
+                    Session["UserKey"] = dataReader["UserKey"].ToString();
+                    Session["Admin"] = "1";
+                    Response.Redirect("inventorylist.aspx");
                 }
+                else
+                {
+                    lblmsg.Text = "Please enter a valid email and password";
+                }
+
             }
+            lblmsg.Text = "Please enter a valid email and password";
+
+            objsqlconn.Close();
         }
     }
 }
