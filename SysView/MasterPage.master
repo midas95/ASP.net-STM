@@ -89,17 +89,15 @@
                         <div class="aside-content slim-scroll">
                             <ul class="metisMenu" id="metisMenu">
                                 <li class="nav-title">Main<span class="nav-thumbnail">MN</span></li>
-                                <li> <i class="icon-Gaugage nav-thumbnail"></i>
-                                <%--<li> <i class="lni lni-first-aid nav-thumbnail"></i>--%>
+                                <li class="dash"> <i class="icon-Gaugage nav-thumbnail"></i>
                                     <a href="home.aspx">
                                         <span class="nav-text">
                                             Dashboard 
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
-                                <li><i class="icon-Magic-Wand nav-thumbnail"></i>
+                                <li class="devices"><i class="icon-Magic-Wand nav-thumbnail"></i>
                                     <a href="repair.aspx">
-
                                         <span class="nav-text">
                                             Devices
                                         </span>

@@ -120,6 +120,9 @@
                 var invKey = $(this).attr("id");
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
             })
+
+            $(".dash").addClass("active");
+
         </script>
     </asp:Content>
 

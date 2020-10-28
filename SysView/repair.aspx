@@ -279,6 +279,9 @@
                 $(".divAssetInfo2").hide();
                 $(".btnGroup").hide();
                 $(".msgSubmitted").hide();
+
+                $(".devices").addClass("active");
+
             });
             function init() {
                 $("#txtModel, #txtSerialNum, #txtStudentID, #txtStudent").text("");

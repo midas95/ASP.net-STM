@@ -365,6 +365,9 @@
           </div>
         </div>
     <script>
+
+        $(".devices").addClass("active");
+
         $(function () {
             $(".btn-detail-update").click(function () {
                 var repairNotes = $(".other-issue-content").val();

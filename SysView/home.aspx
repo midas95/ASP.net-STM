@@ -105,5 +105,10 @@
                             </div><!--col-->
                         </div>
                     </div>
+        <script>
+            $(".dash").addClass("active");
+
+        </script>
+
     </asp:Content>
 
