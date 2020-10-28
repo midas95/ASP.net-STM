@@ -121,7 +121,7 @@
                             <div class="list-item pl-0">
                                 <div class="list-body">
                                     <div class="list-title fs-2x">
-                                        <h3>Repair Request</h3>
+                                        <h3>Device Search</h3>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                             <ol class="breadcrumb no-padding bg-trans mb-0">
                                 <li class="breadcrumb-item"><a href="home.aspx"><i class="icon-Home mr-2 fs14"></i></a></li>
                                 <%--<li class="breadcrumb-item">Ui Elements</li>--%>
-                                <li class="breadcrumb-item active">Repair Request </li>
+                                <li class="breadcrumb-item active">Device Search </li>
                             </ol>
                         </nav>
                     </div>
