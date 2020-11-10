@@ -30,7 +30,7 @@
                                     <div class="list-item">
                                         <div class="list-thumb bg-warning-active text-warning-light avatar rounded-circle avatar60 shadow-sm">
                                             <i class="icon-Truck"></i>
-                                        </div>
+                                        </div>mo
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x"><%= TotalRepairs %></span>
                                             <span class="list-content  fs14">Repair Status</span>
