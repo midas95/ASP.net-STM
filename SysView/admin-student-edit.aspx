@@ -158,7 +158,7 @@
                     </div>
                 </div>
         </div>
-        <div id="studentDevice" class="modal" role="dialog">
+        <div id="studentDevice" class="modal" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -206,7 +206,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-device-update">Submit</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
 
@@ -288,6 +288,8 @@
                     dataType: "json",
                     success: function (response) {
                         $("#loader-wrapper").hide();
+                        $("#studentDevice").modal("hide");
+                        $(".modal-backdrop").remove();
                         toastr.success("This device is udpated successfully");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
