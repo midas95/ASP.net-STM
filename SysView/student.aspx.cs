@@ -100,7 +100,7 @@ using HtmlAgilityPack;
                     case "Decomissioned":
                         statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
                         break;
-                    case "Lost":
+                    case "Lost/Stolen":
                         statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     case "Stolen":

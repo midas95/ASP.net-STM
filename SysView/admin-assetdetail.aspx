@@ -152,8 +152,7 @@
                                                 <option value="RepairInProgress">Repair In Progress</option>
                                                 <option value="RepairComplete">Repair Complete</option>
                                                 <option value="Decomissioned">Decomissioned</option>
-                                                <option value="Lost">Lost</option>
-                                                <option value="Stolen">Stolen</option>
+                                                <option value="Lost">Lost/Stolen</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

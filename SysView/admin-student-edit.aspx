@@ -102,7 +102,7 @@
                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                         <div class="flex d-flex flex-column">
                             <h3>Student detail info</h3> 
-                            <span class="portlet-subtitle">You can update detail info of student</span>
+                            <%--<span class="portlet-subtitle">You can update detail info of student</span>--%>
                         </div>
                         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#studentDevice">Devices</a>
                     </div>
@@ -165,7 +165,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Device list</h4>
+                <h4 class="modal-title">Report Lost/Stolen</h4>
               </div>
               <div class="modal-body">
                 <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30 main-panel">

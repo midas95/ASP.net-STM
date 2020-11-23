@@ -82,7 +82,7 @@ using HtmlAgilityPack;
         do
         {
             InventoryList.Text = "<table class='table mb-0'>"
-                                 + "<thead><tr><th>Model</th><th>Serial</th><th>MAC Address</th><th>Last User</th></tr></thead>";
+                                 + "<thead><tr><th>Model</th><th>Serial</th><th>Last User</th></tr></thead>";
             
             while (reader.Read())
             {
@@ -96,7 +96,7 @@ using HtmlAgilityPack;
                     case "Decomissioned":
                         statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
                         break;
-                    case "Lost":
+                    case "Lost/Stolen":
                         statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     case "Stolen":
@@ -115,7 +115,7 @@ using HtmlAgilityPack;
 
                 InventoryList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                                                  + "</td><td>" + reader["SerialNum"].ToString()
-                                                 + "</td><td>" + reader["MAC"].ToString()
+                                                 //+ "</td><td>" + reader["MAC"].ToString()
                                                  + "</td><td>" + reader["UserEmail"].ToString()
 
                                                  //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
