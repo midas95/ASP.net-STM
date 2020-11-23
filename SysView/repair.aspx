@@ -141,10 +141,9 @@
         </div><!-- page-sub-Header end-->
         <div class="page-content">
             <div class="container-fluid">
-                <div class="row">
+<%--                <div class="row">
                     <div class="col-lg-12">
                         <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                            <%--<div class="portlet-header flex-row flex d-flex align-items-center b-b">--%>
                             <div class="portlet-header">
                                     <div class="row">
                                     <div class="col-md-5 ml-2">
@@ -156,122 +155,141 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text btnSearchAssets" id="basic-addon2"><i class="icon-Magnifi-Glass2"></i></span>
                                             </div>
-<%--                                        </div>
-                                    </div>--%>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row deviceDisplay">
-                    <div class="col-sm-12">
-                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                        <div class="portlet-header flex-row flex align-items-center b-b ml-10">
-                            <div class="flex d-flex flex-column">
-                                <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
-                                <span class="portlet-subtitle"></span>
-                            </div>
-
-                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="portlet-body">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <input type="hidden" id="invkey" />
-                                            <div class="divProbs">
-                                                <b>Check all that apply:</b>
-                                                <p></p>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Screen Damaged</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Keyboard Not Working</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Keyboard Missing Key(s)</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Trackpad Not Working</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Hinges Damaged</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Apps Missing</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>WiFi Not Working</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox normal-issue">
-                                                    <span>Power Adapter Damaged</span>
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="custom-checkbox other-issue">Other
-                                                    <input type="checkbox"/>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <textarea class="other-issue-content"></textarea>
-                                            </div>
-                                            <div class="btnGroup">
-                                                <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
-                                                <%--<button onClick="window.location.href=window.location.href" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>--%>
-                                                <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
-                                            </div>
-                                            <div class="assetInfo">
-                                                <div><b>Model:</b><span id="txtModel"></span></div>
-                                                <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
-                                                <div><b>Student ID:</b><span id="txtStudentID"></span></div>
-                                                <div><b>Student:</b><span id="txtStudent"></span></div>
-                                                <div><b>Status:</b><span id="txtStatus"></span></div>
-                                            </div>
-                                            <div class="msgSubmitted"><h1>Your repair request has been submitted</h1></div>
+                        <div class="row deviceDisplay">
+                            <div class="col-sm-12">
+                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex align-items-center b-b ml-10">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
+                                            <span class="portlet-subtitle"></span>
                                         </div>
+                                        <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="portlet-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <input type="hidden" id="invkey" />
+                                                        <div class="divProbs">
+                                                            <b>Check all that apply:</b>
+                                                            <p></p>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Screen Damaged</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Keyboard Not Working</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Keyboard Missing Key(s)</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Trackpad Not Working</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Hinges Damaged</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Apps Missing</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>WiFi Not Working</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox normal-issue">
+                                                                <span>Power Adapter Damaged</span>
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <label class="custom-checkbox other-issue">Other
+                                                                <input type="checkbox"/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <textarea class="other-issue-content"></textarea>
+                                                        </div>
+                                                        <div class="btnGroup">
+                                                            <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
+                                                            <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                                        </div>
+                                                        <div class="assetInfo">
+                                                            <div><b>Model:</b><span id="txtModel"></span></div>
+                                                            <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
+                                                            <div><b>Student ID:</b><span id="txtStudentID"></span></div>
+                                                            <div><b>Student:</b><span id="txtStudent"></span></div>
+                                                            <div><b>Status:</b><span id="txtStatus"></span></div>
+                                                        </div>
+                                                        <div class="msgSubmitted"><h1>Your repair request has been submitted</h1></div>
+                                                    </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="flex d-flex flex-column mb-20">
-                                                <div class="divAssetInfo2">
-                                                    <div><b>Model:</b><span class="txtModel"></span></div>
-                                                    <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
-                                                    <div><b>Student:</b><span class="txtStudent"></span></div>
+                                                    <div class="col-sm-6">
+                                                        <div class="flex d-flex flex-column mb-20">
+                                                            <div class="divAssetInfo2">
+                                                                <div><b>Model:</b><span class="txtModel"></span></div>
+                                                                <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
+                                                                <div><b>Student:</b><span class="txtStudent"></span></div>
 
-                                                </div>
-                                                <div class="divImg">
-                                                    <div id="divAssetImg"></div>
+                                                            </div>
+                                                            <div class="divImg">
+                                                                <div id="divAssetImg"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- row end -->
+                        </div>
                     </div>
-                </div><!--portlet-->
+                </div>--%>
+                <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
+                    <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Inventory list</h6>
+                    <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Serail Num</th>
+                                <th>MAC</th>
+                                <th>Student</th>
+                                <th>AssetTag</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="Inventorylist" runat="server">
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            </div>
-
         </div>
         <div id="divNoResults" style='margin-left:20px; font-size:20px; display:none;'>
             <i class='far fa-frown'></i>
             <span style='margin-left:3px;'>Your search did not return results. Please try again.</span>
         </div>
+        <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
+        <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
             $(document).ready(function () {
                 $(".deviceDisplay").hide();
@@ -339,7 +357,6 @@
                                 $(".btnRepairReq").hide();
                             } else {
                                 $(".btnRepairReq").show();
-
                             }
                             $(".msgSubmitted").hide();
 

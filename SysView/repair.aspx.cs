@@ -20,7 +20,49 @@ public partial class repair : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["USER_EMAIL"] != null
+            && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
+            && !String.IsNullOrEmpty(Session["UserStatus"].ToString())
+            && Session["UserStatus"].ToString() == "Admin"
+        )
+        {
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+            SqlCommand command = new SqlCommand("sv_usp_GetAllInventory", con);
+            command.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            command.Connection = con;
 
+            SqlDataReader reader = command.ExecuteReader();
+            int i = 0;
+            do
+            {
+
+                while (reader.Read())
+                {
+
+                    Inventorylist.InnerHtml += "<tr>" +
+                                                "<td>" + reader["Model"].ToString() + "</td>" +
+                                                "<td>" + reader["SerialNum"].ToString() + "</td>" +
+                                                "<td>" + reader["MAC"].ToString() + "</td>" +
+                                                "<td>" + reader["UserEmail"].ToString() + "</td>" +
+                                                "<td>" + reader["AssetTag"].ToString() + "</td>" +
+                                                "<td><span class='badge text-info-light badge-success ml-1 badge-text '>" + reader["InvStatus"].ToString() + "</span></td>" +
+                                                "<td><button class='btn btn-info btn-RepairReq'>Submit Repair Request</button></td>" +
+                                              "</tr>";
+                }
+                i++;
+
+            } while (reader.NextResult());
+
+            reader.Close();
+            con.Close();
+
+        }
+        else
+        {
+            Session["redirect"] = "admin-home.aspx";
+            Response.Redirect("login.aspx");
+        }
     }
 
     [WebMethod]
