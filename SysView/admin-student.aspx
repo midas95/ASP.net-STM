@@ -5,7 +5,7 @@
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-                        <a href='/repair.aspx' class='float-right btn btn-sm btn-info btn-icon'>
+                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon'>
                             <i class="fas fa-download"></i>
                             Scan Device
 
@@ -53,7 +53,7 @@
             $(".btn-student-del").click(function () {
                 var studentKey = $(this).data("studentkey");
                 var $this = $(this);
-                var result = window.confirm("Are you sure to delete this?");
+                var result = window.confirm("Are you sure you want to delete this student?");
                 if (result) {
                     $("#loader-wrapper").show();
                     $.ajax({

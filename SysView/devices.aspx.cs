@@ -11,7 +11,7 @@ using System.Web.Services;
 using System.Web.Script.Serialization;
 using System.Activities.Statements;
 
-public partial class repair : System.Web.UI.Page
+public partial class devices : System.Web.UI.Page
 {
 
     

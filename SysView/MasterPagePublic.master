@@ -99,7 +99,7 @@
                                     </a>
                                 </li><!--Menu-item-->
                                 <li><i class="icon-Magic-Wand nav-thumbnail"></i>
-                                    <a href="repair.aspx">
+                                    <a href="devices.aspx">
 
                                         <span class="nav-text">
                                             Repairs

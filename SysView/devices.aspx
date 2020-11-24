@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="repair.aspx.cs" Inherits="repair" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="devices.aspx.cs" Inherits="devices" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
         <style>
@@ -317,7 +317,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "repair.aspx/SearchAssets",
+                    url: "devices.aspx/SearchAssets",
                     data: JSON.stringify({ assetNum: $('#txtAssetTag').val() }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -411,7 +411,7 @@
                     $("#loader-wrapper").show();
                     $.ajax({
                         type: "POST",
-                        url: "repair.aspx/InsertRepairs",
+                        url: "devices.aspx/InsertRepairs",
                         data: JSON.stringify({ invkey: invkey, problems: problems, problemNotes: problemNotes }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
