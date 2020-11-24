@@ -104,7 +104,7 @@
                             <h3>Student detail info</h3> 
                             <%--<span class="portlet-subtitle">You can update detail info of student</span>--%>
                         </div>
-                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#studentDevice">Devices</a>
+                        <a href="#" class="btn btn-danger btn-device" data-toggle="modal" data-target="#studentDevice">Devices</a>
                     </div>
                     <div class="portlet-body">
                         <form id="form1" runat="server" class="edit-student-form">
@@ -222,7 +222,10 @@
                 var invKey = $(this).attr("id");
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
             })
-
+            $(".btn-device").click(function () {
+                $(".main-panel").show();
+                $(".extra-panel").hide();
+            });
             $(".student").addClass("active");
             $(".btn-lost-stolen").click(function () {
                 $(".main-panel").hide();
