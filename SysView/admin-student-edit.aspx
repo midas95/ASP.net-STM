@@ -165,7 +165,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Report Lost/Stolen</h4>
+                <h4 class="modal-title" id="studentDevice_title" runat="server">Report Lost/Stolen</h4>
               </div>
               <div class="modal-body">
                 <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30 main-panel">
@@ -291,6 +291,7 @@
                         $("#studentDevice").modal("hide");
                         $(".modal-backdrop").remove();
                         toastr.success("This device is udpated successfully");
+                        window.location.reload();
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(errorThrown);

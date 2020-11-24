@@ -85,7 +85,7 @@
                             <div class="flex d-flex flex-column">
                                 <h3>Inventory List</h3> 
                             </div>
-                            <div class="portlet-tools">
+<%--                            <div class="portlet-tools">
                                 <ul class="nav">
 
                                     <li class="nav-item">
@@ -102,19 +102,36 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="portlet-body no-padding">
 
                             <div class="table-responsive">
-                                <asp:Literal ID ="InventoryList" runat="server"></asp:Literal>
+                                <%--<h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Inventory List</h6>--%>
+                                <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Model</th>
+                                            <th>Serial</th>
+                                            <th>Last User</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="InventoryList" runat="server">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div><!--portlet-->
-                </div><!--col-->
+                    </div>
+                </div>
             </div>
         </div>
-    
+        <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
+        <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
+        <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
             $(".invRow").click(function () {
                 var invKey = $(this).attr("id");

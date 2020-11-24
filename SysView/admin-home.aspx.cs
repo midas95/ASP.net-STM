@@ -81,8 +81,6 @@ using HtmlAgilityPack;
         int i = 0;
         do
         {
-            InventoryList.Text = "<table class='table mb-0'>"
-                                 + "<thead><tr><th>Model</th><th>Serial</th><th>Last User</th></tr></thead>";
             
             while (reader.Read())
             {
@@ -113,7 +111,7 @@ using HtmlAgilityPack;
                         break;
                 }
 
-                InventoryList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
+                InventoryList.InnerHtml += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                                                  + "</td><td>" + reader["SerialNum"].ToString()
                                                  //+ "</td><td>" + reader["MAC"].ToString()
                                                  + "</td><td>" + reader["UserEmail"].ToString()
@@ -121,11 +119,10 @@ using HtmlAgilityPack;
                                                  //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
                                                  //+ "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
                                                  + "</td><td>" + statusBtn
+                                                 + "<td><a href='admin-assetdetail.aspx?inventorykey=" + reader["InventoryKey"].ToString() + "' class='btn-icon-o btn-info btn-icon-sm mr-2 mb-2'><i class='fa fa-edit'></i></a></td>"
                                                  + "</td></tr>";
             }
             i++;
-
-            InventoryList.Text += "</table>";
 
         } while (reader.NextResult());
 
