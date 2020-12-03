@@ -47,7 +47,7 @@ public partial class devices : System.Web.UI.Page
                                                 "<td>" + reader["UserEmail"].ToString() + "</td>" +
                                                 "<td>" + reader["AssetTag"].ToString() + "</td>" +
                                                 "<td><span class='badge text-info-light badge-success ml-1 badge-text '>" + reader["InvStatus"].ToString() + "</span></td>" +
-                                                "<td><button class='btn btn-info btn-RepairReq'>Submit Repair Request</button></td>" +
+                                                "<td><button id='"+ reader["InventoryKey"].ToString() +"' class='btn btn-info btn-RepairReq'>Submit Repair Request</button></td>" +
                                               "</tr>";
                 }
                 i++;
@@ -120,7 +120,6 @@ public partial class devices : System.Web.UI.Page
     }
 
     [WebMethod]
-
     public static string InsertRepairs(string invkey, string problems, string problemNotes)
     {
         try

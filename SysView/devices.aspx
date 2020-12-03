@@ -376,14 +376,9 @@
                 });
             }
 
-            $(".btnRepairReq").click(function () {
-                $(".assetInfo").fadeOut( "slow", function() {});
-                $(".divAssetInfo2").toggle("slide");
-
-                $(".divImg").toggle("slide");
-                $(".divProbs").slideToggle();
-                $(".btnGroup").slideToggle();
-                $(".btnRepairReq").slideToggle();
+            $(".btn-RepairReq").click(function () {
+                var invKey = $(this).attr("id");
+                window.location.href = '/repair.aspx?inventorykey='+ invKey;
             });
 
             $(".other-issue input").click(function () {
