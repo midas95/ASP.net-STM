@@ -96,7 +96,8 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
-                                <li class="devices"><i class="icon-Magic-Wand nav-thumbnail"></i>
+                                <%--<li class="devices"><i class="icon-Magic-Wand nav-thumbnail"></i>--%>
+                                <li class="devices"><i class="icon-Server-2 nav-thumbnail"></i>
                                     <a href="devices.aspx">
                                         <span class="nav-text">
                                             Devices

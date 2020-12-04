@@ -389,54 +389,6 @@
                 $(this).toggleClass("checked");
             });
 
-            $(".repair-req-btn").click(function () {              
-                var invkey = $("#invkey").val();
-                var problem_arr = [];
-                var problemNotes = "";
-                var searchAssetTag = $('#txtAssetTag').val();
-                $(".normal-issue").each(function () {
-                    if ($(this).children("input").attr("class") == "checked") problem_arr.push($(this).children("span:first-child").text());
-                });
-                var problems = (problem_arr.length > 0) ? problem_arr.join(",") : "";
-                if ($(".other-issue input").attr("class") == "checked") problemNotes = $(".other-issue-content").val();
-
-                if (problems == "" && problemNotes == "") {
-                    toastr.warning("Please select a reason to be repaired");
-                } else {
-                    $("#loader-wrapper").show();
-                    $.ajax({
-                        type: "POST",
-                        url: "devices.aspx/InsertRepairs",
-                        data: JSON.stringify({ invkey: invkey, problems: problems, problemNotes: problemNotes }),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            console.log(response.d);
-                            if (response.d) {
-                                toastr.success("Request was sent successfully");
-                                init();
-                                
-                                $(".divAssetInfo2").toggle("slide");
-                                $(".divImg").toggle("slide");
-                                $(".divProbs").slideToggle();
-                                $(".btnGroup").slideToggle();
-                                $(".msgSubmitted").show();
-                            } else {
-                                toastr.warning("Something went wrong during repair request");
-                            }
-
-                            $("#loader-wrapper").hide();
-
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            toastr.danger("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-                            $("#loader-wrapper").hide();
-                        }
-                    });
-                }
-
-            });
-
         </script>
 
     </asp:Content>

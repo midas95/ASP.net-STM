@@ -101,17 +101,27 @@
                 <div class="col-sm-12">
                     <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                         <div class="portlet-header flex-row flex align-items-center b-b ml-10">
-                            <div class="flex d-flex flex-column">
-                                <h3>Your Device  <span id="spnAssetTag" style="font-weight:100;"></span> </h3>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h2><span id="spnModel" style="font-weight:100;"></span><%= Model %> </h2>
+                                </div>
+                                <div class="col-md-2">
+                                    <span id="spnAssetTag" style="font-weight:100;">Asset Tag </span><br /><h3><%= AssetTag %> </h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <span id="spnSerialNum" style="font-weight:100;">Serial </span><br /><h3><%= SerialNum %> </h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <span id="spnUserEmail" style="font-weight:100;">User Email </span><br /><h3><%= UserEmail %> </h3>
+                                </div>
                                 <span class="portlet-subtitle"></span>
                             </div>
-                            <button class="btn btn-danger mr-1 btnRepairReq">Submit Repair Request</button>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="portlet-body">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <input type="hidden" id="invkey" />
                                             <div class="divProbs">
                                                 <b>Check all that apply:</b>
@@ -160,36 +170,30 @@
                                                     <input type="checkbox"/>
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <textarea class="other-issue-content"></textarea>
                                             </div>
-                                            <div class="btnGroup">
-                                                <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
-                                                <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
-                                            </div>
-                                            <div class="assetInfo">
-                                                <div><b>Model:</b><span id="txtModel"></span></div>
-                                                <div><b>Serial Number:</b><span id="txtSerialNum"></span></div>
-                                                <div><b>Student ID:</b><span id="txtStudentID"></span></div>
-                                                <div><b>Student:</b><span id="txtStudent"></span></div>
-                                                <div><b>Status:</b><span id="txtStatus"></span></div>
-                                            </div>
-                                            <div class="msgSubmitted"><h1>Your repair request has been submitted</h1></div>
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <div class="flex d-flex flex-column mb-20">
                                                 <div class="divAssetInfo2">
-                                                    <div><b>Model:</b><span class="txtModel"></span></div>
-                                                    <div><b>Serial Number:</b><span class="txtSerialNum"></span></div>
-                                                    <div><b>Student:</b><span class="txtStudent"></span></div>
-
+                                                    <b>Enter "Other" Notes:</b>
+                                                    <div class="assetInfo">
+                                                        <textarea style="width:87%;" class="other-issue-content"></textarea>
+                                                    </div>
                                                 </div>
                                                 <div class="divImg">
                                                     <div id="divAssetImg"></div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+                                        <div class="btnGroup">
+                                            <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
+                                            <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                        </div>
+
+                                        <div class="msgSubmitted" style="display:none;"><h1>Your repair request has been submitted</h1></div>
                                 </div>
                             </div>
                         </div>
@@ -257,6 +261,75 @@
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
+            $(".btn-RepairReq").click(function () {
+                var invKey = $(this).attr("id");
+                window.location.href = '/repair.aspx?inventorykey=' + invKey;
+            });
+
+            $(".other-issue input").click(function () {
+                $(".other-issue-content").slideToggle();
+            });
+
+            $(".normal-issue input, .other-issue input").click(function () {
+                $(this).toggleClass("checked");
+            });
+
+            function init() {
+                $("#txtModel, #txtSerialNum, #txtStudentID, #txtStudent").text("");
+                $("#txtAssetTag").val("");
+                $(".custom-checkbox input").each(function () {
+                    if ($(this).attr("class") == "checked") $(this).trigger("click");
+                });
+            }
+            $(".repair-req-btn").click(function () {
+                var invkey = $("#invkey").val();
+                var problem_arr = [];
+                var problemNotes = "";
+                var searchAssetTag = $('#txtAssetTag').val();
+                $(".normal-issue").each(function () {
+                    //alert("whats happening here");
+                    if ($(this).children("input").attr("class") == "checked") problem_arr.push($(this).children("span:first-child").text());
+                });
+                var problems = (problem_arr.length > 0) ? problem_arr.join(",") : "";
+                if ($(".other-issue input").attr("class") == "checked") problemNotes = $(".other-issue-content").val();
+
+                if (problems == "" && problemNotes == "") {
+                    toastr.warning("Please select a reason to be repaired");
+                } else {
+                    $("#loader-wrapper").show();
+                    $.ajax({
+                        type: "POST",
+                        url: "devices.aspx/InsertRepairs",
+                        data: JSON.stringify({ invkey: invkey, problems: problems, problemNotes: problemNotes }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response.d);
+                            if (response.d) {
+                                toastr.success("Request was sent successfully");
+                                init();
+
+                                $(".divAssetInfo2").toggle("slide");
+                                $(".divImg").toggle("slide");
+                                $(".divProbs").slideToggle();
+                                $(".btnGroup").slideToggle();
+                                $(".msgSubmitted").show();
+                            } else {
+                                toastr.warning("OOPS... Something went wrong during repair request");
+                            }
+
+                            $("#loader-wrapper").hide();
+
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            toastr.danger("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                            $("#loader-wrapper").hide();
+                        }
+                    });
+                }
+
+            });
+
             $(".invRow").click(function () {
                 var invKey = $(this).attr("id");
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
