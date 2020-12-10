@@ -82,8 +82,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@AssetTag", assetTag);
-                    command.Parameters.AddWithValue("@SerialNum", serialNum);
+                    command.Parameters.AddWithValue("@InventoryKey", InventoryKey);
 
                     SqlDataReader reader = command.ExecuteReader();
                     int i = 0;
@@ -163,7 +162,6 @@ public partial class AdminAssetDetail : System.Web.UI.Page
     {
 
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
-
             SqlCommand sqlcom = new SqlCommand("sv_usp_GetInventoryByKey", conn);
             sqlcom.CommandType = CommandType.StoredProcedure;
             sqlcom.Parameters.AddWithValue("@InventoryKey", invKey);
@@ -189,24 +187,6 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 string location = item["Location"].ToString();
                 string fkStudentID = item["fkStudentID"].ToString();
                 string imgLink = item["ImgLink"].ToString();
-
-
-                //ReturnVal = "{'inventoryKey':" + "'" + invKey + "'"
-                //    + ", 'model':" + "'" + model + "'"
-                //    + ", 'serialNum':" + "'" + serialNum + "'"
-                //    + ", 'MAC':" + "'" + mac + "'"
-                //    + ", 'userEmail':" + "'" + useremail + "'"
-                //    + ", 'assetTag':" + "'" + assetTag + "'"
-                //    + ", 'statusID':" + "'" + statusID + "'"
-                //    + ", 'loanerFlag':" + "'" + loanerFlag + "'"
-                //    + ", 'homeUseFlag':" + "'" + homeUseFlag + "'"
-                //    + ", 'location':" + "'" + location + "'"
-                //    + ", 'fkStudentID':" + "'" + fkStudentID + "'"
-                //    + ", 'imgLink':" + "'" + imgLink + "'"
-                //    + "}";
-
-                //JavaScriptSerializer j = new JavaScriptSerializer();
-                //ObjJSON = j.Deserialize(ReturnVal, typeof(object));
 
             }
             

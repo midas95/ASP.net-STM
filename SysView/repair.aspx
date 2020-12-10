@@ -261,10 +261,6 @@
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
-            $(".btn-RepairReq").click(function () {
-                var invKey = $(this).attr("id");
-                window.location.href = '/repair.aspx?inventorykey=' + invKey;
-            });
 
             $(".other-issue input").click(function () {
                 $(".other-issue-content").slideToggle();
@@ -282,7 +278,7 @@
                 });
             }
             $(".repair-req-btn").click(function () {
-                var invkey = $("#invkey").val();
+                var inventoryKey = <%= InvKey %>;
                 var problem_arr = [];
                 var problemNotes = "";
                 var searchAssetTag = $('#txtAssetTag').val();
@@ -300,7 +296,7 @@
                     $.ajax({
                         type: "POST",
                         url: "devices.aspx/InsertRepairs",
-                        data: JSON.stringify({ invkey: invkey, problems: problems, problemNotes: problemNotes }),
+                        data: JSON.stringify({ invkey: inventoryKey, problems: problems, problemNotes: problemNotes }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
@@ -343,78 +339,7 @@
                 $(".main-panel").hide();
                 $(".extra-panel").show();
             });
-            $(".edit-student-form").submit(function (e) {
 
-                $("#loader-wrapper").show();
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "admin-student-edit.aspx/updateStudent",
-                    data: JSON.stringify({
-                        firstName: $('.first-name').val(),
-                        lastName: $('.last-name').val(),
-                        email: $('.email').val(),
-                        grade: $('.grade').val(),
-                        teacher: $('.teacher').val(),
-                        status: $('.user-status').val()
-                    }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        $("#loader-wrapper").hide();
-                        toastr.success("This student is udpated successfully");
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(errorThrown);
-                        toastr.error("Something wrong");
-                        $("#loader-wrapper").hide();
-                    }
-                });
-            });
-            $(".btn-device-update").click(function () {
-
-                $("#loader-wrapper").show();
-                var firstName = $("table td.first-name").text();
-                var lastName = $("table td.last-name").text();
-                var model = $("table td.model").text();
-                var serialNum = $("table td.serial-num").text();
-                var inventoryKey = $(".btn-lost-stolen").data("inventorykey");
-                var studentID = $(".btn-lost-stolen").data("studentid");
-                var assetTag = $(".btn-lost-stolen").data("assettag");
-                var email = $(".btn-lost-stolen").data("email");
-                var comments = $(".device-comments").val();
-                var status = $(".assign-device").is(':checked');
-                $.ajax({
-                    type: "POST",
-                    url: "admin-student-edit.aspx/updateDevice",
-                    data: JSON.stringify({
-                        firstName: firstName,
-                        lastName: lastName,
-                        model: model,
-                        serialNum: serialNum,
-                        inventoryKey: inventoryKey,
-                        studentID: studentID,
-                        assetTag: assetTag,
-                        email: email,
-                        comments:comments,
-                        status: status
-                    }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        $("#loader-wrapper").hide();
-                        $("#studentDevice").modal("hide");
-                        $(".modal-backdrop").remove();
-                        toastr.success("This device is udpated successfully");
-                        window.location.reload();
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(errorThrown);
-                        toastr.error("Something wrong");
-                        $("#loader-wrapper").hide();
-                    }
-                });
-            });
         </script>
     </asp:Content>
 

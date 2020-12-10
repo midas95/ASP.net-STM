@@ -103,17 +103,17 @@ public partial class Repair : System.Web.UI.Page
                 string MAC = dataReader["MAC"].ToString();
                 string UserEmail = dataReader["UserEmail"].ToString();
                 string fk_AssetTag = dataReader["AssetTag"].ToString();
-                string StatusID = dataReader["StatusID"].ToString();
                 string Location = dataReader["Location"].ToString();
                 string fkStudentID = dataReader["fkStudentID"].ToString();
 
-                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (fk_InventoryKey, Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@InventoryKey, @Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                cmdInsert.Parameters.AddWithValue("@InventoryKey", invkey);
                 cmdInsert.Parameters.AddWithValue("@Model", Model);
                 cmdInsert.Parameters.AddWithValue("@SerialNum", SerialNum);
                 cmdInsert.Parameters.AddWithValue("@MAC", MAC);
                 cmdInsert.Parameters.AddWithValue("@UserEmail", UserEmail);
                 cmdInsert.Parameters.AddWithValue("@fk_AssetTag", fk_AssetTag);
-                cmdInsert.Parameters.AddWithValue("@StatusID", StatusID);
+                cmdInsert.Parameters.AddWithValue("@StatusID", 2);
                 cmdInsert.Parameters.AddWithValue("@Location", Location);
                 cmdInsert.Parameters.AddWithValue("@fkStudentID", fkStudentID);
                 cmdInsert.Parameters.AddWithValue("@Problems", problems);
@@ -121,10 +121,7 @@ public partial class Repair : System.Web.UI.Page
 
                 cmdInsert.ExecuteNonQuery();
 
-                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET StatusID = 2 WHERE SerialNum ='" +
-                                                            SerialNum + "' " +
-                                                         "AND AssetTag='" +
-                                                            fk_AssetTag + "'", conn);
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET StatusID = 2 WHERE InventoryKey=" + invkey, conn);
                 cmdInvUpdate.ExecuteNonQuery();
             }
 

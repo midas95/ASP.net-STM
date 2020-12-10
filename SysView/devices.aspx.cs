@@ -145,7 +145,8 @@ public partial class devices : System.Web.UI.Page
                 string Location = dataReader["Location"].ToString();
                 string fkStudentID = dataReader["fkStudentID"].ToString();
 
-                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (fk_InventoryKey, Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@InventoryKey, @Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                cmdInsert.Parameters.AddWithValue("@InventoryKey", invkey);
                 cmdInsert.Parameters.AddWithValue("@Model", Model);
                 cmdInsert.Parameters.AddWithValue("@SerialNum", SerialNum);
                 cmdInsert.Parameters.AddWithValue("@MAC", MAC);
