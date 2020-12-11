@@ -121,7 +121,7 @@
                             <div class="col-lg-12">
                                 <div class="portlet-body">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <input type="hidden" id="invkey" />
                                             <div class="divProbs">
                                                 <b>Check all that apply:</b>
@@ -193,7 +193,13 @@
                                             <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
                                         </div>
 
-                                        <div class="msgSubmitted" style="display:none;"><h1>Your repair request has been submitted</h1></div>
+                                        <div class="msgSubmitted" style="display:none;">
+                                            <h1>Your repair request has been submitted</h1>
+                                            <a href="javascript:void(0)" class="btn btn-icon btn-xl btn-primary mb-2">
+                                                <i class="fas fa-laptop"></i>
+                                                Assign another device to this user?
+                                            </a>
+                                        </div>
                                 </div>
                             </div>
                         </div>

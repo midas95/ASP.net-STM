@@ -377,8 +377,16 @@
             }
 
             $(".btn-RepairReq").click(function () {
+
+                var devStat = $(this).attr("deviceStatus");
                 var invKey = $(this).attr("id");
-                window.location.href = '/repair.aspx?inventorykey='+ invKey;
+
+                if (devStat == "Submitted For Repair" || devStat == "Repair In Progress" || devStat == "Repair Complete" || devStat == "Lost/Stolen") {
+                    //toastr.danger("You cannot submit a repair request with device in this status");
+                    toastr["error"]("Repair request unavailable for device in this status", "Error");
+                } else {
+                    window.location.href = '/repair.aspx?inventorykey='+ invKey;
+                }
             });
 
             $(".other-issue input").click(function () {

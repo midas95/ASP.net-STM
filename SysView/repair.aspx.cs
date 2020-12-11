@@ -37,8 +37,13 @@ public partial class Repair : System.Web.UI.Page
                 if (Request.QueryString["InventoryKey"] != null)
                 {
                     InvKey = Request.QueryString["InventoryKey"].ToString();
+                    InvStatus = "";
                     SearchAssets(InvKey);
+                if (InvStatus == "Submitted For Repair" || InvStatus == "Repair In Progress" || InvStatus == "Repair Complete" || InvStatus == "Lost/Stolen")
+                {
+                    Response.Redirect("devices.aspx");
                 }
+            }
                 else
                 {
                     Response.Redirect("devices.aspx");
@@ -121,7 +126,7 @@ public partial class Repair : System.Web.UI.Page
 
                 cmdInsert.ExecuteNonQuery();
 
-                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET StatusID = 2 WHERE InventoryKey=" + invkey, conn);
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET PrevStatusID = StatusID, StatusID = 2  WHERE InventoryKey=" + invkey, conn);
                 cmdInvUpdate.ExecuteNonQuery();
             }
 

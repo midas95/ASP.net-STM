@@ -40,14 +40,42 @@ public partial class devices : System.Web.UI.Page
                 while (reader.Read())
                 {
 
+                    string deviceStatus = "";
+                    deviceStatus = reader["InvStatus"].ToString();
+                    string statusBadge;
+                    switch (deviceStatus)
+                    {
+                        case "In Use":
+                            statusBadge = "<span class='badge text-info-light badge-info ml-1 badge-text '>" + deviceStatus + "</span>";
+                            break;
+                        case "Decomissioned":
+                            statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        case "Lost/Stolen":
+                            statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        case "Stolen":
+                            statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        case "Unassigned":
+                            statusBadge = "<span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        case "Repair Complete":
+                            statusBadge = "<span class='badge text-success-light badge-success ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        default:
+                            statusBadge = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                    }
+
                     Inventorylist.InnerHtml += "<tr>" +
                                                 "<td>" + reader["Model"].ToString() + "</td>" +
                                                 "<td>" + reader["SerialNum"].ToString() + "</td>" +
                                                 "<td>" + reader["MAC"].ToString() + "</td>" +
                                                 "<td>" + reader["UserEmail"].ToString() + "</td>" +
                                                 "<td>" + reader["AssetTag"].ToString() + "</td>" +
-                                                "<td><span class='badge text-info-light badge-success ml-1 badge-text '>" + reader["InvStatus"].ToString() + "</span></td>" +
-                                                "<td><button id='"+ reader["InventoryKey"].ToString() +"' class='btn btn-info btn-RepairReq'>Submit Repair Request</button></td>" +
+                                                "<td>" + statusBadge + "</td>" +
+                                                "<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() +"' class='btn btn-info btn-RepairReq'>Submit Repair Request</button></td>" +
                                               "</tr>";
                 }
                 i++;
