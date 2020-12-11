@@ -262,9 +262,9 @@
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
 
-            $(".other-issue input").click(function () {
-                $(".other-issue-content").slideToggle();
-            });
+            //$(".other-issue input").click(function () {
+            //    $(".other-issue-content").slideToggle();
+            //});
 
             $(".normal-issue input, .other-issue input").click(function () {
                 $(this).toggleClass("checked");
@@ -287,7 +287,8 @@
                     if ($(this).children("input").attr("class") == "checked") problem_arr.push($(this).children("span:first-child").text());
                 });
                 var problems = (problem_arr.length > 0) ? problem_arr.join(",") : "";
-                if ($(".other-issue input").attr("class") == "checked") problemNotes = $(".other-issue-content").val();
+                //if ($(".other-issue input").attr("class") == "checked")
+                problemNotes = $(".other-issue-content").val();
 
                 if (problems == "" && problemNotes == "") {
                     toastr.warning("Please select a reason to be repaired");
@@ -295,7 +296,7 @@
                     $("#loader-wrapper").show();
                     $.ajax({
                         type: "POST",
-                        url: "devices.aspx/InsertRepairs",
+                        url: "repair.aspx/InsertRepairs",
                         data: JSON.stringify({ invkey: inventoryKey, problems: problems, problemNotes: problemNotes }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
