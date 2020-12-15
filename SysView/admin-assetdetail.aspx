@@ -286,18 +286,9 @@
               <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Asset Tag</label>
-                            <input value="<%= InventoryKey %>" runat="server" id="sr_txtAssetTag" type="text" class="form-control" placeholder="Asset Tag"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Serial Num/Service Tag</label>
-                            <input value="" runat="server" id="sr_txtSerialNum" type="text" class="form-control" placeholder="Serial Number"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Model</label>
-                            <input value="" runat="server" id="sr_txtModel" type="text" class="form-control" placeholder="Model"/>
-                        </div>
+                            <h5><%= Model %></h5>
+                            Inventory ID: <b><%= InventoryKey %></b><br />
+                            Serial Num/Service Tag: <b><%= SerialNum %></b>
                         <div class="form-group">
                             <label>Comments</label>
                             <textarea class="other-issue-content form-control" runat="server" id="repair_notes"></textarea>
@@ -365,7 +356,7 @@
         </div>
     <script>
 
-        $(".devices").addClass("active");
+        $(".dash").addClass("active");
 
         $(function () {
             $(".btn-detail-update").click(function () {

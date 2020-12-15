@@ -20,6 +20,8 @@ public partial class AdminAssetDetail : System.Web.UI.Page
     public string problems { get; set; }
 
     public static string repairKey { get; set; }
+    public static string Model { get; set; }
+    public static string SerialNum { get; set; }
 
 
 
@@ -72,11 +74,10 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 repairKey = item["RepairKey"].ToString();
                 repair_notes.InnerText = repairNotes;
                 txtAssetTag.Value = assetTag;
-                sr_txtAssetTag.Value = assetTag;
                 txtModel.Value = model;
-                sr_txtModel.Value = model;
+                Model = item["Model"].ToString();
+                SerialNum = item["SerialNum"].ToString();
                 txtSerialNum.Value = serialNum;
-                sr_txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
                 if (!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
                 {
