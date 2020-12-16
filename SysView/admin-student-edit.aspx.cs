@@ -21,8 +21,9 @@ using HtmlAgilityPack;
         public string UserEmail { get; set; }
         public static string StudentKey { get; set; }
         public string TotalLost { get; set; }
+        public string InvKey { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()) && !String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Admin")
             {
@@ -57,6 +58,8 @@ using HtmlAgilityPack;
                     SqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
+
+                        InvKey = reader["InventoryKey"].ToString();
                         string userStatus = reader["InvStatus"].ToString();
                         string statusBtn;
                         switch (userStatus)

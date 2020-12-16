@@ -179,32 +179,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                        <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                            <div class="flex d-flex flex-column">
-                                                <h3>Details</h3> 
-                                                <span class="portlet-subtitle">Device status</span>
-                                            </div>
-                                        </div>
-                                        <div class="portlet-body">
-
-
-                                        <div class="form-group">
-                                            <label>Classroom</label>
-                                            <input runat="server" id="txtLocClassroom" type="text" class="form-control" placeholder="Classroom"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Teacher</label>
-                                            <input runat="server" id="txtLocTeacher" type="text" class="form-control" placeholder="Teacher"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Grade</label>
-                                            <input runat="server" id="txtLocGrade" type="text" class="form-control" placeholder="Teacher"/>
-                                        </div>
-                                    </div>
-                                </div><!--portlet-->
-                                    </div>
-                                <div class="col-lg-6">
 
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
@@ -229,10 +203,26 @@
                                     </div>
                                 </div><!--portlet-->
                             </div>
-                        </div>
+                                <div class="col-md-6">
+                                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                        <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                            <div class="flex d-flex flex-column">
+                                                <h3>Repair History</h3> 
+                                                <span class="portlet-subtitle">List of repair requests, latest first</span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body no-padding">
+
+                                            <div class="table-responsive">
+                                                <asp:Literal ID ="RepairList" runat="server"></asp:Literal>
+                                            </div>
+                                        </div>
+                                    </div><!--portlet-->
+                                </div>
                         </div>
                     </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <div class="row ml-5 mb-2">
                         <div class="col-md-12 text-right">
                             <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
@@ -254,24 +244,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                    <div class="flex d-flex flex-column">
-                                        <h3>Repair History</h3> 
-                                        <span class="portlet-subtitle">List of repair requests, latest first</span>
-                                    </div>
-                                </div>
-                                <div class="portlet-body no-padding">
 
-                                    <div class="table-responsive">
-                                        <asp:Literal ID ="RepairList" runat="server"></asp:Literal>
-                                    </div>
-                                </div>
-                            </div><!--portlet-->
-                        </div>
-                    </div>
         <div class="modal" id="startRepair">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">

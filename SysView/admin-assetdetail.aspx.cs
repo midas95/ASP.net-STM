@@ -124,11 +124,18 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                             ddlDeviceStatus.SelectedIndex = 1;// ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
 
                             RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
-                                                     + "</td><td>" + reader["SerialNum"].ToString()
-                                                     + "</td><td>" + reader["MAC"].ToString()
-                                                     + "</td><td>" + reader["UserEmail"].ToString()
-                                                     + "</td><td>" + statusBtn
-                                                     + "</td></tr>";
+                             + "</td><td>" + reader["SerialNum"].ToString()
+                             + "</td><td>" + reader["MAC"].ToString()
+                             + "</td><td>" + reader["UserEmail"].ToString()
+                             + "</td><td>" + statusBtn
+                             + "</td></tr>";
+
+                            //RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
+                            //                         + "</td><td>" + reader["SerialNum"].ToString()
+                            //                         + "</td><td>" + reader["MAC"].ToString()
+                            //                         + "</td><td>" + reader["UserEmail"].ToString()
+                            //                         + "</td><td>" + statusBtn
+                            //                         + "</td></tr>";
                         }
                         i++;
 

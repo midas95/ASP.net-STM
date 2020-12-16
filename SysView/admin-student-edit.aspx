@@ -91,7 +91,7 @@
                             Scan Device
 
                         </a>
-                        <h4>Welcome, <%= FirstName %></h4>
+                        <h4>Student Info</h4>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-10 ml-auto">
+                                <div class="col-md-2"></div>
+                                <div class="col-sm-2">
                                     <button type="submit" class="btn btn-primary btn-block">Update</button>
                                 </div>
                             </div>
