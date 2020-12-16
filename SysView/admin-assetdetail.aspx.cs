@@ -57,7 +57,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
             string repairNotes = "";
             foreach (DataRow item in asset.Rows)
             {
-                string InventoryKey = item["InventoryKey"].ToString();
+                string inventoryKey = item["InventoryKey"].ToString();
                 string model = item["Model"].ToString();
                 serialNum = item["SerialNum"].ToString();
                 string mac = item["MAC"].ToString();
@@ -79,11 +79,11 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 SerialNum = item["SerialNum"].ToString();
                 txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
-                if (!String.IsNullOrEmpty(assetTag) && !String.IsNullOrEmpty(serialNum))
+                if (!String.IsNullOrEmpty(inventoryKey))
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@InventoryKey", InventoryKey);
+                    command.Parameters.AddWithValue("@InventoryKey", inventoryKey);
 
                     SqlDataReader reader = command.ExecuteReader();
                     int i = 0;
