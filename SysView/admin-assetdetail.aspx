@@ -96,12 +96,23 @@
                                 </div>
                             </div>
                             <div class="col-md-5 d-flex justify-content-end">
-                                <nav aria-label="breadcrumb">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
+                                            <%--<i class="icon-Calendar-4"></i>--%>
+                                            <i class="fas fa-check"></i>
+                                            Save
+                                        </a>
+<%--                            <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
+                                <i class="fas fa-undo-alt"></i>            
+                                            Cancel
+                                        </a>--%>
+                                        <a href="javascript:void(0);" class="btn btn-danger mb-2" data-toggle="modal" data-target="#startRepair">Start Repair</a>
+
+<%--                                <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb no-padding bg-trans mb-0">
                                         <li class="breadcrumb-item"><a href="home.aspx"><i class="icon-Home mr-2 fs14"></i></a></li>
                                         <li class="breadcrumb-item active">Admin Device Details </li>
                                     </ol>
-                                </nav>
+                                </nav>--%>
                             </div>
                         </div>
                     </div>
@@ -138,16 +149,16 @@
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
-                                            <h3>Details</h3> 
+                                            <h3>Status</h3> 
                                             <span class="portlet-subtitle">Device status</span>
                                         </div>
-                                        <a href="javascript:void(0);" class="btn btn-danger mb-2" data-toggle="modal" data-target="#startRepair">Start Repair</a>
                                     </div>
                                     <div class="portlet-body">
                                         <div class="form-group">
-                                            <label>Device Status</label>
+                                            <%--<label>Status</label>--%>
                                             <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
                                                 <option value="InUse">In Use</option>
+                                                <option value="Ready">Ready</option>
                                                 <option value="SubmittedRepair">Submitted For Repair</option>
                                                 <option value="RepairInProgress">Repair In Progress</option>
                                                 <option value="RepairComplete">Repair Complete</option>
@@ -156,22 +167,19 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                         <div class="customUi-switchToggle switchToggle-teal">
-                                            <input value=">" runat="server" type="checkbox" id="swLoaner">
-                                            <label for="swLoaner">
-                                                <span class="label-switchToggle"></span>
-                                                <span class="label-helper">Loaner</span>
+                                            <label for="swLoaner" class="custom-checkbox normal-issue">
+                                                <span>Loaner</span>
+                                                <input id="swLoaner" type="checkbox"/>
+                                                <span class="checkmark"></span>
                                             </label>
-                                        </div>
                                         </div>
                                         <div class="form-group">
-                                         <div class="customUi-switchToggle switchToggle-teal">
-                                            <input value="" runat="server" type="checkbox" id="swHomeUse">
-                                            <label for="swHomeUse">
-                                                <span class="label-switchToggle"></span>
-                                                <span class="label-helper">Home Use</span>
+                                            <label for="swHomeUse" class="custom-checkbox normal-issue">
+                                                <span>Home Use</span>
+                                                <input id="swHomeUse" type="checkbox"/>
+                                                <span class="checkmark"></span>
                                             </label>
-                                          </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -235,15 +243,7 @@
                     <div class="row">
                     <div class="row ml-5 mb-2">
                         <div class="col-md-12 text-right">
-                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
-                                            <%--<i class="icon-Calendar-4"></i>--%>
-                                            <i class="fas fa-check"></i>
-                                            Save
-                                        </a>
-                            <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-danger mb-2">
-                                <i class="fas fa-undo-alt"></i>            
-                                            Cancel
-                                        </a>
+
 
                         </div>
                     </div>
@@ -278,7 +278,7 @@
 
               <!-- Modal Header -->
               <div class="modal-header">
-                <h4 class="modal-title">Start Repair Window</h4>
+                <h4 class="modal-title">Start Repair</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
 
@@ -365,7 +365,7 @@
         </div>
     <script>
 
-        $(".devices").addClass("active");
+        $(".dash").addClass("active");
 
         $(function () {
             $(".btn-detail-update").click(function () {
@@ -377,7 +377,7 @@
                 var problems = problem_arr.join(",");
                 $.ajax({
                     type: "POST",
-                    url: "admin-assetdetail.aspx/updateAssetDetail",
+                    url: "admin-assetdetail.aspx/UpdateRepair",
                     data: JSON.stringify({ problems: problems, repairNotes: repairNotes }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

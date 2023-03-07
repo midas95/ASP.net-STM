@@ -323,7 +323,7 @@
                             $(".txtStudent").text(strParse.userEmail);
                             $(".txtSerialNum").text(strParse.serialNum);
                             $("#spnAssetTag").html('&nbsp <span>Asset# ' + $('#txtAssetTag').val() + '</span>');
-                            $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
+                            $("#divAssetImg").html('<img src="images/' + strParse.model.replace(" ", "_") + '.png" />');
                             $("#txtAssetTag").val("");
                             $(".custom-checkbox input").each(function () {
                                 if ($(this).attr("class") == "checked") $(this).trigger("click");
@@ -346,7 +346,6 @@
 
                         } else {
                             $("#divNoResults").show();
-                            console.log(response.d);
                         }
                         $("#loader-wrapper").hide();
 

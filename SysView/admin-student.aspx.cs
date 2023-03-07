@@ -72,6 +72,7 @@ public partial class AdminStudent : System.Web.UI.Page
                 }
                 
                 Studentlist.InnerHtml += "<tr>" +
+                                            "<td>" + reader["StudentID"].ToString() + "</td>" +
                                             "<td>" + reader["FirstName"].ToString() + "</td>" +
                                             "<td>" + reader["LastName"].ToString() + "</td>" +
                                             "<td>" + reader["Email"].ToString() + "</td>" +

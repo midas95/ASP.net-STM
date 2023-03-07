@@ -78,14 +78,13 @@ public partial class repair : System.Web.UI.Page
     }
 
     [WebMethod]
-
     public static string InsertRepairs(string invkey, string problems, string problemNotes)
     {
         try
         {
 
             SqlDataReader dataReader;
-            string querySelect = "select Model, SerialNum, MAC, UserEmail, AssetTag, StatusID, Location, fkStudentID from sv_Inventory where InventoryKey='" + invkey + "'";
+            string querySelect = "select InventoryKey, Model, SerialNum, MAC, UserEmail, AssetTag, StatusID, Location, fkStudentID from sv_Inventory where InventoryKey='" + invkey + "'";
 
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
             conn.Open();
@@ -95,6 +94,7 @@ public partial class repair : System.Web.UI.Page
 
             while (dataReader.Read())
             {
+                string InventoryKey = dataReader["InventoryKey"].ToString();
                 string Model = dataReader["Model"].ToString();
                 string SerialNum = dataReader["SerialNum"].ToString();
                 string MAC = dataReader["MAC"].ToString();
@@ -104,7 +104,8 @@ public partial class repair : System.Web.UI.Page
                 string Location = dataReader["Location"].ToString();
                 string fkStudentID = dataReader["fkStudentID"].ToString();
 
-                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                SqlCommand cmdInsert = new SqlCommand("insert into sv_Repairs (fk_InventoryKey, Model, SerialNum, MAC, UserEmail, fk_AssetTag, StatusID, Location, fkStudentID, Problems, ProblemNotes) values(@fk_InventoryKey, @Model, @SerialNum, @MAC, @UserEmail, @fk_AssetTag, @StatusID, @Location, @fkStudentID, @Problems, @ProblemNotes)", conn);
+                cmdInsert.Parameters.AddWithValue("@fk_InventoryKey", InventoryKey);
                 cmdInsert.Parameters.AddWithValue("@Model", Model);
                 cmdInsert.Parameters.AddWithValue("@SerialNum", SerialNum);
                 cmdInsert.Parameters.AddWithValue("@MAC", MAC);

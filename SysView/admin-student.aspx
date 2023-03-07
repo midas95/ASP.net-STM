@@ -23,6 +23,7 @@
                 <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>First name</th>
                             <th>Last name</th>
                             <th>Email</th>
