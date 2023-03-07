@@ -283,6 +283,74 @@
                     if ($(this).attr("class") == "checked") $(this).trigger("click");
                 });
             }
+            $(".btnSearchAssets").click(function () {
+                searchAssets();
+            });
+
+            function searchAssets() {
+                $("#loader-wrapper").show();
+
+                $.ajax({
+                    type: "POST",
+                    url: "repair.aspx/SearchAssets",
+                    data: JSON.stringify({ assetNum: $('#txtAssetTag').val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d) {
+                            console.log(response.d);
+                            var strResponse = JSON.stringify(response.d);
+                            var strParse = JSON.parse(strResponse);
+                            $("#divNoResults").hide();
+                            if ($(".deviceDisplay").is(":hidden")) {
+                                $(".deviceDisplay").slideToggle();
+                            }
+                            $("#invkey").val(strParse.inventoryKey);
+                            $("#txtStatus").text(strParse.invStatus);
+                            var deviceStatus = strParse.invStatus;
+                            $("#txtModel").text(strParse.model);
+                            $("#txtStudent").text(strParse.userEmail);
+                            $("#txtStudentID").text(strParse.studentID);
+                            $("#txtSerialNum").text(strParse.serialNum);
+                            $(".txtModel").text(strParse.model);
+                            $(".txtStudent").text(strParse.userEmail);
+                            $(".txtSerialNum").text(strParse.serialNum);
+                            $("#spnAssetTag").html('&nbsp <span>Asset# ' + $('#txtAssetTag').val() + '</span>');
+                            $("#divAssetImg").html('<img src="' + strParse.imgLink + '" />');
+                            $("#txtAssetTag").val("");
+                            $(".custom-checkbox input").each(function () {
+                                if ($(this).attr("class") == "checked") $(this).trigger("click");
+                            });
+
+                            $(".assetInfo").show();
+                            $(".divAssetInfo2").hide();
+
+                            $(".divImg").show();
+                            $(".divProbs").hide();
+                            $(".btnGroup").hide();
+                            if (deviceStatus == 'Submitted For Repair') {
+                                $(".btnRepairReq").hide();
+                            } else {
+                                $(".btnRepairReq").show();
+
+                            }
+                            $(".msgSubmitted").hide();
+
+
+                        } else {
+                            $("#divNoResults").show();
+                            console.log(response.d);
+                        }
+                        $("#loader-wrapper").hide();
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
+
+                    }
+                });
+            }
             $(".repair-req-btn").click(function () {
                 var inventoryKey = <%= InvKey %>;
                 var problem_arr = [];

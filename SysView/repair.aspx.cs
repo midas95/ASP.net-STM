@@ -93,7 +93,7 @@ public partial class Repair : System.Web.UI.Page
         {
 
             SqlDataReader dataReader;
-            string querySelect = "select Model, SerialNum, MAC, UserEmail, AssetTag, StatusID, Location, fkStudentID from sv_Inventory where InventoryKey='" + invkey + "'";
+            string querySelect = "select InventoryKey, Model, SerialNum, MAC, UserEmail, AssetTag, StatusID, Location, fkStudentID from sv_Inventory where InventoryKey='" + invkey + "'";
 
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
             conn.Open();
@@ -103,6 +103,7 @@ public partial class Repair : System.Web.UI.Page
 
             while (dataReader.Read())
             {
+                string InventoryKey = dataReader["InventoryKey"].ToString();
                 string Model = dataReader["Model"].ToString();
                 string SerialNum = dataReader["SerialNum"].ToString();
                 string MAC = dataReader["MAC"].ToString();

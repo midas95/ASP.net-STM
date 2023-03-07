@@ -83,7 +83,8 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@InventoryKey", inventoryKey);
+                    command.Parameters.AddWithValue("@AssetTag", assetTag);
+                    command.Parameters.AddWithValue("@SerialNum", serialNum);
 
                     SqlDataReader reader = command.ExecuteReader();
                     int i = 0;

@@ -5876,8 +5876,8 @@ Responsive layouts style
   .media-chat.media-chat-self {
     padding-right: 0;
     padding-left: 0; }
-  .page-subheader .col-md-5 {
-    display: none !important; } }
+/*  .page-subheader .col-md-5 {
+    display: none !important; } }*/
 
 @media (max-width: 576px) {
   .layout-horizontal .navbar-light .container {

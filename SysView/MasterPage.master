@@ -92,7 +92,7 @@
                                 <li class="dash"> <i class="icon-Gaugage nav-thumbnail"></i>
                                     <a href="home.aspx">
                                         <span class="nav-text">
-                                            Dashboard 
+                                            Devices 
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
@@ -100,7 +100,7 @@
                                 <li class="devices"><i class="icon-Server-2 nav-thumbnail"></i>
                                     <a href="devices.aspx">
                                         <span class="nav-text">
-                                            Devices
+                                            Repair
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
