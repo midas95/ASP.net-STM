@@ -184,10 +184,8 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
@@ -211,25 +209,26 @@
                                     </div>
                                 </div><!--portlet-->
                             </div>
-                                <div class="col-md-6">
-                                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                                        <div class="portlet-header flex-row flex d-flex align-items-center b-b">
-                                            <div class="flex d-flex flex-column">
-                                                <h3>Repair History</h3> 
-                                                <span class="portlet-subtitle">List of repair requests, latest first</span>
-                                            </div>
+                            <div class="col-md-6">
+                                <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Repair History</h3> 
+                                            <span class="portlet-subtitle">List of repair requests, latest first</span>
                                         </div>
-                                        <div class="portlet-body no-padding">
+                                    </div>
+                                    <div class="portlet-body no-padding">
 
-                                            <div class="table-responsive">
-                                                <asp:Literal ID ="RepairList" runat="server"></asp:Literal>
-                                            </div>
+                                        <div class="table-responsive">
+                                            <asp:Literal ID ="RepairList" runat="server"></asp:Literal>
                                         </div>
-                                    </div><!--portlet-->
-                                </div>
+                                    </div>
+                                </div><!--portlet-->
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="row ml-5 mb-2">
                         <div class="col-md-12 text-right">
