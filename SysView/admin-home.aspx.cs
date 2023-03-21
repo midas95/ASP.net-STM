@@ -67,7 +67,15 @@ using HtmlAgilityPack;
             TotalLost = item["TotalLost"].ToString();
         }
     }
-
+    [WebMethod]
+    public static string addDevice(string asset_tag, string model, string serial_num, string status)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        conn.Open();
+        SqlCommand cmdInvInsert= new SqlCommand("insert into sv_Inventory (Model, SerialNum, AssetTag, StatusID) values ('" + model + "', '" + serial_num + "', '" + asset_tag + "', '" + status + "')", conn);
+        cmdInvInsert.ExecuteNonQuery();
+        return "success";
+    }
     public void FilterAssetList(string filterParam)
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);

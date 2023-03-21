@@ -8,7 +8,10 @@
                         <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon'>
                             <i class="fas fa-download"></i>
                             Scan Device
-
+                        </a>
+                        <a href='javascript:void(0);' class='float-right btn btn-sm btn-danger btn-icon mr-1' data-toggle="modal" data-target="#addDevice">
+                            <i class="fas fa-plus"></i>
+                            Add Device
                         </a>
                         <h4>Welcome, <%= FirstName %></h4>
                     </div>
@@ -127,6 +130,57 @@
                 </div>
             </div>
         </div>
+        <div class="modal" id="addDevice">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Add Device</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-field mb-2">
+                            <span>AssetTag</span>
+                            <input type="text" class="form-control asset-tag"/>
+                        </div>
+                        <div class="form-field mb-2">
+                            <span>Serial Num/Service Tag</span>
+                            <input type="text" class="form-control serial-num"/>
+                        </div>
+                        <div class="form-field mb-2">
+                            <span>Model</span>
+                            <input type="text" class="form-control model"/>
+                        </div>
+                        <div class="form-field">
+                            <span>Device status</span>
+                            <select class="custom-select bg-light hidden-search status" data-placeholder="Device Status">
+                                <option value="1">In Use</option>
+                                <option value="2">Ready</option>
+                                <option value="3">Submitted For Repair</option>
+                                <option value="4">Repair In Progress</option>
+                                <option value="5">Repair Complete</option>
+                                <option value="6">Decomissioned</option>
+                                <option value="7">Lost/Stolen</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-add-device">Insert</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
         <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
@@ -137,7 +191,27 @@
                 var invKey = $(this).attr("id");
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
             })
+            $(".btn-add-device").click(function () {
+                var asset_tag = $(".asset-tag").val();
+                var model = $(".model").val();
+                var serial_num = $(".serial-num").val();
+                var status = $(".status").val();
+                $.ajax({
+                    type: "POST",
+                    url: "admin-home.aspx/addDevice",
+                    data: JSON.stringify({ asset_tag: asset_tag, model: model, serial_num:serial_num, status : status }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        toastr.success("Info was updated successfully");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
 
+                    }
+                });
+            });
             $(".dash").addClass("active");
 
         </script>

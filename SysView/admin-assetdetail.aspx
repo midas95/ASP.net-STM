@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5 d-flex justify-content-end">
-                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-primary btn-success mb-2 mr-1 btn-save-asset">
                                             <%--<i class="icon-Calendar-4"></i>--%>
                                             <i class="fas fa-check"></i>
                                             Save
@@ -132,18 +132,18 @@
                                     <div class="portlet-body">
                                         <div class="form-group">
                                             <label>Asset Tag</label>
-                                            <input value="<%= InventoryKey %>" runat="server" id="txtAssetTag" type="text" class="form-control" placeholder="Asset Tag"/>
+                                            <input value="<%= InventoryKey %>" runat="server" id="txtAssetTag" type="text" class="form-control txt-asset-tag" placeholder="Asset Tag"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Serial Num/Service Tag</label>
-                                            <input value="" runat="server" id="txtSerialNum" type="text" class="form-control" placeholder="Serial Number"/>
+                                            <input value="" runat="server" id="txtSerialNum" type="text" class="form-control txt-serial-num" placeholder="Serial Number"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Model</label>
-                                            <input value="" runat="server" id="txtModel" type="text" class="form-control" placeholder="Model"/>
+                                            <input value="" runat="server" id="txtModel" type="text" class="form-control txt-model" placeholder="Model"/>
                                         </div>
                                     </div>
-                                </div><!--portlet-->
+                                </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
@@ -156,14 +156,14 @@
                                     <div class="portlet-body">
                                         <div class="form-group">
                                             <%--<label>Status</label>--%>
-                                            <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search" data-placeholder="Device Status">
-                                                <option value="InUse">In Use</option>
-                                                <option value="Ready">Ready</option>
-                                                <option value="SubmittedRepair">Submitted For Repair</option>
-                                                <option value="RepairInProgress">Repair In Progress</option>
-                                                <option value="RepairComplete">Repair Complete</option>
-                                                <option value="Decomissioned">Decomissioned</option>
-                                                <option value="Lost">Lost/Stolen</option>
+                                            <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search ddl-device-status" data-placeholder="Device Status">
+                                                <option value="1">In Use</option>
+                                                <option value="2">Ready</option>
+                                                <option value="3">Submitted For Repair</option>
+                                                <option value="4">Repair In Progress</option>
+                                                <option value="5">Repair Complete</option>
+                                                <option value="6">Decomissioned</option>
+                                                <option value="7">Lost/Stolen</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -332,6 +332,32 @@
         $(".dash").addClass("active");
 
         $(function () {
+            $(".btn-save-asset").click(function () {
+                var inventory_key = '<%= InventoryKey %>';
+                var asset_tag = $(".txt-asset-tag").val();
+                var serial_num = $(".txt-serial-num").val();
+                var model = $(".txt-model").val();
+                var status_id = $(".ddl-device-status").val();
+                var loaner_flag = ($("#swLoaner").is(":checked")) ? '1' : '0';
+                var homeuse_flag = ($("#swHomeUse").is(":checked")) ? '1' : '0';
+                console.log(loaner_flag, homeuse_flag);
+                $.ajax({
+                    type: 'POST',
+                    url: "admin-assetdetail.aspx/updateAsset",
+                    data: JSON.stringify({ inventory_key: inventory_key, asset_tag: asset_tag, serial_num: serial_num, model: model, status_id: status_id, loaner_flag: loaner_flag, homeuse_flag: homeuse_flag }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#loader-wrapper").hide();
+                        toastr.success("Asset Info was updated successfully");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
+
+                    }
+                });
+            });
             $(".btn-detail-update").click(function () {
                 var repairNotes = $(".other-issue-content").val();
                 var problem_arr = [];
@@ -348,7 +374,6 @@
                     success: function (response) {
                         $("#loader-wrapper").hide();
                         toastr.success("Info was updated successfully");
-
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);

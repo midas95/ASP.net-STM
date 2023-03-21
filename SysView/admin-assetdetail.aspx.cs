@@ -79,6 +79,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 SerialNum = item["SerialNum"].ToString();
                 txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
+                ddlDeviceStatus.SelectedIndex = int.Parse(statusID) - 1;
                 if (!String.IsNullOrEmpty(inventoryKey))
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
@@ -121,7 +122,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                                     break;
                             }
 
-                            ddlDeviceStatus.SelectedIndex = 1;// ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
+                            //ddlDeviceStatus.SelectedIndex = 1; ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
 
                             RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                              + "</td><td>" + reader["SerialNum"].ToString()
@@ -163,6 +164,15 @@ public partial class AdminAssetDetail : System.Web.UI.Page
         SqlCommand cmdRepUpdate = new SqlCommand("update sv_Repairs set Problems='" + problems + "', RepairNotes='" + repairNotes+ "' where RepairKey='" + repairKey + "'", conn);
         cmdRepUpdate.ExecuteNonQuery();
         SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory set StatusID=3 where InventoryKey='" + InventoryKey + "'", conn);
+        cmdInvUpdate.ExecuteNonQuery();
+        return "success";
+    }
+    [WebMethod]
+    public static string updateAsset(string inventory_key, string asset_tag, string serial_num, string model, string status_id, string loaner_flag, string homeuse_flag)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        conn.Open();
+        SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory set Model='" + model + "', SerialNum='" + serial_num + "', AssetTag='" + asset_tag + "', StatusID='" + status_id + "', LoanerFlag='" + loaner_flag + "', HomeUseFlag='" + homeuse_flag + "' where InventoryKey='" + inventory_key + "'", conn);
         cmdInvUpdate.ExecuteNonQuery();
         return "success";
     }
