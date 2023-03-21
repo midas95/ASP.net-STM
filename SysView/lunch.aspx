@@ -5,7 +5,8 @@
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-                        <h4>Welcome, <%= FirstName %></h4>
+                        <%--<h4>Welcome, <%= FirstName %></h4>--%>
+                        <h4>Meal Punch</h4>
                         <h5>Today's DATE : <span id="today_date" runat="server"></span></h5>
                     </div>
                 </div>
@@ -25,7 +26,7 @@
                             <th>Grade</th>
                             <th>Teacher</th>
                             <th>UserStatus</th>
-                            <th></th>
+                            <%--<th></th>--%>
                             <th></th>
                         </tr>
                     </thead>
@@ -45,7 +46,7 @@
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
             })
 
-            $(".student").addClass("active");
+            $(".lunch").addClass("active");
 
             $(".btn-lunch").click(function () {
                 var $this = $(this);
@@ -63,7 +64,7 @@
                     success: function (response) {
                         $("#loader-wrapper").hide();
                         $this.remove();
-                        toastr.success("That student is lunched successfully");
+                        toastr.success("Meal entered for student");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(errorThrown);
@@ -90,7 +91,7 @@
                         success: function (response) {
                             $("#loader-wrapper").hide();
                             $this.parent().parent().remove();
-                            toastr.success("That student is deleted successfully");
+                            toastr.success("Student deleted successfully");
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);

@@ -10,7 +10,7 @@
                             Scan Device
 
                         </a>
-                        <h4>Welcome, <%= FirstName %></h4>
+                        <h4>Students</h4>
                     </div>
                 </div>
             </div>

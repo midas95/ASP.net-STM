@@ -34,7 +34,7 @@
                     </div>
                 </div><!--col-->
                 <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                    <div class="list border1 rounded overflow-hidden">
+                    <div class="totRepairs list border1 rounded overflow-hidden">
                         <div class="list-item">
                             <div class="list-thumb bg-danger-active text-danger-light avatar rounded-circle avatar60 shadow-sm">
                                 <%--<i class="icon-Truck"></i>--%>
@@ -187,6 +187,11 @@
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
+
+            $(".totRepairs").click(function () {
+                $('input[type="search"]').val("submitted");
+            });
+
             $(".invRow").click(function () {
                 var invKey = $(this).attr("id");
                 window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;

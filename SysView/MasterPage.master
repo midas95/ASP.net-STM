@@ -111,6 +111,13 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
+                                <li class="lunch"><i class="fa fa-utensil-spoon nav-thumbnail"></i>
+                                    <a href="lunch.aspx">
+                                        <span class="nav-text">
+                                            Meals
+                                        </span>
+                                    </a>
+                                </li><!--Menu-item-->
                             </ul>
                         </div><!-- aside content end-->
                     </div><!-- aside hidden scroll end-->
@@ -183,7 +190,7 @@
                             </div>
                         </div>
                         <div class="d-flex flex p-3 mr-auto justify-content-end">
-                            <div class="text-muted">© Copyright 2020 Trinovi</div>
+                            <div class="text-muted">© Copyright 2023 Trinovi</div>
                         </div>
                     </div>
                 </footer>

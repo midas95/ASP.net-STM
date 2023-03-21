@@ -79,7 +79,7 @@ public partial class Lunch : System.Web.UI.Page
                                             "<td>" + reader["Grade"].ToString() + "</td>" +
                                             "<td>" + reader["Teacher"].ToString() + "</td>" +
                                             "<td>" + statusBtn + "</td>" +
-                                            "<td><a href='admin-student-edit.aspx?studentKey=" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-info btn-icon-sm mr-2 mb-2'><i class='fa fa-edit'></i></a><a href='#' data-studentkey='" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-danger btn-icon-sm mr-2 mb-2 btn-student-del'><i class='fa fa-trash'></i></a></td>" +
+                                            //"<td><a href='admin-student-edit.aspx?studentKey=" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-info btn-icon-sm mr-2 mb-2'><i class='fa fa-edit'></i></a><a href='#' data-studentkey='" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-danger btn-icon-sm mr-2 mb-2 btn-student-del'><i class='fa fa-trash'></i></a></td>" +
                                             "<td><button class='btn btn-primary btn-sm mb-2 btn-lunch' data-studentKey='" + reader["StudentKey"].ToString() + "' data-studentID = '" + reader["StudentID"].ToString() + "'>Lunch</button></td>" +
                                           "</tr>";
             }

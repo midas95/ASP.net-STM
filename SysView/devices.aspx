@@ -121,7 +121,7 @@
                             <div class="list-item pl-0">
                                 <div class="list-body">
                                     <div class="list-title fs-2x">
-                                        <h3>Device Search</h3>
+                                        <h3>Repair Request</h3>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +262,7 @@
                     </div>
                 </div>--%>
                 <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
-                    <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Inventory list</h6>
+                    <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Search for your device, or scan</h6>
                     <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
