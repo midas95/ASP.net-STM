@@ -1,6 +1,73 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="admin-home.aspx.cs" Inherits="AdminHome" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        <style>
+            .custom-checkbox {
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 11px;
+                cursor: pointer;
+                font-size: 16px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                display: block;
+            }
+
+            /* Hide the browser's default checkbox */
+            .custom-checkbox input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
+            }
+            .checkmark {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 30px;
+              width: 30px;
+              border: 1px solid grey;
+            }
+
+            /* On mouse-over, add a grey background color */
+            .custom-checkbox:hover input ~ .checkmark {
+              border: 1px solid #2196F3;
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            .custom-checkbox input:checked ~ .checkmark {
+              background-color: #2196F3;
+              border:none;
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+
+            /* Show the checkmark when checked */
+            .custom-checkbox input:checked ~ .checkmark:after {
+              display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .custom-checkbox .checkmark:after {
+              left: 11px;
+              top: 5px;
+              width: 9px;
+              height: 15px;
+              border: solid white;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+        </style>
          <div class="container-fluid">
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
@@ -156,7 +223,7 @@
                             <span>Model</span>
                             <input type="text" class="form-control model"/>
                         </div>
-                        <div class="form-field">
+                        <div class="form-field mb-4">
                             <span>Device status</span>
                             <select class="custom-select bg-light hidden-search status" data-placeholder="Device Status">
                                 <option value="1">In Use</option>
@@ -167,6 +234,22 @@
                                 <option value="6">Decomissioned</option>
                                 <option value="7">Lost/Stolen</option>
                             </select>
+                        </div>
+                        <div class="form-field">
+                            <div class="form-group">
+                                <label for="swLoaner" class="custom-checkbox normal-issue">
+                                    <span>Loaner</span>
+                                    <input id="swLoaner" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="swHomeUse" class="custom-checkbox normal-issue">
+                                    <span>Home Use</span>
+                                    <input id="swHomeUse" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,10 +284,12 @@
                 var model = $(".model").val();
                 var serial_num = $(".serial-num").val();
                 var status = $(".status").val();
+                var loaner_flag = ($("#swLoaner").is(":checked")) ? '1' : '0';
+                var homeuse_flag = ($("#swHomeUse").is(":checked")) ? '1' : '0';
                 $.ajax({
                     type: "POST",
                     url: "admin-home.aspx/addDevice",
-                    data: JSON.stringify({ asset_tag: asset_tag, model: model, serial_num:serial_num, status : status }),
+                    data: JSON.stringify({ asset_tag: asset_tag, model: model, serial_num: serial_num, status: status, loaner_flag: loaner_flag, homeuse_flag: homeuse_flag }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {

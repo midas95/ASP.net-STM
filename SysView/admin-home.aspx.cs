@@ -68,11 +68,11 @@ using HtmlAgilityPack;
         }
     }
     [WebMethod]
-    public static string addDevice(string asset_tag, string model, string serial_num, string status)
+    public static string addDevice(string asset_tag, string model, string serial_num, string status, string loaner_flag, string homeuse_flag)
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
-        SqlCommand cmdInvInsert= new SqlCommand("insert into sv_Inventory (Model, SerialNum, AssetTag, StatusID) values ('" + model + "', '" + serial_num + "', '" + asset_tag + "', '" + status + "')", conn);
+        SqlCommand cmdInvInsert= new SqlCommand("insert into sv_Inventory (Model, SerialNum, AssetTag, StatusID, LoanerFlag, HomeUseFlag) values ('" + model + "', '" + serial_num + "', '" + asset_tag + "', '" + status + "', '" + loaner_flag + "', '" + homeuse_flag + "')", conn);
         cmdInvInsert.ExecuteNonQuery();
         return "success";
     }

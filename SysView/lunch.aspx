@@ -49,7 +49,6 @@
             $(".lunch").addClass("active");
 
             $(".btn-lunch").click(function () {
-                var $this = $(this);
                 var studentKey = $(this).data("studentkey");
                 var studentID = $(this).data("studentid");
                 $.ajax({
@@ -63,7 +62,6 @@
                     dataType: "json",
                     success: function (response) {
                         $("#loader-wrapper").hide();
-                        $this.remove();
                         toastr.success("Meal entered for student");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {

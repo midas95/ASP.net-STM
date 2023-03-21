@@ -169,14 +169,14 @@
                                         <div class="form-group">
                                             <label for="swLoaner" class="custom-checkbox normal-issue">
                                                 <span>Loaner</span>
-                                                <input id="swLoaner" type="checkbox"/>
+                                                <input id="swLoaner" type="checkbox" <% if (loanerFlag == "1") { %> checked <% } %>/>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="form-group">
                                             <label for="swHomeUse" class="custom-checkbox normal-issue">
                                                 <span>Home Use</span>
-                                                <input id="swHomeUse" type="checkbox"/>
+                                                <input id="swHomeUse" type="checkbox"<% if (homeUseFlag == "1") { %> checked <% } %>/>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>

@@ -18,12 +18,12 @@ public partial class AdminAssetDetail : System.Web.UI.Page
     public string FirstName { get; set; }
     public static string InventoryKey { get; set; }
     public string problems { get; set; }
-
     public static string repairKey { get; set; }
     public static string Model { get; set; }
     public static string SerialNum { get; set; }
 
-
+    public static string loanerFlag { get; set; }
+    public static string homeUseFlag { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -64,8 +64,8 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 string useremail = item["UserEmail"].ToString();
                 string assetTag = item["AssetTag"].ToString();
                 string statusID = item["StatusID"].ToString();
-                string loanerFlag = item["LoanerFlag"].ToString();
-                string homeUseFlag = item["HomeUseFlag"].ToString();
+                loanerFlag = item["LoanerFlag"].ToString();
+                homeUseFlag = item["HomeUseFlag"].ToString();
                 string location = item["Location"].ToString();
                 string fkStudentID = item["fkStudentID"].ToString();
                 string imgLink = item["ImgLink"].ToString();
