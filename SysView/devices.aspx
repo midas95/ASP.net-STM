@@ -263,7 +263,7 @@
                 </div>--%>
                 <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
                     <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Search for your device, or scan</h6>
-                    <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
+                    <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Model</th>
@@ -299,6 +299,8 @@
                 $(".msgSubmitted").hide();
 
                 $(".devices").addClass("active");
+
+                $('input[type="search"').focus();
 
             });
             function init() {

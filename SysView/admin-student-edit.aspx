@@ -169,7 +169,7 @@
                 <h4 class="modal-title" id="studentDevice_title" runat="server">Report Lost/Stolen</h4>
               </div>
               <div class="modal-body">
-                <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30 main-panel">
+                <div class="bg-white table-responsive table-sm rounded shadow-sm pt-3 pb-3 mb-30 main-panel">
                   <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>

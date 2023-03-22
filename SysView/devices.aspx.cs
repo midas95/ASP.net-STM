@@ -75,7 +75,7 @@ public partial class devices : System.Web.UI.Page
                                                 "<td>" + reader["UserEmail"].ToString() + "</td>" +
                                                 "<td>" + reader["AssetTag"].ToString() + "</td>" +
                                                 "<td>" + statusBadge + "</td>" +
-                                                "<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-warning btn-RepairReq'><i class='fa fa-wrench'></i> Repair</button></td>" +
+                                                "<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-warning btn-RepairReq btn-icon-sm'><i class='fa fa-wrench'></i> Repair</button></td>" +
                                               "</tr>";
                 }
                 i++;

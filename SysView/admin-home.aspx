@@ -178,7 +178,8 @@
 
                             <div class="table-responsive">
                                 <%--<h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Inventory List</h6>--%>
-                                <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
+                                <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
+                                <%--<table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">--%>
                                     <thead>
                                         <tr>
                                             <th>Model</th>
@@ -260,7 +261,6 @@
                 <button type="button" class="btn btn-primary btn-add-device">Insert</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
-
             </div>
           </div>
         </div>
@@ -270,10 +270,6 @@
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
-
-            $(".totRepairs").click(function () {
-                $('input[type="search"]').val("submitted");
-            });
 
             $(".invRow").click(function () {
                 var invKey = $(this).attr("id");
