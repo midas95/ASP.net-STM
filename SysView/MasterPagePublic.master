@@ -133,8 +133,8 @@
 
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="/login.aspx" id="dropdown-user">
-                                <span class="">
-                                    <img src="images/genericAvatar.png" width="35" alt="">
+                                <span class="user-states states-online">
+                                    <img src="images/avatar6.jpg" width="35" alt="" class=" img-fluid rounded-circle">
                                 </span>
                                 <span class="ml-2 h-lg-down">
                                     Login

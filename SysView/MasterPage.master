@@ -146,7 +146,7 @@
                         <li class="nav-item dropdown user-dropdown align-items-center">
                             <a class="nav-link" href="#" id="dropdown-user" role="button" data-toggle="dropdown">
                                 <span class="user-states states-online">
-                                    <img src="images/avatar6.jpg" width="35" alt="" class=" img-fluid rounded-circle">
+                                    <img src="images/avatar6.jpg" width="35" alt="" class=" img-fluid rounded-circle" />
                                 </span>
                                 <span class="ml-2 h-lg-down dropdown-toggle">
                                     Hi, <%= FirstName %>
