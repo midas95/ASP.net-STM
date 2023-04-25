@@ -300,7 +300,7 @@
 
                 $(".devices").addClass("active");
 
-                $('input[type="search"').focus();
+                $('input[type="search"]').focus();
 
             });
             function init() {

@@ -102,7 +102,6 @@
                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                         <div class="flex d-flex flex-column">
                             <h3>Student detail info</h3> 
-                            <%--<span class="portlet-subtitle">You can update detail info of student</span>--%>
                         </div>
                         <a href="#" class="btn btn-danger btn-device" data-toggle="modal" data-target="#studentDevice">Devices</a>
                     </div>

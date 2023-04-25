@@ -17,7 +17,6 @@ using System.Web.Script.Serialization;
 
 public partial class Repair : System.Web.UI.Page
     {
-
         public string FirstName { get; set; }
         public string UserEmail { get; set; }
         public static string InvKey { get; set; }
@@ -38,7 +37,68 @@ public partial class Repair : System.Web.UI.Page
                 {
                     InvKey = Request.QueryString["InventoryKey"].ToString();
                     InvStatus = "";
-                    SearchAssets(InvKey);
+                SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+                SqlCommand command = new SqlCommand("sv_usp_GetTechList", con);
+                command.CommandType = CommandType.StoredProcedure;
+                string filterParam = "9";
+                command.Parameters.AddWithValue("@statusList", filterParam);
+                con.Open();
+                command.Connection = con;
+
+                SqlDataReader reader = command.ExecuteReader();
+                int i = 0;
+                do
+                {
+
+                    while (reader.Read())
+                    {
+                        string invStatus = reader["InvStatus"].ToString();
+                        string statusBtn;
+                        switch (invStatus)
+                        {
+                            case "In Use":
+                                statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                                break;
+                            case "Decomissioned":
+                                statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                            case "Lost/Stolen":
+                                statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                            case "Stolen":
+                                statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                            case "Unassigned":
+                                statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                            case "Repair Complete":
+                                statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                            default:
+                                statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
+                        }
+
+                        InventoryList.InnerHtml += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
+                                                         + "</td><td>" + reader["SerialNum"].ToString()
+                                                         //+ "</td><td>" + reader["MAC"].ToString()
+                                                         + "</td><td>" + reader["UserEmail"].ToString()
+
+                                                         //+ "</td><td>" + "<span class='badge badge-warning badge-text'><i class='fa fa-truck mr-1'></i> Pending</span>"
+                                                         //+ "</td><td>" + "</span><span class='badge text-danger-light badge-danger ml-1 badge-text anibadge'>Hot</span>"
+                                                         + "</td><td>" + statusBtn
+                                                         + "<td><button class='btn btn-info btn-sm m-1 btn-insert-student-device'>Assign</button></td>"
+                                                         + "</td></tr>";
+                    }
+                    i++;
+
+                } while (reader.NextResult());
+
+                reader.Close();
+                con.Close();
+
+                SearchAssets(InvKey);
+                
                 if (InvStatus == "Submitted For Repair" || InvStatus == "Repair In Progress" || InvStatus == "Repair Complete" || InvStatus == "Lost/Stolen")
                 {
                     Response.Redirect("devices.aspx");
@@ -70,7 +130,7 @@ public partial class Repair : System.Web.UI.Page
 
             asset.Load(sqlcom.ExecuteReader());
             conn.Close();
-
+        string StudentID = "";
             foreach (DataRow item in asset.Rows)
             {
 
@@ -83,7 +143,9 @@ public partial class Repair : System.Web.UI.Page
                  InvStatus = item["InvStatus"].ToString();
                  StudentID = item["StudentID"].ToString();
                  AssetTag = item["AssetTag"].ToString();
+                
             }
+        student_id.Value = StudentID;
     }
 
     [WebMethod]
@@ -142,5 +204,28 @@ public partial class Repair : System.Web.UI.Page
             return "Failure";
         }
     }
+    [WebMethod]
+    public static string InsertStudentDevice(string invkey, string studentID)
+    {
+        try
+        {
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+            conn.Open();
 
+            SqlCommand cmdInsert = new SqlCommand("insert into sv_StudentDevice (Date, fkStudentKey, fkInventoryID, StatusID) values (@Date, @fkStudentKey, @fkInventoryID, @StatusID)", conn);
+            cmdInsert.Parameters.AddWithValue("@Date", DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss"));
+            cmdInsert.Parameters.AddWithValue("@fkStudentKey", studentID);
+            cmdInsert.Parameters.AddWithValue("@fkInventoryID", invkey);
+            cmdInsert.Parameters.AddWithValue("@StatusID", "3");
+
+            cmdInsert.ExecuteNonQuery();
+            conn.Close();
+            return "success";
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex);
+            return "Failure";
+        }
+    }
 }

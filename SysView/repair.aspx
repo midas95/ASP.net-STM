@@ -89,13 +89,14 @@
                         <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon'>
                             <i class="fas fa-download"></i>
                             Scan Device
-
                         </a>
                         <h4>Submit Repair Request</h4>
                     </div>
                 </div>
             </div>
         </div>
+        <input type="hidden" class="student-id" runat="server" id="student_id" />
+
         <div class="container-fluid">
             <div class="row deviceDisplay">
                 <div class="col-sm-12">
@@ -195,7 +196,7 @@
 
                                         <div class="msgSubmitted" style="display:none;">
                                             <h1>Your repair request has been submitted</h1>
-                                            <a href="javascript:void(0)" class="btn btn-icon btn-xl btn-primary mb-2">
+                                            <a href="javascript:void(0)" class="btn btn-icon btn-xl btn-primary mb-2 btn-another-assign">
                                                 <i class="fas fa-laptop"></i>
                                                 Assign another device to this user?
                                             </a>
@@ -207,59 +208,38 @@
                 </div>
             </div>
         </div>
-        <div id="studentDevice" class="modal" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+        <div class="container-fluid another-assign-list-container" style="display:none">
+            <div class="row deviceDisplay">
+                <div class="col-sm-12">
+                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
+                        <div class="portlet-header flex-row flex align-items-center b-b ml-10">
+                            <h2>Another list</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet-body">
+                                    <div class="table-responsive">
+                                        <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Model</th>
+                                                    <th>Serial</th>
+                                                    <th>Last User</th>
+                                                    <th>Status</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="InventoryList" runat="server">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="studentDevice_title" runat="server">Report Lost/Stolen</h4>
-              </div>
-              <div class="modal-body">
-                <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30 main-panel">
-                  <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <%--<th>Email</th>--%>
-                            <th>Model</th>
-                            <%--<th>AssetTag</th>--%>
-                            <th>SerialNum</th>
-                            <th>InvStatus</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="Devicelist" runat="server">
-                    </tbody>
-                  </table>
-                </div>
-                <div class="extra-panel">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Comments</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control device-comments"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Assign another device</label>
-                        <div class="col-sm-9">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="assign-device"/>
-                                <span class="checkmark"></span>
-                            </label>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-device-update">Submit</button>
-                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-              </div>
             </div>
-
-          </div>
         </div>
         <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
@@ -332,10 +312,8 @@
                                 $(".btnRepairReq").hide();
                             } else {
                                 $(".btnRepairReq").show();
-
                             }
                             $(".msgSubmitted").hide();
-
 
                         } else {
                             $("#divNoResults").show();
@@ -375,16 +353,16 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            console.log(response.d);
                             if (response.d) {
                                 toastr.success("Request was sent successfully");
                                 init();
-
                                 $(".divAssetInfo2").toggle("slide");
                                 $(".divImg").toggle("slide");
                                 $(".divProbs").slideToggle();
                                 $(".btnGroup").slideToggle();
                                 $(".msgSubmitted").show();
+                                $(".another-assign-list-container").show();
+                                $('input[type="search"]').focus();
                             } else {
                                 toastr.warning("OOPS... Something went wrong during repair request");
                             }
@@ -401,9 +379,31 @@
 
             });
 
-            $(".invRow").click(function () {
-                var invKey = $(this).attr("id");
-                window.location.href = '/admin-assetdetail.aspx?inventorykey=' + invKey;
+            $(".btn-insert-student-device").click(function () {
+                var invKey = $(this).parent().parent().attr("id");
+                var studentID = $(".student-id").val();
+                $("#loader-wrapper").show();
+                $.ajax({
+                    type: "POST",
+                    url: "repair.aspx/InsertStudentDevice",
+                    data: JSON.stringify({ invkey: invKey, studentID: studentID }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d) {
+                            toastr.success("Successfully inserted");
+                        } else {
+                            toastr.warning("OOPS... Something went wrong");
+                        }
+
+                        $("#loader-wrapper").hide();
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        toastr.danger("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        $("#loader-wrapper").hide();
+                    }
+                });
             })
             $(".btn-device").click(function () {
                 $(".main-panel").show();
