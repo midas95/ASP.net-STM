@@ -189,50 +189,35 @@
                                         </div>
 
                                     </div>
-                                        <div class="btnGroup">
-                                            <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
-                                            <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
-                                        </div>
+                                    <div class="btnGroup">
+                                        <button class="btn btn-primary mr-1 mb-2 repair-req-btn">Submit</button>
+                                        <button onclick="javascript:searchAssets();" type="button" class="btn btn-danger mr-1 mb-2">Cancel</button>
+                                    </div>
 
-                                        <div class="msgSubmitted" style="display:none;">
-                                            <h1>Your repair request has been submitted</h1>
-                                            <a href="javascript:void(0)" class="btn btn-icon btn-xl btn-primary mb-2 btn-another-assign">
-                                                <i class="fas fa-laptop"></i>
-                                                Assign another device to this user?
-                                            </a>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid another-assign-list-container" style="display:none">
-            <div class="row deviceDisplay">
-                <div class="col-sm-12">
-                    <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
-                        <div class="portlet-header flex-row flex align-items-center b-b ml-10">
-                            <h2>Another list</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="portlet-body">
-                                    <div class="table-responsive">
-                                        <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Model</th>
-                                                    <th>Serial</th>
-                                                    <th>Last User</th>
-                                                    <th>Status</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="InventoryList" runat="server">
+                                    <div class="msgSubmitted" style="display:none;">
+                                        <h1>Your repair request has been submitted</h1>
+                                        <a href="javascript:void(0)" class="btn btn-icon btn-xl btn-primary mb-2 btn-another-assign">
+                                            <i class="fas fa-laptop"></i>
+                                            Assign another device to this user?
+                                        </a>
+                                    </div>
+                                    <div class="another-assign-list-container" style="display:none;">
+                                        <div class="table-responsive">
+                                            <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Model</th>
+                                                        <th>Serial</th>
+                                                        <th>Last User</th>
+                                                        <th>Status</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="InventoryList" runat="server">
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -241,6 +226,7 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
@@ -266,7 +252,10 @@
             $(".btnSearchAssets").click(function () {
                 searchAssets();
             });
-
+            $(".btn-another-assign").click(function () {
+                $(".another-assign-list-container").show();
+                $(this).parent().hide();
+            });
             function searchAssets() {
                 $("#loader-wrapper").show();
 
@@ -361,8 +350,6 @@
                                 $(".divProbs").slideToggle();
                                 $(".btnGroup").slideToggle();
                                 $(".msgSubmitted").show();
-                                $(".another-assign-list-container").show();
-                                $('input[type="search"]').focus();
                             } else {
                                 toastr.warning("OOPS... Something went wrong during repair request");
                             }
