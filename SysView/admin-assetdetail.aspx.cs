@@ -79,7 +79,35 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 SerialNum = item["SerialNum"].ToString();
                 txtSerialNum.Value = serialNum;
                 txtStudentEmail.Value = useremail;
-                ddlDeviceStatus.SelectedIndex = int.Parse(statusID) - 1;
+
+                switch (statusID)
+                {
+                    case "1":
+                        ddlDeviceStatus.SelectedIndex = 0;
+                        break;
+                    case "2":
+                        ddlDeviceStatus.SelectedIndex = 1;
+                        break;
+                    case "3":
+                        ddlDeviceStatus.SelectedIndex = 2;
+                        break;
+                    case "4":
+                        ddlDeviceStatus.SelectedIndex = 3;
+                        break;
+                    case "5":
+                        ddlDeviceStatus.SelectedIndex = 4;
+                        break;
+                    case "6":
+                        ddlDeviceStatus.SelectedIndex = 5;
+                        break;
+                    case "7":
+                        ddlDeviceStatus.SelectedIndex = 6;
+                        break;
+                    default:
+                        ddlDeviceStatus.SelectedIndex = 0;
+                        break;
+                }
+
                 if (!String.IsNullOrEmpty(inventoryKey))
                 {
                     SqlCommand command = new SqlCommand("sv_usp_GetRepairHistory", conn);
@@ -122,21 +150,12 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                                     break;
                             }
 
-                            //ddlDeviceStatus.SelectedIndex = 1; ddlDeviceStatus.Items.IndexOf(ddlDeviceStatus.Items.FindByText(invStatus));
-
                             RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
                              + "</td><td>" + reader["SerialNum"].ToString()
                              + "</td><td>" + reader["MAC"].ToString()
                              + "</td><td>" + reader["UserEmail"].ToString()
                              + "</td><td>" + statusBtn
                              + "</td></tr>";
-
-                            //RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
-                            //                         + "</td><td>" + reader["SerialNum"].ToString()
-                            //                         + "</td><td>" + reader["MAC"].ToString()
-                            //                         + "</td><td>" + reader["UserEmail"].ToString()
-                            //                         + "</td><td>" + statusBtn
-                            //                         + "</td></tr>";
                         }
                         i++;
 
