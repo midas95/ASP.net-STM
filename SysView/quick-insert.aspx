@@ -54,6 +54,13 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="AssetTag" class="col-sm-2 col-form-label">AssetTag</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control AssetTag" id="AssetTag" name="AssetTag" required="required" autofocus/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="SerialNum" class="col-sm-2 col-form-label">Serial Number</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control SerialNum" id="SerialNum" name="SerialNum" required="required" autofocus/>
@@ -95,6 +102,7 @@
             $(".btn-assets-quick-insert").click(function () {
                 var make = $(".make:checked").val();
                 var model = $("#model").val();
+                var assetTag = $("#AssetTag").val();
                 var serialNum = $("#SerialNum").val();
                 if (serialNum != "") {
                     $("#loader-wrapper").show();
@@ -104,6 +112,7 @@
                         data: JSON.stringify({
                             make: make,
                             model: model,
+                            assetTag: assetTag,
                             serialNum: serialNum
                         }),
                         contentType: "application/json; charset=utf-8",
@@ -111,7 +120,7 @@
                         success: function (response) {
                             $("#loader-wrapper").hide();
                             toastr.success("Assets inserted");
-                            $("tbody#Assetslist").append("<tr><td>" + make + "</td><td>" + model + "</td><td>" + serialNum + "</td></tr>");
+                            $("tbody#Assetslist").append("<tr><td>" + make + "</td><td>" + model + "</td><td>" + assetTag + "</td><td>" + serialNum + "</td></tr>");
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);

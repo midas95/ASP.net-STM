@@ -92,11 +92,11 @@ public partial class QuickInsert : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static string addAssets(string make, string model, string serialNum)
+    public static string addAssets(string make, string model, string AssetTag, string serialNum)
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
-        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, SerialNum, StatusID) values ('" + make+ "', '" + model + "', '" + serialNum + "', 2)", conn);
+        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, AssetTag, SerialNum, StatusID) values ('" + make+ "', '" + model + "', '" + AssetTag + "', '" + serialNum + "', 2)", conn);
         cmd.ExecuteNonQuery();
         return "success";
     }
