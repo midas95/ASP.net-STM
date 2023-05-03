@@ -378,9 +378,9 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.d) {
-                            toastr.success("Successfully inserted");
+                            toastr.success("Loaner Assigned");
                         } else {
-                            toastr.warning("OOPS... Something went wrong");
+                            toastr.warning("OOPS... Something went wrong. This is not your fault. Contact your administrator.");
                         }
 
                         $("#loader-wrapper").hide();
