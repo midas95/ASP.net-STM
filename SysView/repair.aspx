@@ -378,7 +378,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.d) {
-                            toastr.success("Loaner Assigned. InventoryID: " + invKey);
+                            toastr.success(invKey,"Loaner Assigned");
                         } else {
                             toastr.warning("OOPS... Something went wrong. This is not your fault. Contact your administrator.");
                         }
