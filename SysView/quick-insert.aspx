@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input make" type="radio" name="make" id="hp" value="Hp" />
-                                        <label class="form-check-label" for="hp">Hp</label>
+                                        <label class="form-check-label" for="hp">HP</label>
                                     </div>
 
                                 </div>
@@ -112,7 +112,7 @@
                         data: JSON.stringify({
                             make: make,
                             model: model,
-                            assetTag: assetTag,
+                            AssetTag: assetTag,
                             serialNum: serialNum
                         }),
                         contentType: "application/json; charset=utf-8",

@@ -252,6 +252,8 @@
             $(".btnSearchAssets").click(function () {
                 searchAssets();
             });
+
+            //THIS IS WHERE WE LEFT OFF, NEED TO MAKE ASSIGN NOTHER DEVICE MORE SMOOTH
             $(".btn-another-assign").click(function () {
                 $(".another-assign-list-container").show();
                 $(this).parent().hide();

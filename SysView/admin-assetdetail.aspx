@@ -189,12 +189,15 @@
                                 <div class="portlet-box portlet-gutter ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
                                         <div class="flex d-flex flex-column">
-                                            <h3>Student Info</h3> 
-                                            <span runat="server" class="portlet-subtitle">Assigned student</span>
+                                            <h3>User Info</h3> 
+                                            <span runat="server" class="portlet-subtitle">Assigned User</span>
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div class="form-group">
+                                        <div class="table-responsive">
+                                            <asp:Literal ID ="UserList" runat="server"></asp:Literal>
+                                        </div>
+<%--                                        <div class="form-group">
                                             <label>Student ID</label>
                                             <input runat="server" id="txtStudentID" type="text" class="form-control">
                                         </div>
@@ -205,7 +208,7 @@
                                         <div class="form-group">
                                             <label>Student Email</label>
                                             <input value="" runat="server" id="txtStudentEmail" type="text" class="form-control">
-                                        </div>
+                                        </div>--%>
                                     </div>
                                 </div><!--portlet-->
                             </div>

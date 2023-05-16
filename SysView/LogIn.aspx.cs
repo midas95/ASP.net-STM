@@ -31,7 +31,7 @@ public partial class User_LogIn : System.Web.UI.Page
         Session["Admin"] = null;
         if (String.IsNullOrEmpty(txtusername.Text) || String.IsNullOrEmpty(txtpassword.Text))
         {
-            lblmsg.Text = "Please enter a valid email and password 1";
+            lblmsg.Text = "Please enter a valid email and password. User session inactive.";
         }
         else
         {
@@ -71,7 +71,7 @@ public partial class User_LogIn : System.Web.UI.Page
             }
             else
             {
-                lblmsg.Text = "Please enter a valid email and password 2";
+                lblmsg.Text = "Please enter a valid email and password. Error retrieved.";
             }
         }
     }

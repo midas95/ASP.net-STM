@@ -72,7 +72,11 @@
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon'>
+                         <a href='/quick-insert.aspx' class='float-right btn btn-sm btn-primary btn-icon'>
+                            <i class="fas fa-download"></i>
+                            Fast Insert
+                        </a>
+                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon mr-1'>
                             <i class="fas fa-download"></i>
                             Scan Device
                         </a>
@@ -80,6 +84,7 @@
                             <i class="fas fa-plus"></i>
                             Add Device
                         </a>
+
                         <h4>Welcome, <%= FirstName %></h4>
                     </div>
                 </div>

@@ -112,10 +112,10 @@ using HtmlAgilityPack;
                         statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     case "Repair Complete":
-                        statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-success-light badge-info ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     default:
-                        statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-danger-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                 }
 

@@ -78,7 +78,6 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                 Model = item["Model"].ToString();
                 SerialNum = item["SerialNum"].ToString();
                 txtSerialNum.Value = serialNum;
-                txtStudentEmail.Value = useremail;
 
                 switch (statusID)
                 {
@@ -118,12 +117,14 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                     int i = 0;
                     do
                     {
-                        RepairList.Text = "<table class='table mb-0'>"
-                                             + "<thead><tr><th>Model</th><th>Serial</th><th>MAC Address</th><th>Last User</th></tr></thead>";
+                        RepairList.Text = "<table class='table mb-0'>";
+                                             //+ "<thead><tr><th>Model</th><th>Serial</th><th>MAC Address</th><th>Last User</th></tr></thead>";
 
                         while (reader.Read())
                         {
                             string invStatus = reader["InvStatus"].ToString();
+                            string SubmitDate = reader["SubmitDate"].ToString();
+
                             string statusBtn;
                             switch (invStatus)
                             {
@@ -150,11 +151,9 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                                     break;
                             }
 
-                            RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'><td>" + reader["Model"].ToString()
-                             + "</td><td>" + reader["SerialNum"].ToString()
-                             + "</td><td>" + reader["MAC"].ToString()
-                             + "</td><td>" + reader["UserEmail"].ToString()
+                            RepairList.Text += "<tr class='invRow' id='" + reader["InventoryKey"] + "'>"
                              + "</td><td>" + statusBtn
+                             + "</td><td>" + SubmitDate
                              + "</td></tr>";
                         }
                         i++;
@@ -162,6 +161,34 @@ public partial class AdminAssetDetail : System.Web.UI.Page
                         RepairList.Text += "</table>";
 
                     } while (reader.NextResult());
+
+                    command = new SqlCommand("sv_usp_GetDeviceUsers", conn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@InventoryKey", InventoryKey);
+
+                    reader = command.ExecuteReader();
+                    int s = 0;
+                    do
+                    {
+                        UserList.Text = "<table class='table mb-0'>"
+                                              + "<thead><tr><th>Student ID</th><th>First</th><th>Last</th><th>UserName</th><th>Date</th></tr></thead>";
+
+                        while (reader.Read())
+                        {
+
+                            UserList.Text += "<tr class='invRow' id='" + reader["StudentID"] + "'>"
+                             + "<td>" + reader["StudentID"].ToString()
+                             + "</td><td>" + reader["FirstName"].ToString()
+                             + "</td><td>" + reader["LastName"].ToString()
+                             + "</td><td>" + reader["UserName"].ToString()
+                             + "</td><td>" + reader["UpdateDate"].ToString()
+                             + "</td></tr>";
+                        }
+                        s++;
+
+                        UserList.Text += "</table>";
+                    } while (reader.NextResult());
+
                 }
             }
             
