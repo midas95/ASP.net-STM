@@ -46,10 +46,10 @@ public partial class devices : System.Web.UI.Page
                     switch (deviceStatus)
                     {
                         case "In Use":
-                            statusBadge = "<span class='badge text-info-light badge-info ml-1 badge-text '>" + deviceStatus + "</span>";
+                            statusBadge = "<span class='badge text-white badge-warning ml-1 badge-text '>" + deviceStatus + "</span>";
                             break;
                         case "Decomissioned":
-                            statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
+                            statusBadge = "<span class='badge text-white badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
                         case "Lost/Stolen":
                             statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
@@ -61,10 +61,13 @@ public partial class devices : System.Web.UI.Page
                             statusBadge = "<span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
                         case "Repair Complete":
-                            statusBadge = "<span class='badge text-success-light badge-success ml-1 badge-text'>" + deviceStatus + "</span>";
+                            statusBadge = "<span class='badge text-white badge-success ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
+                        case "Submitted For Repair":
+                            statusBadge = "<span class='badge text-white badge-danger ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
                         default:
-                            statusBadge = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + deviceStatus + "</span>";
+                            statusBadge = "<span class='badge text-white badge-into ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
                     }
 

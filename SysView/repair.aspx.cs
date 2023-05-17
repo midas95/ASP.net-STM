@@ -57,7 +57,7 @@ public partial class Repair : System.Web.UI.Page
                         switch (invStatus)
                         {
                             case "In Use":
-                                statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                                statusBtn = "</span><span class='badge text-success badge-warning ml-1 badge-text '>" + invStatus + "</span>";
                                 break;
                             case "Decomissioned":
                                 statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
@@ -74,8 +74,11 @@ public partial class Repair : System.Web.UI.Page
                             case "Repair Complete":
                                 statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
                                 break;
+                            case "Submitted For Repair":
+                                statusBtn = "</span><span class='badge text-success-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                                break;
                             default:
-                                statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                                statusBtn = "</span><span class='badge text-success badge-info ml-1 badge-text'>" + invStatus + "</span>";
                                 break;
                         }
 
@@ -181,7 +184,7 @@ public partial class Repair : System.Web.UI.Page
                 cmdInsert.Parameters.AddWithValue("@MAC", MAC);
                 cmdInsert.Parameters.AddWithValue("@UserEmail", UserEmail);
                 cmdInsert.Parameters.AddWithValue("@fk_AssetTag", fk_AssetTag);
-                cmdInsert.Parameters.AddWithValue("@StatusID", 2);
+                cmdInsert.Parameters.AddWithValue("@StatusID", 3);
                 cmdInsert.Parameters.AddWithValue("@Location", Location);
                 cmdInsert.Parameters.AddWithValue("@fkStudentID", fkStudentID);
                 cmdInsert.Parameters.AddWithValue("@Problems", problems);
@@ -189,7 +192,7 @@ public partial class Repair : System.Web.UI.Page
 
                 cmdInsert.ExecuteNonQuery();
 
-                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET PrevStatusID = StatusID, StatusID = 2  WHERE InventoryKey=" + invkey, conn);
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET PrevStatusID = StatusID, StatusID = 3, UpdatedDate = getdate()  WHERE InventoryKey=" + invkey, conn);
                 cmdInvUpdate.ExecuteNonQuery();
             }
 
@@ -204,6 +207,7 @@ public partial class Repair : System.Web.UI.Page
             return "Failure";
         }
     }
+
     [WebMethod]
     public static string InsertStudentDevice(string invkey, string studentID)
     {
@@ -219,6 +223,10 @@ public partial class Repair : System.Web.UI.Page
             cmdInsert.Parameters.AddWithValue("@StatusID", "3");
 
             cmdInsert.ExecuteNonQuery();
+
+            cmdInsert = new SqlCommand("UPDATE sv_Inventory SET StatusID = 1, UpdatedDate = getdate() WHERE InventoryKey = " + invkey, conn);
+            cmdInsert.ExecuteNonQuery();
+
             conn.Close();
             return "success";
         }

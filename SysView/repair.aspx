@@ -256,7 +256,9 @@
             //THIS IS WHERE WE LEFT OFF, NEED TO MAKE ASSIGN NOTHER DEVICE MORE SMOOTH
             $(".btn-another-assign").click(function () {
                 $(".another-assign-list-container").show();
+                $(".portlet-header").html("<h2>Select another device to assign</h2><p>Scan a device, or select one from the list below.");
                 $(this).parent().hide();
+                $("input[type='search']").focus();
             });
             function searchAssets() {
                 $("#loader-wrapper").show();
@@ -380,9 +382,13 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.d) {
-                            toastr.success("Loaner Assigned. InventoryID: ", invKey);
+                            toastr.success("Loaner Assigned to StudentID ", studentID);
+                            setTimeout(function () {
+                                window.location.href = "/devices.aspx";
+                                window.clearTimeout(tID);		// clear time out.
+                            }, 3000);
                         } else {
-                            toastr.warning("OOPS... Something went wrong. This is not your fault. Contact your administrator.");
+                            toastr.warning("Something went wrong. This is not your fault. Tell your admin the device user could not be inserted.");
                         }
 
                         $("#loader-wrapper").hide();

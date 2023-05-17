@@ -97,10 +97,10 @@ using HtmlAgilityPack;
                 switch (invStatus)
                 {
                     case "In Use":
-                        statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-white badge-warning ml-1 badge-text '>" + invStatus + "</span>";
                         break;
                     case "Decomissioned":
-                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-white badge-dark ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     case "Lost/Stolen":
                         statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
@@ -112,10 +112,13 @@ using HtmlAgilityPack;
                         statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     case "Repair Complete":
-                        statusBtn = "</span><span class='badge text-success-light badge-info ml-1 badge-text'>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-white badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Submitted For Repair":
+                        statusBtn = "</span><span class='badge text-white badge-danger ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                     default:
-                        statusBtn = "</span><span class='badge text-danger-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                        statusBtn = "</span><span class='badge text-white badge-info ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                 }
 
