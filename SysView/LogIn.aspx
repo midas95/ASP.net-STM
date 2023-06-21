@@ -69,6 +69,10 @@
               }
             }
 
+            .sysimg {
+                width: inherit;
+            }
+
         </style>
     </head>
     
@@ -79,10 +83,10 @@
     <div class="bg-parallax parallax-overlay accounts-page">
         <div class="container">
             <div class="row pb30 pt50">
-                <div class="col-lg-4 col-md-6 mr-auto ml-auto col-sm-8">
+                <div class="col-lg-4 col-md-6 mr-auto ml-auto col-sm-8 mt-40">
+                    <img class="sysimg" src="images/SysViewCloud_Final.png" />
                     <br />
                     <h3 class="text-dark text-center mb30">Login</h3>
-                    <%-- <form id="form1" runat="server">--%>
                     <div class="form-group">
                         <asp:Label ID="Label1" runat="server" Text="Admin LogIn"></asp:Label>
                     </div>

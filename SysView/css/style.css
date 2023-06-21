@@ -1240,8 +1240,8 @@ strong, b {
   display: inline-block; }
   .user-states:before {
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     position: absolute;
     bottom: 2px;
     right: 2px;

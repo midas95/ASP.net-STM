@@ -158,12 +158,12 @@
                                             <%--<label>Status</label>--%>
                                             <select id="ddlDeviceStatus" value="" runat="server" class="custom-select bg-light hidden-search ddl-device-status" data-placeholder="Device Status">
                                                 <option value="1">In Use</option>
-                                                <option value="2">Ready</option>
-                                                <option value="3">Submitted For Repair</option>
-                                                <option value="4">Repair In Progress</option>
-                                                <option value="5">Repair Complete</option>
-                                                <option value="6">Decomissioned</option>
-                                                <option value="7">Lost/Stolen</option>
+                                                <option value="2">Submitted For Repair</option>
+                                                <option value="3">Repair In Progress</option>
+                                                <option value="4">Repair Complete</option>
+                                                <option value="5">Decomissioned</option>
+                                                <option value="6">Lost/Stolen</option>
+                                                <option value="7">Unassigned</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

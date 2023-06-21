@@ -17,7 +17,8 @@
                         <button class='float-right btn btn-info btn-quick-assign'>
                             Assign
                         </button>
-                        <h4>Students and Devices</h4>
+                        <h4>Quick Assign</h4>
+                        <p>To assign a device to a student, select a student from the list, then select a device, then click the "Assign" button</p>
                     </div>
                 </div>
             </div>

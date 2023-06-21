@@ -74,10 +74,10 @@
                     <div class="mb-0">
                          <a href='/quick-insert.aspx' class='float-right btn btn-sm btn-primary btn-icon'>
                             <i class="fas fa-download"></i>
-                            Fast Insert
+                            Quick Insert
                         </a>
                         <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon mr-1'>
-                            <i class="fas fa-download"></i>
+                            <i class="fas fa-rss"></i>
                             Scan Device
                         </a>
                         <a href='javascript:void(0);' class='float-right btn btn-sm btn-danger btn-icon mr-1' data-toggle="modal" data-target="#addDevice">
@@ -233,12 +233,12 @@
                             <span>Device status</span>
                             <select class="custom-select bg-light hidden-search status" data-placeholder="Device Status">
                                 <option value="1">In Use</option>
-                                <option value="2">Ready</option>
-                                <option value="3">Submitted For Repair</option>
-                                <option value="4">Repair In Progress</option>
-                                <option value="5">Repair Complete</option>
-                                <option value="6">Decomissioned</option>
-                                <option value="7">Lost/Stolen</option>
+                                <option value="2">Submitted For Repair</option>
+                                <option value="3">Repair In Progress</option>
+                                <option value="4">Repair Complete</option>
+                                <option value="5">Decomissioned</option>
+                                <option value="6">Lost/Stolen</option>
+                                <option value="7">Unassigned</option>
                             </select>
                         </div>
                         <div class="form-field">

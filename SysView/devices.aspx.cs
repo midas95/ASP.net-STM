@@ -10,6 +10,8 @@ using System.Text;
 using System.Web.Services;
 using System.Web.Script.Serialization;
 using System.Activities.Statements;
+using System.Drawing;
+using System.IdentityModel.Claims;
 
 public partial class devices : System.Web.UI.Page
 {
@@ -54,9 +56,6 @@ public partial class devices : System.Web.UI.Page
                         case "Lost/Stolen":
                             statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
-                        case "Stolen":
-                            statusBadge = "<span class='badge text-dark-light badge-dark ml-1 badge-text'>" + deviceStatus + "</span>";
-                            break;
                         case "Unassigned":
                             statusBadge = "<span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
@@ -66,8 +65,11 @@ public partial class devices : System.Web.UI.Page
                         case "Submitted For Repair":
                             statusBadge = "<span class='badge text-white badge-danger ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
+                        case "Repair In Progress":
+                            statusBadge = "<span class='badge text-white badge-danger ml-1 badge-text'>" + deviceStatus + "</span>";
+                            break;
                         default:
-                            statusBadge = "<span class='badge text-white badge-into ml-1 badge-text'>" + deviceStatus + "</span>";
+                            statusBadge = "<span class='badge text-white badge-secondary ml-1 badge-text'>" + deviceStatus + "</span>";
                             break;
                     }
 
@@ -78,7 +80,8 @@ public partial class devices : System.Web.UI.Page
                                                 "<td>" + reader["UserEmail"].ToString() + "</td>" +
                                                 "<td>" + reader["AssetTag"].ToString() + "</td>" +
                                                 "<td>" + statusBadge + "</td>" +
-                                                "<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-warning btn-RepairReq btn-icon-sm'><i class='fa fa-wrench'></i> Repair</button></td>" +
+                    //"<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-warning btn-RepairReq btn-icon-sm'><i class='fa fa-wrench'></i> Repair</button></td>" +
+                                                "<td><a href='/devices.aspx' class='btn btn-sm btn-danger btn-icon mr-1'><i class='fas fa-wrench'></i>Repair</a></td>" +
                                               "</tr>";
                 }
                 i++;

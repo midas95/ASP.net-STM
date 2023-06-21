@@ -5,12 +5,16 @@
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon'>
+                        <a href='/devices.aspx' class='float-right btn btn-sm btn-danger btn-icon mr-1'>
+                            <i class="fas fa-wrench"></i>
+                            Repair Device
+                        </a>
+                        <a href="/quick-assign.aspx" class="float-right btn btn-sm btn-primary btn-icon mr-1">
                             <i class="fas fa-download"></i>
-                            Scan Device
-
+                            Quick Assign
                         </a>
                         <h4>Students</h4>
+                        <p>Edit student info, assign, and repair student devices</p>
                     </div>
                 </div>
             </div>

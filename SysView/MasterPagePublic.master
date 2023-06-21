@@ -72,7 +72,9 @@
               }
             }
 
-
+            .fa-user {
+                font-size: 29px;
+            }
         </style>
     </head>
     
@@ -133,12 +135,11 @@
 
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="/login.aspx" id="dropdown-user">
-
                                 <span>
-                                    <img src="images/avatar6.jpg" alt="" class="img-fluid mr-0" style="border-radius:50%; width:65px;" />&nbsp &nbsp
+                                    <i class="fa fa-user mr-1"></i>
+                                    <%--<img src="images/avatar6.jpg" alt="" class="img-fluid mr-0" style="border-radius:50%; width:65px;" />&nbsp &nbsp--%>
                                 </span>
-                                    <h5>Login</h5>
-
+                                <h5 style="margin:0;">Login</h5>
                             </a>
                             
                         </li>

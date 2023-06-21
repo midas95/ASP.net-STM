@@ -30,7 +30,6 @@ public partial class QuickInsert : System.Web.UI.Page
             {
 
                 FirstName = Session["FirstName"].ToString();
-                today_date.InnerHtml = DateTime.Now.ToString("ddd, MMM dd, yyyy");
                 //GetStudentList();
 
             }

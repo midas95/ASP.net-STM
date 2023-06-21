@@ -72,6 +72,9 @@
               }
             }
 
+            .fa-user {
+                font-size: 29px;
+            }
         </style>
     </head>
     
@@ -88,7 +91,7 @@
                     <div class="flex">
                         <div class="aside-content slim-scroll">
                             <ul class="metisMenu" id="metisMenu">
-                                <li class="nav-title">Main<span class="nav-thumbnail">MN</span></li>
+                                <li class="nav-title">Menu<span class="nav-thumbnail"></span></li>
                                 <li class="dash"> <i class="icon-Gaugage nav-thumbnail"></i>
                                     <a href="home.aspx">
                                         <span class="nav-text">
@@ -97,7 +100,7 @@
                                     </a>
                                 </li><!--Menu-item-->
                                 <%--<li class="devices"><i class="icon-Magic-Wand nav-thumbnail"></i>--%>
-                                <li class="devices"><i class="icon-Server-2 nav-thumbnail"></i>
+                                <li class="devices"><i class="fa fa-wrench nav-thumbnail"></i>
                                     <a href="devices.aspx">
                                         <span class="nav-text">
                                             Repair
@@ -111,12 +114,12 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
-                                <li class="lunch"><i class="fa fa-utensil-spoon nav-thumbnail"></i>
+<%--                                <li class="lunch"><i class="fa fa-utensil-spoon nav-thumbnail"></i>
                                     <a href="lunch.aspx">
                                         <span class="nav-text">
                                             Meals
                                         </span>
-                                    </a>
+                                    </a>--%>
                                 </li><!--Menu-item-->
                             </ul>
                         </div><!-- aside content end-->

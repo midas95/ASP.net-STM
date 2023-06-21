@@ -2,11 +2,11 @@
 
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
          <div class="container-fluid">
-            <div class="row align-items-center mb-30 pt-30">
+            <div class="row align-items-center pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
                         <h4>Quick Insert</h4>
-                        <h5>Today's DATE : <span id="today_date" runat="server"></span></h5>
+                        <p>Use this form to quickly insert devices into the database. You must insert the Asset Tag and Serial Number</p>
                     </div>
                 </div>
             </div>
