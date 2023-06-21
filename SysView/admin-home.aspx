@@ -189,7 +189,7 @@
                                         <tr>
                                             <th>Model</th>
                                             <th>Serial</th>
-                                            <th>Last User</th>
+                                            <th>Asset Tag</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
