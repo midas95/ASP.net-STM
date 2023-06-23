@@ -43,6 +43,15 @@
                                 <label class="col-form-label col-sm-2 pt-0">Model</label>
                                 <div class="col-sm-10">
 									<select class="form-control model" name="model" id="model">
+                                        <option value="Chromebook">Chromebook</option>
+                                        <option value="Elitebook">Elitebook</option>
+									</select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 pt-0">Type</label>
+                                <div class="col-sm-10">
+									<select class="form-control type" name="invType" id="invType">
                                         <option value="3110">3110</option>
                                         <option value="3100">3100</option>
                                         <option value="C740">C740</option>
@@ -85,7 +94,9 @@
                         <tr>
                             <th>Make</th>
                             <th>Model</th>
+                            <th>Type</th>
                             <th>Serial Num</th>
+                            <th>Asset Tag</th>
                         </tr>
                     </thead>
                     <tbody id="Assetslist">
@@ -102,6 +113,7 @@
             $(".btn-assets-quick-insert").click(function () {
                 var make = $(".make:checked").val();
                 var model = $("#model").val();
+                var invType = $("#invType").val();
                 var assetTag = $("#AssetTag").val();
                 var serialNum = $("#SerialNum").val();
                 if (serialNum != "") {
@@ -112,6 +124,7 @@
                         data: JSON.stringify({
                             make: make,
                             model: model,
+                            invType: invType,
                             AssetTag: assetTag,
                             serialNum: serialNum
                         }),
@@ -119,12 +132,12 @@
                         dataType: "json",
                         success: function (response) {
                             $("#loader-wrapper").hide();
-                            toastr.success("Assets inserted");
-                            $("tbody#Assetslist").append("<tr><td>" + make + "</td><td>" + model + "</td><td>" + assetTag + "</td><td>" + serialNum + "</td></tr>");
+                            toastr.success("Asset inserted");
+                            $("tbody#Assetslist").append("<tr><td>" + make + "</td><td>" + invType + "</td><td>" + assetTag + "</td><td>" + serialNum + "</td></tr>");
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);
-                            toastr.error("Something wrong");
+                            toastr.error("Error inserting asset. Please content support");
                             $("#loader-wrapper").hide();
                         }
                     });
