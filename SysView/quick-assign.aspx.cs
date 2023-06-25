@@ -28,9 +28,7 @@ public partial class QuickAssign : System.Web.UI.Page
                 && Session["UserStatus"].ToString() == "Admin"
             )
             {
-
                 FirstName = Session["FirstName"].ToString();
-
                 GetStudentList();
                 FilterAssetList("9");
             }

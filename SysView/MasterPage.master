@@ -114,6 +114,13 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
+                                <li class="user"><i class="fa fa-users nav-thumbnail"></i>
+                                    <a href="admin-users.aspx">
+                                        <span class="nav-text">
+                                            Users
+                                        </span>
+                                    </a>
+                                </li><!--Menu-item-->
                                 <li class="lunch"><i class="fa fa-utensils nav-thumbnail"></i>
                                     <a href="lunch.aspx">
                                         <span class="nav-text">

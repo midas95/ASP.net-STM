@@ -16,7 +16,6 @@ using HtmlAgilityPack;
 
     public partial class Student : System.Web.UI.Page
     {
-
         public string FirstName { get; set; }
         public string UserEmail { get; set; }
         public string TotalAssets { get; set; }

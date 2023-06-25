@@ -14,7 +14,7 @@ using System.Web.Services;
 using HtmlAgilityPack;
 
 
-public partial class QuickInsert : System.Web.UI.Page
+public partial class AdminUser: System.Web.UI.Page
 {
 
     public string FirstName { get; set; }
@@ -30,7 +30,8 @@ public partial class QuickInsert : System.Web.UI.Page
             {
 
                 FirstName = Session["FirstName"].ToString();
-                //GetStudentList();
+
+                GetUserList();
 
             }
             else
@@ -40,10 +41,10 @@ public partial class QuickInsert : System.Web.UI.Page
             }
         }
 
-    public void GetStudentList()
+    public void GetUserList()
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
-        SqlCommand command = new SqlCommand("sv_usp_GetStudentList", con);
+        SqlCommand command = new SqlCommand("sv_usp_GetSysViewUsers", con);
         command.CommandType = CommandType.StoredProcedure;
         con.Open();
         command.Connection = con;
@@ -52,7 +53,6 @@ public partial class QuickInsert : System.Web.UI.Page
         int i = 0;
         do
         {
-
             while (reader.Read())
             {
                 string userStatus = reader["UserStatus"].ToString();
@@ -60,27 +60,25 @@ public partial class QuickInsert : System.Web.UI.Page
                 switch (userStatus)
                 {
                     case "Active":
-                        statusBtn = "<span class='badge text-info-light badge-success ml-1 badge-text '>" + userStatus + "</span>";
+                        statusBtn = "<span class='badge text-info-light badge-success ml-1 badge-text'>" + userStatus + "</span>";
                         break;
                     case "Inactive":
-                        statusBtn = "<span class='badge text-info-light badge-danger ml-1 badge-text '>" + userStatus + "</span>";
+                        statusBtn = "<span class='badge text-info-light badge-warning ml-1 badge-text'>" + userStatus + "</span>";
                         break;
                     default:
                         statusBtn = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + userStatus + "</span>";
                         break;
                 }
                 
-                /* Studentlist.InnerHtml += "<tr>" +
-                                            "<td>" + reader["StudentID"].ToString() + "</td>" +
+                Userlist.InnerHtml += "<tr>" +
+                                            "<td>" + reader["UserName"].ToString() + "</td>" +
                                             "<td>" + reader["FirstName"].ToString() + "</td>" +
                                             "<td>" + reader["LastName"].ToString() + "</td>" +
                                             "<td>" + reader["Email"].ToString() + "</td>" +
-                                            "<td>" + reader["Grade"].ToString() + "</td>" +
-                                            "<td>" + reader["Teacher"].ToString() + "</td>" +
+                                            "<td>" + reader["Password"].ToString() + "</td>" +
                                             "<td>" + statusBtn + "</td>" +
-                                            //"<td><a href='admin-student-edit.aspx?studentKey=" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-info btn-icon-sm mr-2 mb-2'><i class='fa fa-edit'></i></a><a href='#' data-studentkey='" + reader["StudentKey"].ToString() + "' class='btn-icon-o btn-danger btn-icon-sm mr-2 mb-2 btn-student-del'><i class='fa fa-trash'></i></a></td>" +
-                                            "<td><button class='btn btn-primary btn-sm mb-2 btn-lunch' data-studentKey='" + reader["StudentKey"].ToString() + "' data-studentID = '" + reader["StudentID"].ToString() + "'>Lunch</button></td>" +
-                                          "</tr>"; */
+                                            "<td><a href='admin-user-edit.aspx?userKey=" + reader["UserKey"].ToString() + "' class='btn-icon-o btn-info btn-icon-sm mr-2 mb-2'><i class='fa fa-edit'></i></a></td>" +
+                                          "</tr>";
             }
             i++;
 
@@ -90,15 +88,4 @@ public partial class QuickInsert : System.Web.UI.Page
         con.Close();
     }
 
-    [WebMethod]
-    public static string addAssets(string make, string model, string invType, string AssetTag, string serialNum)
-    {
-        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
-        conn.Open();
-        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 8, '" + DateTime.Now + "') ", conn);
-        cmd.ExecuteNonQuery();
-        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 8, '" + DateTime.Now + "') ", conn);
-        history_cmd.ExecuteNonQuery();
-        return "success";
-    }
 }
