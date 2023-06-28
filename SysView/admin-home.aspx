@@ -76,10 +76,10 @@
                             <i class="fas fa-download"></i>
                             Quick Insert
                         </a>
-                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon mr-1'>
+<%--                        <a href='/devices.aspx' class='float-right btn btn-sm btn-info btn-icon mr-1'>
                             <i class="fas fa-rss"></i>
                             Scan Device
-                        </a>
+                        </a>--%>
                         <a href='javascript:void(0);' class='float-right btn btn-sm btn-danger btn-icon mr-1' data-toggle="modal" data-target="#addDevice">
                             <i class="fas fa-plus"></i>
                             Add Device

@@ -139,8 +139,6 @@
                             <tr>
                                 <th>Model</th>
                                 <th>Serail Num</th>
-                                <th>MAC</th>
-                                <th>Student</th>
                                 <th>AssetTag</th>
                                 <th>Status</th>
                                 <th></th>
@@ -252,7 +250,8 @@
             $(".btn-RepairReq").click(function () {
 
                 var devStat = $(this).attr("deviceStatus");
-                var invKey = $(this).attr("id");
+                var invKey = $(this).attr
+                    ("id");
 
                 if (devStat == "Submitted For Repair" || devStat == "Repair In Progress" || devStat == "Repair Complete" || devStat == "Lost/Stolen") {
                     //toastr.danger("You cannot submit a repair request with device in this status");

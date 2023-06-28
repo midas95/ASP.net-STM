@@ -76,12 +76,10 @@ public partial class devices : System.Web.UI.Page
                     Inventorylist.InnerHtml += "<tr>" +
                                                 "<td>" + reader["Model"].ToString() + "</td>" +
                                                 "<td>" + reader["SerialNum"].ToString() + "</td>" +
-                                                "<td>" + reader["MAC"].ToString() + "</td>" +
-                                                "<td>" + reader["UserEmail"].ToString() + "</td>" +
                                                 "<td>" + reader["AssetTag"].ToString() + "</td>" +
                                                 "<td>" + statusBadge + "</td>" +
-                    //"<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-warning btn-RepairReq btn-icon-sm'><i class='fa fa-wrench'></i> Repair</button></td>" +
-                                                "<td><a href='/devices.aspx' class='btn btn-sm btn-danger btn-icon mr-1'><i class='fas fa-wrench'></i>Repair</a></td>" +
+                                                "<td><button deviceStatus='" + deviceStatus + "' id='" + reader["InventoryKey"].ToString() + "' class='btn btn-danger btn-RepairReq btn-icon-sm'><i class='fa fa-wrench'></i> Repair</button></td>" +
+                                              //"<td><a href='/devices.aspx' class='btn btn-sm btn-danger btn-icon mr-1'><i class='fas fa-wrench'></i>Repair</a></td>" +
                                               "</tr>";
                 }
                 i++;
