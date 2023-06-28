@@ -95,7 +95,7 @@ public partial class QuickInsert : System.Web.UI.Page
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
-        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 8, '" + DateTime.Now + "') ", conn);
+        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 7, '" + DateTime.Now + "') ", conn);
         cmd.ExecuteNonQuery();
         SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 8, '" + DateTime.Now + "') ", conn);
         history_cmd.ExecuteNonQuery();
