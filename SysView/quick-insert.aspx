@@ -137,7 +137,7 @@
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);
-                            toastr.error("Error inserting asset. Please content support");
+                            toastr.error("Error inserting asset. Please contact support");
                             $("#loader-wrapper").hide();
                         }
                     });
