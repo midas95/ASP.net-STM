@@ -275,6 +275,9 @@
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
         <script>
+            $(document).ready(function () {
+                $('input[type="search"]').focus();
+            });
 
             $(".invRow").click(function () {
                 var invKey = $(this).attr("id");
