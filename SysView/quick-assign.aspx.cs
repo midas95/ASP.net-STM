@@ -146,11 +146,15 @@ public partial class QuickAssign : System.Web.UI.Page
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
+
         SqlCommand cmd = new SqlCommand("insert into sv_StudentDevice (fkStudentKey, fkInventoryID, StatusID, Date) values (@studentKey, @inventoryKey, '1', @date)", conn);
         cmd.Parameters.AddWithValue("@studentKey", studentKey);
         cmd.Parameters.AddWithValue("@inventoryKey", inventoryKey);
         cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
         cmd.ExecuteNonQuery();
+        string historyEntry = inventoryKey + " assigned to studentID " + studentKey;
+        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventoryKey + "', 'Device Assignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
+        history_cmd.ExecuteNonQuery();
         return "success";
     }
 
