@@ -21,24 +21,24 @@ public partial class QuickInsert : System.Web.UI.Page
     public string UserEmail { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["USER_EMAIL"] != null
+            && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
+            && !String.IsNullOrEmpty(Session["UserStatus"].ToString())
+            && Session["UserStatus"].ToString() == "Admin"
+        )
         {
-            if (Session["USER_EMAIL"] != null 
-                && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
-                && !String.IsNullOrEmpty(Session["UserStatus"].ToString()) 
-                && Session["UserStatus"].ToString() == "Admin"
-            )
-            {
 
-                FirstName = Session["FirstName"].ToString();
-                //GetStudentList();
+            FirstName = Session["FirstName"].ToString();
+            //GetStudentList();
 
-            }
-            else
-            {
-                Session["redirect"] = "admin-home.aspx";
-                Response.Redirect("login.aspx");
-            }
         }
+        else
+        {
+            Session["redirect"] = "admin-home.aspx";
+            Response.Redirect("login.aspx");
+        }
+    }
 
     public void GetStudentList()
     {
@@ -69,7 +69,7 @@ public partial class QuickInsert : System.Web.UI.Page
                         statusBtn = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + userStatus + "</span>";
                         break;
                 }
-                
+
                 /* Studentlist.InnerHtml += "<tr>" +
                                             "<td>" + reader["StudentID"].ToString() + "</td>" +
                                             "<td>" + reader["FirstName"].ToString() + "</td>" +
@@ -94,11 +94,30 @@ public partial class QuickInsert : System.Web.UI.Page
     public static string addAssets(string make, string model, string invType, string AssetTag, string serialNum)
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        int inventory_key = getInventoryKey(make, model, invType, AssetTag, serialNum);
         conn.Open();
-        SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 7, '" + DateTime.Now + "') ", conn);
-        cmd.ExecuteNonQuery();
-        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values ('" + make + "', '" + model + "', '" + invType + "', '" + AssetTag + "', '" + serialNum + "', 8, '" + DateTime.Now + "') ", conn);
+        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventory_key + "', 'Device', 'Inventory Inserted', '" + DateTime.Now + "', '1') ", conn);
         history_cmd.ExecuteNonQuery();
         return "success";
+    }
+    public static int getInventoryKey(string make, string model, string invType, string AssetTag, string serialNum)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        conn.Open();
+        int returnValue = -1;
+        using (SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values (@Make, @Model, @InventoryType, @AssetTag, @SerialNum, 8, @UpdatedDate); SELECT SCOPE_IDENTITY();", conn))
+        {
+            cmd.Parameters.AddWithValue("@Make", make);
+            cmd.Parameters.AddWithValue("@Model", model);
+            cmd.Parameters.AddWithValue("@InventoryType", invType);
+            cmd.Parameters.AddWithValue("@AssetTag", AssetTag);
+            cmd.Parameters.AddWithValue("@SerialNum", serialNum);
+            cmd.Parameters.AddWithValue("@UpdatedDate", DateTime.Now);
+
+            returnValue = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+        conn.Close();
+        return returnValue;
+
     }
 }
