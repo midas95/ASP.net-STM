@@ -71,19 +71,21 @@ using HtmlAgilityPack;
                                 statusBtn = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + userStatus + "</span>";
                                 break;
                         }
-                        string btn_lost_stolen = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-lost-stolen'>Lost/Stolen</a>";
-                        if(userStatus == "Lost/Stolen")
+                        string btn_lost_stolen = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-danger btn-lost-stolen'>Lost/Stolen</a>";
+                        string btn_unassign = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-unassign'>Unassign</a>";
+                    if (userStatus == "Lost/Stolen")
                         {
                         btn_lost_stolen = "";
                         studentDevice_title.InnerText = "Device";
                         }
                         Devicelist.InnerHtml += "<tr>" +
-                                                    "<td class='first-name'>" + reader["FirstName"].ToString() + "</td>" +
-                                                    "<td class='last-name'>" + reader["LastName"].ToString() + "</td>" +
                                                     "<td class='model'>" + reader["Model"].ToString() + "</td>" +
+                                                    "<td class='type'>" + reader["InventoryType"].ToString() + "</td>" +
                                                     "<td class='serial-num'>" + reader["SerialNum"].ToString() + "</td>" +
+                                                    "<td class='asset-tag'>" + reader["AssetTag"].ToString() + "</td>" +
                                                     "<td>" + statusBtn + "</td>" +
                                                     "<td>" + btn_lost_stolen + "</td>" +
+                                                    "<td>" + btn_unassign + "</td>" +
                                                   "</tr>";
                     }
                     con.Close();

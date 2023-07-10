@@ -382,7 +382,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.d) {
-                            toastr.success("Loaner Assigned to StudentID ", studentID);
+                            toastr.success("Loaner Assigned to student  ID ", studentID);
                             setTimeout(function () {
                                 window.location.href = "/devices.aspx";
                                 window.clearTimeout(tID);		// clear time out.

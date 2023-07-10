@@ -203,7 +203,7 @@ public partial class AdminAssetDetail : System.Web.UI.Page
         }
     }
     [WebMethod]
-    public static string updateAssetDetail(string problems, string repairNotes)
+    public static string UpdateRepair(string problems, string repairNotes)
     {
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
@@ -211,6 +211,11 @@ public partial class AdminAssetDetail : System.Web.UI.Page
         cmdRepUpdate.ExecuteNonQuery();
         SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory set StatusID=3 where InventoryKey='" + InventoryKey + "'", conn);
         cmdInvUpdate.ExecuteNonQuery();
+        SqlCommand cmdHistoryInsert = new SqlCommand("update sv_Inventory set StatusID=3 where InventoryKey='" + InventoryKey + "'", conn);
+        cmdHistoryInsert.ExecuteNonQuery();
+        string historyEntry = "Repair Started";
+        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + InventoryKey + "', 'Repair', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
+        history_cmd.ExecuteNonQuery();
         return "success";
     }
     [WebMethod]

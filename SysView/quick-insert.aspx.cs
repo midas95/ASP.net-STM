@@ -105,7 +105,7 @@ public partial class QuickInsert : System.Web.UI.Page
         SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
         conn.Open();
         int returnValue = -1;
-        using (SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values (@Make, @Model, @InventoryType, @AssetTag, @SerialNum, 7x, @UpdatedDate); SELECT SCOPE_IDENTITY();", conn))
+        using (SqlCommand cmd = new SqlCommand("insert into sv_inventory (Make, Model, InventoryType, AssetTag, SerialNum, StatusID, UpdatedDate) values (@Make, @Model, @InventoryType, @AssetTag, @SerialNum, 1, @UpdatedDate); SELECT SCOPE_IDENTITY();", conn))
         {
             cmd.Parameters.AddWithValue("@Make", make);
             cmd.Parameters.AddWithValue("@Model", model);

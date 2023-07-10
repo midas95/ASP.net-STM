@@ -152,8 +152,8 @@ public partial class QuickAssign : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@inventoryKey", inventoryKey);
         cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
         cmd.ExecuteNonQuery();
-        string historyEntry = inventoryKey + " assigned to studentID " + studentKey;
-        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventoryKey + "', 'Device Assignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
+        string historyEntry = inventoryKey + " assigned to student ID " + studentKey;
+        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventoryKey + "', 'Assignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
         history_cmd.ExecuteNonQuery();
         return "success";
     }

@@ -165,20 +165,19 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="studentDevice_title" runat="server">Report Lost/Stolen</h4>
+                <h4 class="modal-title" id="studentDevice_title" runat="server">Student Device Info</h4>
               </div>
               <div class="modal-body">
                 <div class="bg-white table-responsive table-sm rounded shadow-sm pt-3 pb-3 mb-30 main-panel">
                   <table id="data-table" class="table mb-0 table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <%--<th>Email</th>--%>
                             <th>Model</th>
-                            <%--<th>AssetTag</th>--%>
+                            <th>Type</th>
                             <th>SerialNum</th>
-                            <th>InvStatus</th>
+                            <th>AssetTag</th>
+                            <th>Status</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -205,7 +204,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-device-update">Submit</button>
+                <button type="button" class="btn btn-info btn-device-update">Assign</button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -258,6 +257,9 @@
                         $("#loader-wrapper").hide();
                     }
                 });
+            });
+            $(".btn-unassign").click(function () {
+                alert("Are you sure you want to unassign this device?");
             });
             $(".btn-device-update").click(function () {
 
