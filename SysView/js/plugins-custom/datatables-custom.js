@@ -1,3 +1,3 @@
 $(document).ready(function() {
-    $('#data-table').DataTable({responsive:true});
+    $('#data-table').DataTable({ responsive: true });
 } );

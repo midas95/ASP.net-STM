@@ -26,6 +26,8 @@
         <div class="container-fluid">
             <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
                 <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Student list</h6>
+               
+                
                 <table id="data-table" class="mb-0 table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -45,7 +47,7 @@
         <div class="container-fluid">
             <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
                 <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Device list</h6>
-                <table id="data-table-device" class="mb-0 table-striped" cellspacing="0" width="100%">
+                  <table id="data-table-device" class="mb-0 table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Model</th>
@@ -64,21 +66,28 @@
         <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/responsive.bootstrap4.min.js"></script> 
         <script src="js/plugins-custom/datatables-custom.js"></script>
-        <script>
-            $('#data-table-device').DataTable({ responsive: true });
+         <script>
+             $(document).ready(function () {
+                 $('#data-table-device').DataTable({});
+             });
+
             var studentKey = "";
-            var inventoryKey = "";
+             var inventoryKey = "";
+
             $(".student").addClass("active");
             $(".studentRow").click(function () {
                 $(".studentRow").removeClass("selectedRow");
                 $(this).addClass("selectedRow");
                 studentKey = $(this).data("studentkey");
+               
             });
-            $(".invRow").click(function () {
+           
+             $(".invRow").click(function () {
                 $(".invRow").removeClass("selectedRow");
                 $(this).addClass("selectedRow");
                 inventoryKey = $(this).data("inventorykey");
-            });
+              
+            });       
             $(".btn-quick-assign").click(function () {
                 var valid = true;
                 if (studentKey == "" && inventoryKey != "") {
@@ -123,6 +132,6 @@
                 }
 
             });
-        </script>
+         </script>
     </asp:Content>
 
