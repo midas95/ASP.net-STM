@@ -155,6 +155,8 @@ public partial class QuickAssign : System.Web.UI.Page
         string historyEntry = inventoryKey + " assigned to student ID " + studentKey;
         SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventoryKey + "', 'Assignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
         history_cmd.ExecuteNonQuery();
+        SqlCommand status_cmd = new SqlCommand("UPDATE sv_Inventory SET StatusID = 1 WHERE InventoryKey = " + inventoryKey , conn);
+        status_cmd.ExecuteNonQuery();
         return "success";
     }
 
