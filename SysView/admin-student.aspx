@@ -21,33 +21,27 @@
 
 
         </div>
-        <div class="container">
-            <div class="row">
-
-                    <div class="container-fluid">
-                        <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
-                            <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Student list</h6>
-                            <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>First name</th>
-                                        <th>Last name</th>
-                                        <th>Email</th>
-                                        <th>Grade</th>
-                                        <th>Teacher</th>
-                                        <th>UserStatus</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="Studentlist" runat="server">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                 </div>
+        <div class="container-fluid">
+            <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
+                <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Student list</h6>
+                <table id="data-table" class="table-compact mb-0 table-striped" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Email</th>
+                            <th>Grade</th>
+                            <th>Teacher</th>
+                            <th>UserStatus</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="Studentlist" runat="server">
+                    </tbody>
+                </table>
+            </div>
         </div>
-
         <script type="text/javascript" src="lib/data-tables/jquery.dataTables.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.bootstrap4.min.js"></script> 
         <script type="text/javascript" src="lib/data-tables/dataTables.responsive.min.js"></script> 
