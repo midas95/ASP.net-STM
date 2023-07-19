@@ -189,8 +189,10 @@ public partial class Repair : System.Web.UI.Page
 
                 cmdInsert.ExecuteNonQuery();
 
-                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET PrevStatusID = StatusID, StatusID = 3, UpdatedDate = getdate()  WHERE InventoryKey=" + invkey, conn);
+                SqlCommand cmdInvUpdate = new SqlCommand("update sv_Inventory SET PrevStatusID = StatusID, StatusID = 2, UpdatedDate = getdate()  WHERE InventoryKey=" + invkey, conn);
                 cmdInvUpdate.ExecuteNonQuery();
+                SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + InventoryKey + "', 'Assignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
+                history_cmd.ExecuteNonQuery();
             }
 
 
