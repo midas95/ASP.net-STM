@@ -72,7 +72,7 @@ using HtmlAgilityPack;
                                 break;
                         }
                         string btn_lost_stolen = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-danger btn-lost-stolen'>Lost/Stolen</a>";
-                        string btn_unassign = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-unassign'>Unassign</a>";
+                        string btn_unassign = "<button id='unassign' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-unassign'>Unassign</button>";
                     if (userStatus == "Lost/Stolen")
                         {
                         btn_lost_stolen = "";
@@ -148,5 +148,21 @@ using HtmlAgilityPack;
             con.Close();
             return "success";
         }
-
+    [WebMethod]
+    public static string unassign(string studentKey, string inventoryKey)
+    {
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("DELETE FROM sv_StudentDevice WHERE fkStudentKey = @studentKey AND fkInventoryID = @inventoryKey", conn);
+        cmd.Parameters.AddWithValue("@studentKey", studentKey);
+        cmd.Parameters.AddWithValue("@inventoryKey", inventoryKey);        
+        cmd.ExecuteNonQuery();
+        string historyEntry = inventoryKey + " unassigned to student ID " + studentKey;
+        SqlCommand history_cmd = new SqlCommand("insert into sv_EntityHistory (fkEntityID, EntityTypeID, HistoryEntry, EntryDate, EntryStatusID) values ('" + inventoryKey + "', 'Unassignment', '" + historyEntry + "', '" + DateTime.Now + "', '1') ", conn);
+        history_cmd.ExecuteNonQuery();
+        SqlCommand status_cmd = new SqlCommand("UPDATE sv_Inventory SET StatusID = 8, LoanerFlag = 1 WHERE InventoryKey = " + inventoryKey, conn);
+        status_cmd.ExecuteNonQuery();
+        return "success";
     }
+
+}

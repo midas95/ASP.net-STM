@@ -305,6 +305,35 @@
                     }
                 });
             });
-        </script>
+            var unassign = document.getElementById("unassign");
+            unassign.addEventListener("click", function () {
+                studentKey = unassign.getAttribute("data-studentid");
+                inventoryKey = unassign.getAttribute("data-inventorykey");
+                console.log(studentKey);
+                console.log(inventoryKey);
+                $.ajax({
+                    type: "POST",
+                    url: "admin-student-edit.aspx/unassign",
+                    data: JSON.stringify({
+                        studentKey: studentKey,
+                        inventoryKey: inventoryKey
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {                       
+                        studentKey = "";
+                        inventoryKey = "";
+                        $(".selectedRow").removeClass("selectedRow");
+                        toastr.success("That device are unassigned successfully");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                        toastr.error("Something wrong");
+                    }
+
+                });
+               
+            });
+            </script>
     </asp:Content>
 
