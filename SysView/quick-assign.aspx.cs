@@ -31,6 +31,7 @@ public partial class QuickAssign : System.Web.UI.Page
                 FirstName = Session["FirstName"].ToString();
                 GetStudentList();
                 FilterAssetList("9");
+                GetTeacherList();
             }
             else
             {
@@ -38,7 +39,26 @@ public partial class QuickAssign : System.Web.UI.Page
                 Response.Redirect("login.aspx");
             }
         }
-
+    public void GetTeacherList()
+    {
+        Teacherlist.Items.Add("");
+        using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SELECT LastName FROM sv_Faculty", con))
+            {
+                con.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string LastName = reader["LastName"].ToString();
+                        Console.WriteLine(LastName);
+                        Teacherlist.Items.Add(LastName);
+                    }
+                }
+            }
+        }
+    }
     public void GetStudentList()
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
@@ -127,12 +147,17 @@ public partial class QuickAssign : System.Web.UI.Page
                         statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
                         break;
                 }
-
+                DeviceModal.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>" + "<td>" + reader["Model"].ToString()
+                                                 + "</td>" + "<td>" + reader["SerialNum"].ToString()
+                                                 + "</td>" + "<td>" + statusBtn + "</td>" + "<td>" +
+                                                 "</span><span class='badge text-success-light bg-primary ml-1 badge-text btn-quick-assign-modal'>" + "Assign" + "</span>"
+                                                 + "</td>" + "</tr>";
                 Devicelist.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>"+"<td>" + reader["Model"].ToString()
                                                  + "</td>"+"<td>" + reader["SerialNum"].ToString()
                                                  + "</td>"+"<td>" + reader["UserEmail"].ToString()
                                                  + "</td>"+"<td>" + statusBtn
                                                  + "</td>"+"</tr>";
+
             }
             i++;
 
