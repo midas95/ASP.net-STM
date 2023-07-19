@@ -14,11 +14,11 @@
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-                        <button class='float-right btn btn-info btn-quick-assign'>
+<%--                        <button class='float-right btn btn-info btn-quick-assign'>
                             Assign
-                        </button>
+                        </button>--%>
                         <h4>Quick Assign</h4>
-                        <p>To assign a device to a student, select a student from the list, then select a device, then click the "Assign" button</p>
+                        <p>Select a teacher from the drop-down below, then select a student to assign a device.</p>
                     </div>
                 </div>
             </div>
@@ -192,12 +192,14 @@
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
                          success: function (response) {
+                             var stud = studentKey;
+                             var inv = inventoryKey;
                              $(".btn-quick-assign").removeAttr("disabled");
                              $(".btn-quick-assign").text("Assign");
                              studentKey = "";
                              inventoryKey = "";
                              $(".selectedRow").removeClass("selectedRow");
-                             toastr.success("That student and device are assigned successfully");
+                             toastr.success("Student ID " + stud + " assigned Device ID " + inv + "successfully.");
                          },
                          error: function (XMLHttpRequest, textStatus, errorThrown) {
                              console.log(errorThrown);
@@ -241,7 +243,7 @@
                             studentKey = "";
                             inventoryKey = "";
                             $(".selectedRow").removeClass("selectedRow");
-                            toastr.success("That student and device are assigned successfully");
+                            toastr.success("Student ID " + stud + " assigned Device ID " + inv + " successfully.");
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);
