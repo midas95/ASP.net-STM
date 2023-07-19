@@ -19,6 +19,8 @@ public partial class QuickAssign : System.Web.UI.Page
 
     public string FirstName { get; set; }
     public string UserEmail { get; set; }
+    public string StudentName { get; set; }
+    public string StudentID { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,6 +77,8 @@ public partial class QuickAssign : System.Web.UI.Page
             while (reader.Read())
             {
                 string userStatus = reader["UserStatus"].ToString();
+                StudentName = reader["LastName"].ToString();
+                StudentID = reader["StudentID"].ToString();
                 string statusBtn;
                 switch (userStatus)
                 {
