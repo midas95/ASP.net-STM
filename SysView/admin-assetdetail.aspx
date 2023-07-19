@@ -163,7 +163,7 @@
                                                 <option value="4">Repair Complete</option>
                                                 <option value="5">Decomissioned</option>
                                                 <option value="6">Lost/Stolen</option>
-                                                <option value="7">Unassigned</option>
+                                                <option value="8">Unassigned</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
