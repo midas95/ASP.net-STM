@@ -108,25 +108,29 @@
                                     </a>
                                 </li><!--Menu-item-->
                                 <li class="student"><i class="fa fa-users nav-thumbnail"></i>
-                                    <a href="student.aspx">
+                                    <a href="admin-student.aspx">
                                         <span class="nav-text">
                                             Students
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
+                                <% if (Role == "Admin") { %>
                                 <li class="user"><i class="fa fa-users nav-thumbnail"></i>
                                     <a href="admin-users.aspx">
                                         <span class="nav-text">
                                             Users
                                         </span>
                                     </a>
-                                </li><!--Menu-item-->
-                                <li class="lunch"><i class="fa fa-utensils nav-thumbnail"></i>
+                                </li>
+                                <% } %>
+
+                                <!--Menu-item-->
+<%--                                <li class="lunch"><i class="fa fa-utensils nav-thumbnail"></i>
                                     <a href="lunch.aspx">
                                         <span class="nav-text">
                                             Meals
                                         </span>
-                                    </a>
+                                    </a>--%>
                                 </li><!--Menu-item-->
                             </ul>
                         </div><!-- aside content end-->
@@ -202,7 +206,7 @@
                             </div>
                         </div>
                         <div class="d-flex flex p-3 mr-auto justify-content-end">
-                            <div class="text-muted">© Copyright 2023 Trinovi</div>
+                            <div class="text-muted">© Copyright 2023 SysView Solutions</div>
                         </div>
                     </div>
                 </footer>

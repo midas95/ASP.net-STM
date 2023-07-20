@@ -9,14 +9,16 @@
                 background: #7a7c93 !important;
                 color: white;
             }
+
+            .btn-quick-assign {
+                margin: 5px 10px 0 0;
+            }
         </style>
          <div class="container-fluid">
             <div class="row align-items-center mb-30 pt-30">
                 <div class="col-md-12 mr-auto ml-auto">
                     <div class="mb-0">
-<%--                        <button class='float-right btn btn-info btn-quick-assign'>
-                            Assign
-                        </button>--%>
+
                         <h4>Quick Assign</h4>
                         <p>Select a teacher from the drop-down below, then select a student to assign a device.</p>
                     </div>
@@ -24,48 +26,64 @@
             </div>
         </div>
         <div class="container-fluid">
-            <label>Teacher
-            <select id="Teacherlist" runat="server" onchange="handleSelectChange()">                
-            </select>
-                </label>
+            <div class="list border1 rounded overflow-hidden">
+                        <div class="list-item">
+                            <div class="list-thumb bg-primary text-primary-light avatar rounded-circle avatar60 shadow-sm">
+                                
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <label>Select a Teacher
+                                <select id="Teacherlist" runat="server" onchange="handleSelectChange()">                
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+
 
         </div>
         <div class="container-fluid">
-            <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
-                <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Student list</h6>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
+                        <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Student list</h6>
                
                 
-                <table id="data-table" class="mb-0 table-striped" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Grade</th>
-                            <th>Teacher</th>
-                            <th>UserStatus</th>
-                        </tr>
-                    </thead>
-                    <tbody id="Studentlist" runat="server">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
-                <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Device list</h6>
-                  <table id="data-table-device" class="mb-0 table-striped" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Model</th>
-                            <th>Serial</th>
-                            <th>Last User</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="Devicelist" runat="server">
-                    </tbody>
-                </table>
+                        <table id="data-table" class="mb-0 table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Grade</th>
+                                    <th>Teacher</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Studentlist" runat="server">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bg-white table-responsive rounded shadow-sm pt-3 pb-3 mb-30">
+                        <h6 class="pl-3 pr-3 text-capitalize font400 mb-20">Device list</h6>
+                          <table id="data-table-device" class="mb-0 table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Serial</th>
+                                    <%--<th>Last User</th>--%>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Devicelist" runat="server">
+                            </tbody>
+                        </table>
+                         <button class='float-right btn btn-info btn-quick-assign'>
+                            Assign
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -79,8 +97,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <div class="row justify-content-center">         
-        <input id="search" class="form-control mr-sm-2" type="search" placeholder="Input the Serial" aria-label="Search"/>       
+        <div class="row justify-content-center">     
+        <p>Scan or enter a serial number</p>
+        <input id="search" class="form-control ml-sm-4 mr-sm-4" type="search" placeholder="Serial Number" aria-label="Search"/>       
          <table id="data-table-device-modal" class="mb-0 table-striped" cellspacing="0" width="100%" style="display:none;">
                     <thead>
                         <tr>
@@ -151,7 +170,11 @@
                   $(this).off('click');
                   $(this).css('background-color', 'green');
                 studentKey = $(this).data("studentkey");
-                
+
+                var $nextTDs = $(this).find('td:nth-child(1), td:nth-child(2)');
+                var text1 = $nextTDs.eq(0).text();
+                var text2 = $nextTDs.eq(1).text();
+                $("#myModalLabel").text("Select Device For " + text1 + " " + text2 + " (" + studentKey + ")");
             });
            
              $(".invRow").click(function () {
@@ -163,8 +186,8 @@
              });
              $(".btn-quick-assign-modal").click(function () {
                  $(".invRow").removeClass("selectedRow");
-                 $(".invRow").addClass("selectedRow");
-                 inventoryKey = $(".invRow").data("inventorykey");
+                 $(this).closest('tr').addClass("selectedRow");
+                 inventoryKey = $(this).closest('tr').data('inventorykey');
                  var valid = true;
                  if (studentKey == "" && inventoryKey != "") {
                      alert("Please select one student.");
@@ -199,11 +222,12 @@
                              studentKey = "";
                              inventoryKey = "";
                              $(".selectedRow").removeClass("selectedRow");
-                             toastr.success("Student ID " + stud + " assigned Device ID " + inv + "successfully.");
+                             toastr.success("Student ID " + stud + " assigned Device ID " + inv + " successfully.");
+                            ('#myModal').modal('hide');
                          },
                          error: function (XMLHttpRequest, textStatus, errorThrown) {
                              console.log(errorThrown);
-                             toastr.error("Something wrong");
+                             toastr.error("Error assigning record. Contact your administrator (modal assign data missing");
                          }
 
                      });
@@ -238,16 +262,18 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
+                             var stud = studentKey;
+                             var inv = inventoryKey;
                             $(".btn-quick-assign").removeAttr("disabled");
                             $(".btn-quick-assign").text("Assign");
                             studentKey = "";
                             inventoryKey = "";
                             $(".selectedRow").removeClass("selectedRow");
-                            toastr.success("Student ID " + stud + " assigned Device ID " + inv + " successfully.");
+                            toastr.success("Device ID " + inv + " assigned successfully.");
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(errorThrown);
-                            toastr.error("Something wrong");
+                            toastr.error("Error assigning record. Conact your administrator (quick assign data missing)");
                         }
 
                     });

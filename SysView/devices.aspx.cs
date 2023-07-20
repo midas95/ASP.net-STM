@@ -25,7 +25,7 @@ public partial class devices : System.Web.UI.Page
         if (Session["USER_EMAIL"] != null
             && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString())
             && !String.IsNullOrEmpty(Session["UserStatus"].ToString())
-            && Session["UserStatus"].ToString() == "Admin"
+            && (Session["UserStatus"].ToString() == "Admin" || Session["UserStatus"].ToString() == "Active")
         )
         {
             SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);

@@ -249,11 +249,11 @@
                     dataType: "json",
                     success: function (response) {
                         $("#loader-wrapper").hide();
-                        toastr.success("This student is udpated successfully");
+                        toastr.success("Student udpated successfully");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(errorThrown);
-                        toastr.error("Something wrong");
+                        toastr.error("Error updating student. Contact your administrator");
                         $("#loader-wrapper").hide();
                     }
                 });
@@ -300,7 +300,7 @@
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(errorThrown);
-                        toastr.error("Something wrong");
+                        toastr.error("Error updating device. Contact your administrator");
                         $("#loader-wrapper").hide();
                     }
                 });
@@ -323,12 +323,13 @@
                     success: function (response) {                       
                         studentKey = "";
                         inventoryKey = "";
-                        $(".selectedRow").removeClass("selectedRow");
-                        toastr.success("That device are unassigned successfully");
+                        $(unassign).closest('tr').html('<td valign="top" colspan="7" class="dataTables_empty">No data available in table</td>');
+                        //$(".selectedRow").removeClass("selectedRow");
+                        toastr.success("Device unassigned successfully");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(errorThrown);
-                        toastr.error("Something wrong");
+                        toastr.error("Error unassigning device. Contact your administrator (data error on unassign method)");
                     }
 
                 });

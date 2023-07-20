@@ -158,7 +158,7 @@ public partial class QuickAssign : System.Web.UI.Page
                                                  + "</td>" + "</tr>";
                 Devicelist.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>"+"<td>" + reader["Model"].ToString()
                                                  + "</td>"+"<td>" + reader["SerialNum"].ToString()
-                                                 + "</td>"+"<td>" + reader["UserEmail"].ToString()
+                                                 //+ "</td>"+"<td>" + reader["UserEmail"].ToString()
                                                  + "</td>"+"<td>" + statusBtn
                                                  + "</td>"+"</tr>";
 

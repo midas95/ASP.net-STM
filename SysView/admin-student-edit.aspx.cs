@@ -25,7 +25,7 @@ using HtmlAgilityPack;
 
     protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()) && !String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Admin")
+            if (Session["USER_EMAIL"] != null && !string.IsNullOrEmpty(Session["USER_EMAIL"].ToString()) && !String.IsNullOrEmpty(Session["UserStatus"].ToString()) && (Session["UserStatus"].ToString() == "Admin" || Session["UserStatus"].ToString() == "Active"))
             {
 
                 FirstName = Session["FirstName"].ToString();
@@ -71,8 +71,8 @@ using HtmlAgilityPack;
                                 statusBtn = "<span class='badge text-danger-light badge-danger ml-1 badge-text'>" + userStatus + "</span>";
                                 break;
                         }
-                        string btn_lost_stolen = "<a href='javascript:void(0);' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-danger btn-lost-stolen'>Lost/Stolen</a>";
-                        string btn_unassign = "<button id='unassign' data-studentid='" + reader["StudentID"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-unassign'>Unassign</button>";
+                        string btn_lost_stolen = "<a href='javascript:void(0);' data-studentid='" + reader["StudentKey"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-danger btn-lost-stolen'>Lost/Stolen</a>";
+                        string btn_unassign = "<button id='unassign' data-studentid='" + reader["StudentKey"].ToString() + "' data-assettag='" + reader["AssetTag"].ToString() + "' data-email='" + reader["Email"].ToString() + "' data-inventorykey='" + reader["InventoryKey"].ToString() + "' class='btn btn-info btn-unassign'>Unassign</button>";
                     if (userStatus == "Lost/Stolen")
                         {
                         btn_lost_stolen = "";
