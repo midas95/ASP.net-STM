@@ -154,7 +154,7 @@ public partial class QuickAssign : System.Web.UI.Page
                 DeviceModal.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>" + "<td>" + reader["Model"].ToString()
                                                  + "</td>" + "<td>" + reader["SerialNum"].ToString()
                                                  + "</td>" + "<td>" + statusBtn + "</td>" + "<td>" +
-                                                 "</span><span class='badge text-success-light bg-primary ml-1 badge-text btn-quick-assign-modal'>" + "Assign" + "</span>"
+                                                 "</span><span class='badge text-success-light bg-primary ml-1 badge-text btn-quick-assign-modal' data-dismiss='modal''>" + "Assign" + "</span>"
                                                  + "</td>" + "</tr>";
                 Devicelist.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>"+"<td>" + reader["Model"].ToString()
                                                  + "</td>"+"<td>" + reader["SerialNum"].ToString()

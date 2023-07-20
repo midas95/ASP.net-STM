@@ -13,6 +13,7 @@
             .btn-quick-assign {
                 margin: 5px 10px 0 0;
             }
+
         </style>
          <div class="container-fluid">
             <div class="row align-items-center mb-30 pt-30">
@@ -152,23 +153,31 @@
                  });
                  $('#myModal').on('hidden.bs.modal', function () {
                      var modal_table = document.getElementById("data-table-device-modal");
-                     modal_table.style.display = "none";
-                     
+                     modal_table.style.display = "none";                    
                     
                  });
+                modal_assign.addEventListener("click", function () {
+                                      
+                    $(".selectedRow").off('click');
+                    $(".selectedRow").css('background-color', 'green');
+                })
 
              });
             var studentKey = "";
              var inventoryKey = "";
+             const modal_assign = document.querySelector(".btn-quick-assign-modal");             
 
             $(".student").addClass("active");
             $(".studentRow").click(function () {
                 $(".studentRow").removeClass("selectedRow");
                 $(this).addClass("selectedRow");
                 $('#myModal').modal('show');
-                console.log(inventoryKey);                  
-                  $(this).off('click');
-                  $(this).css('background-color', 'green');
+                console.log(inventoryKey);
+               
+                    console.log("Button clicked!");
+                   
+              
+               
                 studentKey = $(this).data("studentkey");
 
                 var $nextTDs = $(this).find('td:nth-child(1), td:nth-child(2)');
@@ -184,6 +193,8 @@
                  
               
              });
+            
+                    
              $(".btn-quick-assign-modal").click(function () {
                  $(".invRow").removeClass("selectedRow");
                  $(this).closest('tr').addClass("selectedRow");
@@ -292,5 +303,6 @@
                  // For example, display it in an alert box
              }
          </script>
+      
     </asp:Content>
 
