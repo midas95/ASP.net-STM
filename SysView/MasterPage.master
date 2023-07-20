@@ -92,7 +92,8 @@
                         <div class="aside-content slim-scroll">
                             <ul class="metisMenu" id="metisMenu">
                                 <li class="nav-title">Menu<span class="nav-thumbnail"></span></li>
-                                <li class="dash"> <i class="icon-Gaugage nav-thumbnail"></i>
+                                <li class="dash"> <i class="fas fa-laptop nav-thumbnail"></i>
+                                <%--<li class="dash"> <i class="icon-Gaugage nav-thumbnail"></i>--%>
                                     <a href="home.aspx">
                                         <span class="nav-text">
                                             Devices 
@@ -107,7 +108,7 @@
                                         </span>
                                     </a>
                                 </li><!--Menu-item-->
-                                <li class="student"><i class="fa fa-users nav-thumbnail"></i>
+                                <li class="student"><i class="fa fa-graduation-cap nav-thumbnail"></i>
                                     <a href="admin-student.aspx">
                                         <span class="nav-text">
                                             Students
