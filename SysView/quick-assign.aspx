@@ -131,7 +131,7 @@
             //const { select } = require("d3-selection");
              var myInput = document.getElementById("search");
              var keysPressed = [];
-
+             const modal_assign = document.querySelector(".btn-quick-assign-modal");
              myInput.addEventListener("keydown", function (event) {
                  keysPressed.push(event.key);
                  keystring = keysPressed.join("");
@@ -156,30 +156,21 @@
                      modal_table.style.display = "none";                    
                     
                  });
-                modal_assign.addEventListener("click", function () {
-                                      
-                    $(".selectedRow").off('click');
-                    $(".selectedRow").css('background-color', 'green');
-                })
-
+               
              });
             var studentKey = "";
              var inventoryKey = "";
-             const modal_assign = document.querySelector(".btn-quick-assign-modal");             
+             modal_assign.addEventListener("click", function () {
+               
+             })
+
 
             $(".student").addClass("active");
             $(".studentRow").click(function () {
                 $(".studentRow").removeClass("selectedRow");
                 $(this).addClass("selectedRow");
-                $('#myModal').modal('show');
-                console.log(inventoryKey);
-               
-                    console.log("Button clicked!");
-                   
-              
-               
+                $('#myModal').modal('show');            
                 studentKey = $(this).data("studentkey");
-
                 var $nextTDs = $(this).find('td:nth-child(1), td:nth-child(2)');
                 var text1 = $nextTDs.eq(0).text();
                 var text2 = $nextTDs.eq(1).text();
@@ -196,6 +187,8 @@
             
                     
              $(".btn-quick-assign-modal").click(function () {
+                 $(".selectedRow").off('click');
+                 $(".selectedRow").css('background-color', 'green');
                  $(".invRow").removeClass("selectedRow");
                  $(this).closest('tr').addClass("selectedRow");
                  inventoryKey = $(this).closest('tr').data('inventorykey');

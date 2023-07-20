@@ -186,6 +186,7 @@ public partial class QuickAssign : System.Web.UI.Page
         history_cmd.ExecuteNonQuery();
         SqlCommand status_cmd = new SqlCommand("UPDATE sv_Inventory SET StatusID = 1 WHERE InventoryKey = " + inventoryKey , conn);
         status_cmd.ExecuteNonQuery();
+        
         return "success";
     }
 
