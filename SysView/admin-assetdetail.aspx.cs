@@ -198,8 +198,15 @@ public partial class AdminAssetDetail : System.Web.UI.Page
         }
         else
         {
-            Session["redirect"] = "admin-home.aspx";
-            Response.Redirect("login.aspx");
+            if(!String.IsNullOrEmpty(Session["UserStatus"].ToString()) && Session["UserStatus"].ToString() == "Active")
+            {
+                Response.Redirect("admin-home.aspx");
+            } else
+            {
+                Session["redirect"] = "admin-home.aspx";
+                Response.Redirect("login.aspx");
+            }
+
         }
     }
     [WebMethod]
