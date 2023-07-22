@@ -105,7 +105,8 @@
                     <thead>
                         <tr>
                             <th>Model</th>
-                            <th>Serial</th>                            
+                            <th>Serial</th> 
+                            <th>AssetTag</th>
                             <th>Status</th>
                             <th>Assign</th>
                         </tr>
@@ -147,7 +148,8 @@
         
             $(document).ready(function () {
                  $('#data-table-device').DataTable({});
-                 $('#myModal').on('shown.bs.modal', function () {
+                $('#myModal').on('shown.bs.modal', function () {
+                    
                     $('#search').val('');
                      $('#search').focus();
                  });
@@ -156,6 +158,7 @@
                      modal_table.style.display = "none";                    
                     
                  });
+               
                
              });
             var studentKey = "";
@@ -180,8 +183,7 @@
              $(".invRow").click(function () {
                 $(".invRow").removeClass("selectedRow");
                 $(this).addClass("selectedRow");
-                 inventoryKey = $(this).data("inventorykey");
-                 
+                 inventoryKey = $(this).data("inventorykey");                
               
              });
             
@@ -191,6 +193,13 @@
                  $(".selectedRow").css('background-color', 'green');
                  $(".invRow").removeClass("selectedRow");
                  $(this).closest('tr').addClass("selectedRow");
+                 let dom = $(this).parents('tr').children().eq(3).children();
+
+                 dom.removeClass("text-secondary-light");
+                 dom.removeClass("badge-secondary");
+                 dom.addClass("text-info-light");
+                 dom.addClass("badge-info");
+                 dom.text("In Use");
                  inventoryKey = $(this).closest('tr').data('inventorykey');
                  var valid = true;
                  if (studentKey == "" && inventoryKey != "") {

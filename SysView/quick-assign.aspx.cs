@@ -153,7 +153,8 @@ public partial class QuickAssign : System.Web.UI.Page
                 }
                 DeviceModal.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>" + "<td>" + reader["Model"].ToString()
                                                  + "</td>" + "<td>" + reader["SerialNum"].ToString()
-                                                 + "</td>" + "<td>" + statusBtn + "</td>" + "<td>" +
+                                                 + "</td>"+ "<td>"+"</td>"
+                                                 + "<td>" + statusBtn + "</td>" + "<td>" +
                                                  "</span><span class='badge text-success-light bg-primary ml-1 badge-text btn-quick-assign-modal' data-dismiss='modal''>" + "Assign" + "</span>"
                                                  + "</td>" + "</tr>";
                 Devicelist.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>"+"<td>" + reader["Model"].ToString()
@@ -162,6 +163,63 @@ public partial class QuickAssign : System.Web.UI.Page
                                                  + "</td>"+"<td>" + statusBtn
                                                  + "</td>"+"</tr>";
 
+            }
+            i++;
+
+        } while (reader.NextResult());
+
+        reader.Close();
+        con.Close();
+    }
+    public void FilterModalAssetList(string filterParam)
+    {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TrinoviContext"].ConnectionString);
+        SqlCommand command = new SqlCommand("sv_usp_GetTechList", con);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@statusList", filterParam);
+        con.Open();
+        command.Connection = con;
+
+        SqlDataReader reader = command.ExecuteReader();
+        int i = 0;
+        do
+        {
+
+            while (reader.Read())
+            {
+                string invStatus = reader["InvStatus"].ToString();
+                string statusBtn;
+                switch (invStatus)
+                {
+                    case "In Use":
+                        statusBtn = "</span><span class='badge text-info-light badge-info ml-1 badge-text '>" + invStatus + "</span>";
+                        break;
+                    case "Decomissioned":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Lost/Stolen":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Stolen":
+                        statusBtn = "</span><span class='badge text-dark-light badge-dark ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Unassigned":
+                        statusBtn = "</span><span class='badge text-secondary-light badge-secondary ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    case "Repair Complete":
+                        statusBtn = "</span><span class='badge text-success-light badge-success ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                    default:
+                        statusBtn = "</span><span class='badge text-danger-light badge-danger ml-1 badge-text'>" + invStatus + "</span>";
+                        break;
+                }
+                DeviceModal.InnerHtml += "<tr class='invRow' data-inventorykey='" + reader["InventoryKey"].ToString() + "'>" + "<td>" + reader["Model"].ToString()
+                                                 + "</td>" + "<td>" + reader["SerialNum"].ToString()
+                                                 + "</td>" + "<td>" + "</td>"
+                                                 + "<td>" + statusBtn + "</td>" + "<td>" +
+                                                 "</span><span class='badge text-success-light bg-primary ml-1 badge-text btn-quick-assign-modal' data-dismiss='modal''>" + "Assign" + "</span>"
+                                                 + "</td>" + "</tr>";
+                
             }
             i++;
 
@@ -186,7 +244,7 @@ public partial class QuickAssign : System.Web.UI.Page
         history_cmd.ExecuteNonQuery();
         SqlCommand status_cmd = new SqlCommand("UPDATE sv_Inventory SET StatusID = 1 WHERE InventoryKey = " + inventoryKey , conn);
         status_cmd.ExecuteNonQuery();
-        
+       
         return "success";
     }
 
